@@ -34,6 +34,7 @@ html.lenis-smooth { scroll-behavior: auto; }
 html.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 
 /* Custom scrollbar */
+html { scrollbar-width: thin; scrollbar-color: #CBD5E1 transparent; }
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
