@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 @theme {
   /* Colores - Paleta Cielo Van Gogh */
   --color-sky-deep: #1E3A5F;
