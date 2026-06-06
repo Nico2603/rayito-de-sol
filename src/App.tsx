@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import Lenis from 'lenis'
 import Home from './pages/Home'
 
@@ -26,9 +27,12 @@ function App() {
   }, [])
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+      <Analytics />
+    </>
   )
 }
 
