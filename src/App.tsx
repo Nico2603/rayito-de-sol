@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Lenis from 'lenis'
+import Navbar from './components/Navbar'
 import Home from './pages/Home'
 
-function App() {
+export default function App() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -19,17 +20,15 @@ function App() {
     }
 
     requestAnimationFrame(raf)
-
-    return () => {
-      lenis.destroy()
-    }
+    return () => lenis.destroy()
   }, [])
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </>
   )
 }
-
-export default App
