@@ -1,46 +1,53 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@theme {
+  /* Colores - Paleta Cielo Van Gogh */
+  --color-sky-deep: #1E3A5F;
+  --color-sky-cerulean: #4A90D9;
+  --color-sky-mid: #7BB8E8;
+  --color-sky-soft: #A8D8EA;
+  --color-sky-pale: #D6EAF8;
+  --color-sky-white: #F7F9FC;
+  --color-sun: #F5C842;
+  --color-sun-soft: #F9E07A;
+  --color-text-primary: #1A1A2E;
+  --color-text-secondary: #5A6A7E;
+  --color-border-light: #E5E9F0;
 
-/* Smooth scrolling with Lenis */
-html.lenis {
-  scroll-behavior: auto;
+  /* Tipografía */
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+  /* Animaciones */
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
 }
 
-html.lenis-smooth {
-  scroll-behavior: auto;
-}
-
-html.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
+/* Lenis smooth scrolling */
+html.lenis { scroll-behavior: auto; }
+html.lenis-smooth { scroll-behavior: auto; }
+html.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 
 /* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
 
 /* Selection */
-::selection {
-  background-color: #fbbf24;
-  color: #1a1a1a;
+::selection { background-color: rgba(245, 200, 66, 0.3); color: #1A1A2E; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
