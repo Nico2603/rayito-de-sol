@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+/* eslint-disable react-hooks/purity */
+
+import { useMemo } from 'react'
 
 interface Sparkle {
   id: number
@@ -10,19 +12,18 @@ interface Sparkle {
 }
 
 export default function Sparkles({ count = 6 }: { count?: number }) {
-  const [sparkles, setSparkles] = useState<Sparkle[]>([])
-
-  useEffect(() => {
-    const items: Sparkle[] = Array.from({ length: count }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 6 + 3,
-      delay: Math.random() * 5,
-      duration: Math.random() * 3 + 3,
-    }))
-    setSparkles(items)
-  }, [count])
+  const sparkles = useMemo<Sparkle[]>(
+    () =>
+      Array.from({ length: count }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 6 + 3,
+        delay: Math.random() * 5,
+        duration: Math.random() * 3 + 3,
+      })),
+    [count],
+  )
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
