@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Lenis from 'lenis'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 
@@ -29,6 +30,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
+      <SpeedInsights />
     </>
   )
 }
