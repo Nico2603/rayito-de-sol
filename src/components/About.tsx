@@ -1,3 +1,4 @@
+import { GraduationCap, Brain, Baby } from 'lucide-react'
 import mariaCamilaFace from '../assets/images/MariaCamilaFace.webp'
 import SectionWrapper from './SectionWrapper'
 
@@ -20,10 +21,10 @@ export default function About() {
           </div>
 
           <div>
-            <p className="text-sun font-semibold text-xs uppercase tracking-[0.2em] mb-3">
+            <p className="text-sun-ink font-semibold text-xs uppercase tracking-[0.2em] mb-3">
               Sobre mí
             </p>
-            <h2 className="text-3xl md:text-5xl font-bold text-text-primary mb-6 tracking-tight">
+            <h2 className="font-display text-3xl md:text-5xl font-semibold text-text-primary mb-6 tracking-tight">
               Hola, soy{' '}
               <span className="text-sky-deep">María Camila</span>
             </h2>
@@ -44,14 +45,17 @@ export default function About() {
             </div>
 
             <div className="flex flex-wrap gap-3 mt-8">
-              <span className="bg-sky-pale/60 text-sky-deep text-sm font-medium px-4 py-2 rounded-full">
-                🎓 Psicóloga Titulada
+              <span className="inline-flex items-center gap-2 bg-sky-pale/60 text-sky-deep text-sm font-medium px-4 py-2 rounded-full">
+                <GraduationCap className="w-4 h-4" strokeWidth={2} />
+                Psicóloga Titulada
               </span>
-              <span className="bg-sky-pale/60 text-sky-deep text-sm font-medium px-4 py-2 rounded-full">
-                🧠 TCC
+              <span className="inline-flex items-center gap-2 bg-sky-pale/60 text-sky-deep text-sm font-medium px-4 py-2 rounded-full">
+                <Brain className="w-4 h-4" strokeWidth={2} />
+                TCC
               </span>
-              <span className="bg-sky-pale/60 text-sky-deep text-sm font-medium px-4 py-2 rounded-full">
-                👶 Atención Infantil
+              <span className="inline-flex items-center gap-2 bg-sky-pale/60 text-sky-deep text-sm font-medium px-4 py-2 rounded-full">
+                <Baby className="w-4 h-4" strokeWidth={2} />
+                Atención Infantil
               </span>
             </div>
           </div>

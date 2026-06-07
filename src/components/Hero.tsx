@@ -21,14 +21,14 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-sun-soft font-semibold text-sm md:text-base uppercase tracking-[0.2em] mb-6">
+          <p className="text-sun-soft font-semibold text-sm md:text-base uppercase tracking-[0.2em] mb-6 [text-shadow:0_1px_8px_rgb(30_58_95_/_45%)]">
             Psicología &amp; Bienestar
           </p>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white mb-6 tracking-tight leading-[0.95]">
+          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold text-white mb-6 tracking-tight leading-[0.95] [text-shadow:0_2px_24px_rgb(30_58_95_/_35%)]">
             Rayito de{' '}
             <span className="text-sun">Sol</span>
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-white/80 max-w-2xl mx-auto leading-relaxed mb-10 font-light">
+          <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10 font-light [text-shadow:0_1px_12px_rgb(30_58_95_/_40%)]">
             Un espacio seguro para tu bienestar emocional.
             <br />
             Acompañamiento psicológico con calidez, profesionalismo y compromiso.

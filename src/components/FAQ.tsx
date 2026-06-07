@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Plus } from 'lucide-react'
 import SectionWrapper from './SectionWrapper'
 import { faqItems } from '../data/faq'
 
@@ -10,10 +11,10 @@ export default function FAQ() {
     <SectionWrapper id="faq" className="bg-sky-pale/50 py-24 md:py-32">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-sun font-semibold text-xs uppercase tracking-[0.2em] mb-3">
+          <p className="text-sun-ink font-semibold text-xs uppercase tracking-[0.2em] mb-3">
             Preguntas frecuentes
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold text-text-primary mb-4 tracking-tight">
+          <h2 className="font-display text-3xl md:text-5xl font-semibold text-text-primary mb-4 tracking-tight">
             FAQ
           </h2>
         </div>
@@ -30,11 +31,11 @@ export default function FAQ() {
               >
                 <span className="font-medium text-text-primary pr-4">{item.question}</span>
                 <motion.span
-                  animate={{ rotate: openIndex === i ? 45 : 0 }}
+                  animate={{ rotate: openIndex === i ? 135 : 0 }}
                   transition={{ duration: 0.2 }}
-                  className="text-sun text-xl shrink-0"
+                  className="text-sky-deep shrink-0"
                 >
-                  +
+                  <Plus className="w-5 h-5" strokeWidth={2} />
                 </motion.span>
               </button>
               <AnimatePresence>

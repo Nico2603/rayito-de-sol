@@ -9,12 +9,14 @@
   --color-sky-white: #F7F9FC;
   --color-sun: #F5C842;
   --color-sun-soft: #F9E07A;
+  --color-sun-ink: #8A6A12;
   --color-text-primary: #1A1A2E;
   --color-text-secondary: #5A6A7E;
   --color-border-light: #E5E9F0;
 
   /* Tipografía */
   --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
 
   /* Animaciones */
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);

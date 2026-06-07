@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Sun } from 'lucide-react'
 
 const links = [
   { label: 'Inicio', href: '#hero' },
@@ -36,7 +37,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <button onClick={() => handleClick('#hero')} className="flex items-center gap-2 text-text-primary font-bold text-lg tracking-tight">
-              <span className="text-sun text-xl">✦</span>
+              <Sun className="w-5 h-5 text-sun" strokeWidth={2.25} fill="currentColor" />
               Rayito de Sol
             </button>
 

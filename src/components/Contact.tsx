@@ -1,3 +1,4 @@
+import { MapPin, MessageCircle, Mail, ArrowRight } from 'lucide-react'
 import SectionWrapper from './SectionWrapper'
 
 export default function Contact() {
@@ -7,10 +8,10 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-12 md:gap-16">
           {/* Info */}
           <div>
-            <p className="text-sun font-semibold text-xs uppercase tracking-[0.2em] mb-3">
+            <p className="text-sun-ink font-semibold text-xs uppercase tracking-[0.2em] mb-3">
               Contacto
             </p>
-            <h2 className="text-3xl md:text-5xl font-bold text-text-primary mb-6 tracking-tight">
+            <h2 className="font-display text-3xl md:text-5xl font-semibold text-text-primary mb-6 tracking-tight">
               Agenda tu{' '}
               <span className="text-sky-deep">primera sesión</span>
             </h2>
@@ -21,8 +22,8 @@ export default function Contact() {
 
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-sun/10 flex items-center justify-center text-xl shrink-0">
-                  📍
+                <div className="w-12 h-12 rounded-xl bg-sun/10 flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5 text-sky-deep" strokeWidth={1.75} />
                 </div>
                 <div>
                   <p className="font-medium text-text-primary">Ubicación</p>
@@ -30,8 +31,8 @@ export default function Contact() {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-sun/10 flex items-center justify-center text-xl shrink-0">
-                  💬
+                <div className="w-12 h-12 rounded-xl bg-sun/10 flex items-center justify-center shrink-0">
+                  <MessageCircle className="w-5 h-5 text-sky-deep" strokeWidth={1.75} />
                 </div>
                 <div>
                   <p className="font-medium text-text-primary">WhatsApp</p>
@@ -39,8 +40,8 @@ export default function Contact() {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-sun/10 flex items-center justify-center text-xl shrink-0">
-                  📧
+                <div className="w-12 h-12 rounded-xl bg-sun/10 flex items-center justify-center shrink-0">
+                  <Mail className="w-5 h-5 text-sky-deep" strokeWidth={1.75} />
                 </div>
                 <div>
                   <p className="font-medium text-text-primary">Email</p>
@@ -54,10 +55,10 @@ export default function Contact() {
               href="https://wa.me/573000000000"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 mt-8 bg-sun text-text-primary font-semibold px-8 py-4 rounded-full hover:bg-sun-soft transition-all duration-300 shadow-lg shadow-sun/30"
+              className="group inline-flex items-center gap-3 mt-8 bg-sun text-text-primary font-semibold px-8 py-4 rounded-full hover:bg-sun-soft transition-all duration-300 shadow-lg shadow-sun/30"
             >
               <span>Escríbeme por WhatsApp</span>
-              <span>→</span>
+              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2} />
             </a>
           </div>
 
