@@ -1,4 +1,7 @@
-import { Sun, Camera, MessageCircle } from 'lucide-react'
+import { Sun } from 'lucide-react'
+import InstagramIcon from './icons/InstagramIcon'
+import WhatsAppIcon from './icons/WhatsAppIcon'
+import { INSTAGRAM_URL, WHATSAPP_URL } from '../constants/social'
 
 export default function Footer() {
   return (
@@ -14,21 +17,21 @@ export default function Footer() {
           {/* Social */}
           <div className="flex items-center gap-6">
             <a
-              href="https://instagram.com/rayitodesol.psicologia"
+              href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-sun transition-colors duration-200 text-sm"
+              className="inline-flex items-center gap-2.5 hover:text-sun transition-colors duration-200 text-sm text-white/90"
             >
-              <Camera className="w-4 h-4" strokeWidth={1.75} />
+              <InstagramIcon className="w-5 h-5" variant="light" />
               Instagram
             </a>
             <a
-              href="https://wa.me/573000000000"
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-sun transition-colors duration-200 text-sm"
+              className="inline-flex items-center gap-2.5 hover:text-sun transition-colors duration-200 text-sm text-white/90"
             >
-              <MessageCircle className="w-4 h-4" strokeWidth={1.75} />
+              <WhatsAppIcon className="w-5 h-5" variant="light" />
               WhatsApp
             </a>
           </div>

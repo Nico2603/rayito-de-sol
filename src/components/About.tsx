@@ -8,16 +8,12 @@ export default function About() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           <div className="relative">
-            <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl">
-              <img
-                src={mariaCamilaFace}
-                alt="María Camila - Psicóloga"
-                className="w-full h-auto object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full border-2 border-sun/30 -z-10" />
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 rounded-full bg-sky-pale/50 -z-10" />
+            <img
+              src={mariaCamilaFace}
+              alt="María Camila - Psicóloga"
+              className="w-full h-auto object-cover [mask-image:linear-gradient(to_top,transparent_0%,black_10%)] [-webkit-mask-image:linear-gradient(to_top,transparent_0%,black_10%)]"
+              loading="lazy"
+            />
           </div>
 
           <div>

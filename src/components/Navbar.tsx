@@ -36,8 +36,13 @@ export default function Navbar() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <button onClick={() => handleClick('#hero')} className="flex items-center gap-2 text-text-primary font-bold text-lg tracking-tight">
-              <Sun className="w-5 h-5 text-sun" strokeWidth={2.25} fill="currentColor" />
+            <button
+              onClick={() => handleClick('#hero')}
+              className={`flex items-center gap-2 font-bold text-lg tracking-tight transition-colors duration-500 ${
+                scrolled ? 'text-text-primary' : 'text-white'
+              }`}
+            >
+              <Sun className="w-5 h-5 text-sun shrink-0" strokeWidth={2.25} fill="currentColor" />
               Rayito de Sol
             </button>
 
@@ -47,7 +52,11 @@ export default function Navbar() {
                 <button
                   key={link.href}
                   onClick={() => handleClick(link.href)}
-                  className="text-sm font-medium text-text-secondary hover:text-sky-deep transition-colors duration-200"
+                  className={`text-sm font-medium transition-colors duration-500 ${
+                    scrolled
+                      ? 'text-text-primary hover:text-sky-deep'
+                      : 'text-white/95 hover:text-sun [text-shadow:0_1px_4px_rgb(30_58_95_/_40%)]'
+                  }`}
                 >
                   {link.label}
                 </button>
@@ -62,15 +71,15 @@ export default function Navbar() {
             >
               <motion.span
                 animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-                className="block w-6 h-0.5 bg-text-primary transition-colors"
+                className={`block w-6 h-0.5 transition-colors duration-500 ${scrolled ? 'bg-text-primary' : 'bg-white'}`}
               />
               <motion.span
                 animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-                className="block w-6 h-0.5 bg-text-primary"
+                className={`block w-6 h-0.5 transition-colors duration-500 ${scrolled ? 'bg-text-primary' : 'bg-white'}`}
               />
               <motion.span
                 animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-                className="block w-6 h-0.5 bg-text-primary"
+                className={`block w-6 h-0.5 transition-colors duration-500 ${scrolled ? 'bg-text-primary' : 'bg-white'}`}
               />
             </button>
           </div>

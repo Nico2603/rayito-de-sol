@@ -1,6 +1,11 @@
 import { motion } from 'framer-motion'
 import Sparkles from './Sparkles'
 
+const fadeUp = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+}
+
 export default function Hero() {
   const scrollToContact = () => {
     document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
@@ -8,44 +13,81 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
-      {/* Van Gogh sky gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-sky-deep via-sky-cerulean via-sky-mid via-sky-soft to-sky-pale" />
+      {/* Cielo Van Gogh — mantiene profundidad más tiempo antes de aclarar */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(180deg, #1E3A5F 0%, #4A90D9 30%, #7BB8E8 55%, #A8D8EA 82%, #D6EAF8 100%)',
+        }}
+      />
 
-      {/* Sparkles overlay */}
+      {/* Scrim atmosférico centrado en el copy (no es una caja) */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 85% 52% at 50% 40%, rgb(30 58 95 / 0.48) 0%, rgb(30 58 95 / 0.12) 45%, transparent 72%)',
+        }}
+      />
+
+      {/* Horizonte suave solo abajo */}
+      <div className="absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-sky-pale/70 via-sky-soft/15 to-transparent pointer-events-none" />
+
       <Sparkles count={8} />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center -translate-y-6 sm:-translate-y-10 md:-translate-y-12">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          initial="initial"
+          animate="animate"
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-sun-soft font-semibold text-sm md:text-base uppercase tracking-[0.2em] mb-6 [text-shadow:0_1px_8px_rgb(30_58_95_/_45%)]">
+          <motion.p
+            {...fadeUp}
+            transition={{ duration: 0.75, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+            className="text-sun-soft font-semibold text-sm md:text-base uppercase tracking-[0.2em] mb-6 hero-subcopy-glow"
+          >
             Psicología &amp; Bienestar
-          </p>
-          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold text-white mb-6 tracking-tight leading-[0.95] [text-shadow:0_2px_24px_rgb(30_58_95_/_35%)]">
+          </motion.p>
+
+          <motion.h1
+            {...fadeUp}
+            transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold text-white mb-8 tracking-tight leading-[0.95] hero-subcopy-glow"
+          >
             Rayito de{' '}
             <span className="text-sun">Sol</span>
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10 font-light [text-shadow:0_1px_12px_rgb(30_58_95_/_40%)]">
-            Un espacio seguro para tu bienestar emocional.
-            <br />
-            Acompañamiento psicológico con calidez, profesionalismo y compromiso.
-          </p>
-          <motion.button
-            onClick={scrollToContact}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            className="bg-sun text-text-primary font-semibold px-8 py-4 rounded-full text-lg shadow-lg shadow-sun/30 hover:shadow-xl hover:shadow-sun/40 transition-all duration-300"
+          </motion.h1>
+
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.8, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-2xl mx-auto mb-10 space-y-4"
           >
-            Agendar una cita
-          </motion.button>
+            <p className="font-display text-xl sm:text-2xl md:text-[1.75rem] text-white font-medium leading-snug hero-subcopy-glow">
+              Un espacio seguro para tu{' '}
+              <span className="text-sun-soft">bienestar emocional</span>.
+            </p>
+            <p className="text-base sm:text-lg md:text-xl text-white/90 font-light leading-relaxed hero-subcopy-glow">
+              Acompañamiento psicológico con calidez, profesionalismo y compromiso.
+            </p>
+          </motion.div>
+
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.75, delay: 0.34, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <motion.button
+              onClick={scrollToContact}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="bg-sun text-text-primary font-semibold px-8 py-4 rounded-full text-lg shadow-lg shadow-sun/30 hover:shadow-xl hover:shadow-sun/40 transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            >
+              Agendar una cita
+            </motion.button>
+          </motion.div>
         </motion.div>
       </div>
-
-      {/* Subtle bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-sky-pale pointer-events-none" />
     </section>
   )
 }

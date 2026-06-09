@@ -1,5 +1,7 @@
-import { MapPin, MessageCircle, Mail, ArrowRight } from 'lucide-react'
+import { MapPin, Mail, ArrowRight } from 'lucide-react'
 import SectionWrapper from './SectionWrapper'
+import WhatsAppIcon from './icons/WhatsAppIcon'
+import { WHATSAPP_PHONE_DISPLAY, WHATSAPP_URL } from '../constants/social'
 
 export default function Contact() {
   return (
@@ -32,11 +34,11 @@ export default function Contact() {
               </div>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-sun/10 flex items-center justify-center shrink-0">
-                  <MessageCircle className="w-5 h-5 text-sky-deep" strokeWidth={1.75} />
+                  <WhatsAppIcon className="w-6 h-6" />
                 </div>
                 <div>
                   <p className="font-medium text-text-primary">WhatsApp</p>
-                  <p className="text-text-secondary text-sm">+57 300 000 0000</p>
+                  <p className="text-text-secondary text-sm">{WHATSAPP_PHONE_DISPLAY}</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
@@ -52,11 +54,12 @@ export default function Contact() {
 
             {/* WhatsApp CTA */}
             <a
-              href="https://wa.me/573000000000"
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 mt-8 bg-sun text-text-primary font-semibold px-8 py-4 rounded-full hover:bg-sun-soft transition-all duration-300 shadow-lg shadow-sun/30"
             >
+              <WhatsAppIcon className="w-5 h-5" />
               <span>Escríbeme por WhatsApp</span>
               <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2} />
             </a>
