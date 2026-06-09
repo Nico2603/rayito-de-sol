@@ -1,58 +1,230 @@
 @import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   1. DARK MODE — Class Strategy (manual toggle via ThemeContext)
+   ═══════════════════════════════════════════════════════════════════════════ */
+@variant dark (&:where(.dark, .dark *));
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   2. THEME TOKENS — Tailwind @theme (valores fijos, no cambian con tema)
+   ═══════════════════════════════════════════════════════════════════════════ */
 @theme {
-  /* Colores - Paleta Cielo Van Gogh */
+  /* ── Paleta "Cielo Van Gogh" (azules) ───────────────────────────────── */
   --color-sky-deep: #1E3A5F;
   --color-sky-cerulean: #4A90D9;
   --color-sky-mid: #7BB8E8;
   --color-sky-soft: #A8D8EA;
   --color-sky-pale: #D6EAF8;
   --color-sky-white: #F7F9FC;
-  --color-sun: #F5C842;
-  --color-sun-soft: #F9E07A;
-  --color-sun-ink: #8A6A12;
-  --color-text-primary: #1A1A2E;
-  --color-text-secondary: #5A6A7E;
-  --color-border-light: #E5E9F0;
 
-  /* Tipografía */
+  /* ── Paleta "Sol" (dorados) ─────────────────────────────────────────── */
+  --color-sun: #FFD425;
+  --color-sun-soft: #FFE566;
+  --color-sun-ink: #C48F0A;
+
+  /* ── Paleta "Noche" (oscuros) ───────────────────────────────────────── */
+  --color-night-deep: #0B1622;
+  --color-night-mid: #162D50;
+  --color-night-star: #F8FAE5;
+  --color-night-purple: #2D1B69;
+
+  /* ── Tipografía ──────────────────────────────────────────────────────── */
   --font-sans: 'Plus Jakarta Sans', sans-serif;
   --font-display: 'Fraunces', Georgia, serif;
 
-  /* Animaciones */
+  /* ── Easing Curves (Motion) ──────────────────────────────────────────── */
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* Breakpoints */
+  /* ── Responsive Breakpoints ──────────────────────────────────────────── */
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
 }
 
-/* Lenis smooth scrolling */
+/* ═══════════════════════════════════════════════════════════════════════════
+   3. THEME VARIABLES — Cambian con Light/Dark mode
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─────── 3a. Modo Light (default) ──────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --color-bg-primary: #F7F9FC;
+  --color-bg-secondary: #D6EAF8;
+  --color-bg-card: #FFFFFF;
+
+  /* Textos */
+  --color-text-primary: #1A1A2E;
+  --color-text-secondary: #5A6A7E;
+  --color-text-placeholder: rgba(26, 26, 46, 0.5);
+  --color-text-on-hero: rgba(255, 255, 255, 0.9);
+
+  /* Bordes */
+  --color-border-light: #E5E9F0;
+
+  /* Navbar */
+  --color-nav-bg: #FFFFFF;
+
+  /* Acentos semánticos — se adaptan al tema */
+  --color-accent-label: #C48F0A;        /* sun-ink → textos labels sección */
+  --color-accent-highlight: #1E3A5F;    /* sky-deep → highlights, nombres, spans */
+  --color-accent-icon: #1E3A5F;         /* sky-deep → iconos en cards */
+  --color-accent-badge-bg: rgba(214, 234, 248, 0.6);  /* sky-pale/60 */
+  --color-accent-badge-text: #1E3A5F;   /* sky-deep */
+
+  /* Botones secundarios (fijos, no cambian con tema) */
+  --color-btn-secondary-bg: #1E3A5F;
+  --color-btn-secondary-text: #FFFFFF;
+
+  /* Gradientes hero */
+  --gradient-hero: linear-gradient(
+    180deg,
+    #1E3A5F 0%,
+    #4A90D9 30%,
+    #7BB8E8 55%,
+    #A8D8EA 82%,
+    #D6EAF8 100%
+  );
+  --gradient-hero-scrim: radial-gradient(
+    ellipse 85% 52% at 50% 40%,
+    rgb(30 58 95 / 0.48) 0%,
+    rgb(30 58 95 / 0.12) 45%,
+    transparent 72%
+  );
+  --gradient-hero-horizon: linear-gradient(
+    to top,
+    rgba(214, 234, 248, 0.7) 0%,
+    rgba(168, 216, 234, 0.15) 50%,
+    transparent 100%
+  );
+}
+
+/* ─────── 3b. Modo Dark ──────────────────────────────────────────────────── */
+.dark {
+  /* Backgrounds */
+  --color-bg-primary: #0F1923;
+  --color-bg-secondary: #162D50;
+  --color-bg-card: #1A2744;
+
+  /* Textos */
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #B8C5D4;        /* aclarado para mejor legibilidad */
+  --color-text-placeholder: rgba(241, 245, 249, 0.45);
+  --color-text-on-hero: rgba(255, 255, 255, 0.92);
+
+  /* Bordes */
+  --color-border-light: #1E3A5F;
+
+  /* Navbar */
+  --color-nav-bg: rgba(15, 25, 35, 0.9);
+
+  /* Acentos semánticos — versión oscura */
+  --color-accent-label: #FFD425;          /* sun */
+  --color-accent-highlight: #FFE566;      /* sun-soft */
+  --color-accent-icon: #FFD425;           /* sun */
+  --color-accent-badge-bg: rgba(255, 212, 37, 0.15);  /* sun/15 */
+  --color-accent-badge-text: #FFD425;     /* sun */
+
+  /* Botones secundarios (fijos, no cambian con tema) */
+  --color-btn-secondary-bg: #1E3A5F;
+  --color-btn-secondary-text: #FFFFFF;
+
+  /* Gradientes hero */
+  --gradient-hero: linear-gradient(
+    180deg,
+    #070E18 0%,
+    #0B1622 25%,
+    #162D50 50%,
+    #1E3A5F 75%,
+    #0F1923 100%
+  );
+  --gradient-hero-scrim: radial-gradient(
+    ellipse 85% 52% at 50% 40%,
+    rgb(255 212 37 / 0.10) 0%,
+    rgb(255 212 37 / 0.03) 45%,
+    transparent 72%
+  );
+  --gradient-hero-horizon: linear-gradient(
+    to top,
+    rgba(15, 25, 35, 0.8) 0%,
+    rgba(22, 45, 80, 0.2) 50%,
+    transparent 100%
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   4. LENIS — Smooth Scroll
+   ═══════════════════════════════════════════════════════════════════════════ */
 html.lenis { scroll-behavior: auto; }
 html.lenis-smooth { scroll-behavior: auto; }
 html.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 
-/* Custom scrollbar */
-html { scrollbar-width: thin; scrollbar-color: #CBD5E1 transparent; }
+/* ═══════════════════════════════════════════════════════════════════════════
+   5. SCROLLBAR — Personalizado
+   ═══════════════════════════════════════════════════════════════════════════ */
+html { scrollbar-width: thin; scrollbar-color: var(--color-border-light) transparent; }
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: var(--color-border-light); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
 
-/* Selection */
-::selection { background-color: rgba(245, 200, 66, 0.3); color: #1A1A2E; }
+/* ═══════════════════════════════════════════════════════════════════════════
+   6. SELECTION — Color de selección (Sol)
+   ═══════════════════════════════════════════════════════════════════════════ */
+::selection { background-color: rgba(255, 212, 37, 0.35); color: var(--color-text-primary); }
 
-/* Hero — legibilidad sobre gradiente sin cajas */
-.hero-subcopy-glow {
+/* ═══════════════════════════════════════════════════════════════════════════
+   7. HERO — Text Glow para legibilidad sobre gradiente
+   ═══════════════════════════════════════════════════════════════════════════ */
+.hero-subcopy-glow-light {
   text-shadow:
     0 1px 2px rgb(30 58 95 / 0.9),
     0 4px 20px rgb(30 58 95 / 0.65),
     0 0 40px rgb(30 58 95 / 0.4);
 }
+.hero-subcopy-glow-dark {
+  text-shadow:
+    0 1px 2px rgb(7 14 24 / 0.95),
+    0 4px 24px rgb(7 14 24 / 0.8),
+    0 0 60px rgb(255 212 37 / 0.25);
+}
 
-/* Reduced motion */
+/* ═══════════════════════════════════════════════════════════════════════════
+   8. BASE — Tema aplicado
+   ═══════════════════════════════════════════════════════════════════════════ */
+html { background-color: var(--color-bg-primary); }
+body { background-color: var(--color-bg-primary); color: var(--color-text-primary); }
+
+/* Placeholders adaptativos al tema */
+input::placeholder, textarea::placeholder { color: var(--color-text-placeholder); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   9. THEME TRANSITIONS — Suaves entre light/dark
+   ═══════════════════════════════════════════════════════════════════════════ */
+html,
+html *,
+html *::before,
+html *::after {
+  transition:
+    background-color 0.4s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  html *,
+  html *::before,
+  html *::after {
+    transition: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   10. REDUCED MOTION — Accesibilidad
+   ═══════════════════════════════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import Lenis from 'lenis'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
+import { ThemeProvider } from './context/ThemeContext'
 
 export default function App() {
   useEffect(() => {
@@ -24,11 +25,11 @@ export default function App() {
   }, [])
 
   return (
-    <>
+    <ThemeProvider>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
-    </>
+    </ThemeProvider>
   )
 }

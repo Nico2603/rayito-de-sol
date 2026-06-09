@@ -12,7 +12,11 @@ function FeedSkeleton() {
       {Array.from({ length: 6 }).map((_, index) => (
         <div
           key={index}
-          className="aspect-square rounded-2xl bg-sky-pale/60 animate-pulse border border-border-light"
+          className="aspect-square rounded-2xl animate-pulse border"
+          style={{
+            backgroundColor: 'var(--color-bg-secondary)',
+            borderColor: 'var(--color-border-light)',
+          }}
         />
       ))}
     </div>
@@ -23,16 +27,16 @@ export default function InstagramFeed() {
   const feed = useInstagramFeed()
 
   return (
-    <SectionWrapper id="instagram" className="bg-sky-white py-24 md:py-32">
+    <SectionWrapper id="instagram" className="py-24 md:py-32" style={{ backgroundColor: 'var(--color-bg-primary)' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <p className="text-sun-ink font-semibold text-xs uppercase tracking-[0.2em] mb-3">
+          <p className="font-semibold text-xs uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--color-accent-label)' }}>
             Redes
           </p>
-          <h2 className="font-display text-3xl md:text-5xl font-semibold text-text-primary mb-4 tracking-tight">
+          <h2 className="font-display text-3xl md:text-5xl font-semibold mb-4 tracking-tight" style={{ color: 'var(--color-text-primary)' }}>
             Sígueme en Instagram
           </h2>
-          <p className="text-text-secondary text-lg">
+          <p className="text-lg" style={{ color: 'var(--color-text-secondary)' }}>
             Contenido sobre bienestar emocional, tips y reflexiones
           </p>
         </div>
@@ -51,7 +55,10 @@ export default function InstagramFeed() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.45, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative aspect-square overflow-hidden rounded-2xl border border-border-light bg-sky-pale/30 shadow-sm hover:shadow-lg hover:shadow-sky-deep/10 transition-shadow duration-300"
+                className="group relative aspect-square overflow-hidden rounded-2xl border shadow-sm hover:shadow-lg transition-shadow duration-300"
+                style={{
+                  borderColor: 'var(--color-border-light)',
+                }}
               >
                 <img
                   src={proxiedInstagramImageUrl(post.thumbnailUrl)}
@@ -71,12 +78,15 @@ export default function InstagramFeed() {
         )}
 
         {feed.status === 'error' && (
-          <div className="rounded-2xl border border-border-light bg-sky-pale/30 p-10 text-center">
+          <div className="rounded-2xl border p-10 text-center" style={{
+            backgroundColor: 'var(--color-bg-card)',
+            borderColor: 'var(--color-border-light)',
+          }}>
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-sun/10">
               <InstagramIcon className="h-8 w-8" />
             </div>
-            <p className="text-text-primary font-medium mb-2">No pudimos cargar las publicaciones</p>
-            <p className="text-text-secondary text-sm mb-6">
+            <p className="font-medium mb-2" style={{ color: 'var(--color-text-primary)' }}>No pudimos cargar las publicaciones</p>
+            <p className="text-sm mb-6" style={{ color: 'var(--color-text-secondary)' }}>
               Visita el perfil directamente para ver el contenido más reciente.
             </p>
           </div>
@@ -87,13 +97,19 @@ export default function InstagramFeed() {
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 rounded-full border border-border-light bg-white px-6 py-3 text-text-primary font-medium shadow-sm hover:border-sky-cerulean/40 hover:shadow-md transition-all duration-300"
+            className="group inline-flex items-center gap-2.5 rounded-full border px-6 py-3 font-medium shadow-sm hover:shadow-md transition-all duration-300"
+            style={{
+              backgroundColor: 'var(--color-bg-card)',
+              borderColor: 'var(--color-border-light)',
+              color: 'var(--color-text-primary)',
+            }}
           >
             <InstagramIcon className="h-5 w-5" />
             <span>{INSTAGRAM_HANDLE}</span>
             <ArrowRight
-              className="h-4 w-4 text-sky-deep transition-transform duration-300 group-hover:translate-x-1"
+              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
               strokeWidth={2}
+              style={{ color: 'var(--color-accent-icon)' }}
             />
           </a>
         </div>

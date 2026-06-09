@@ -27,3 +27,6 @@ dist-ssr
 
 # Brainstorming visual companion artifacts
 .superpowers/
+
+# Graphify knowledge graph outputs (regenerable)
+graphify-out/

@@ -17,6 +17,8 @@ export default function Home() {
         <meta property="og:title" content="Rayito de Sol - Psicología | Bienestar Emocional" />
         <meta property="og:description" content="Acompañamiento psicológico con calidez, profesionalismo y compromiso. Agenda tu primera sesión." />
         <meta property="og:url" content="https://rayito-de-sol.vercel.app" />
+        <meta property="og:image" content="https://rayito-de-sol.vercel.app/logo.webp" />
+        <meta name="twitter:image" content="https://rayito-de-sol.vercel.app/logo.webp" />
         <meta name="twitter:title" content="Rayito de Sol - Psicología" />
         <meta name="twitter:description" content="Espacio seguro para tu bienestar emocional." />
       </Helmet>

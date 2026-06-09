@@ -12,13 +12,13 @@ export default function InstagramIcon({ className = 'w-5 h-5', variant = 'brand'
     variant === 'light'
       ? [
           { offset: '0%', color: '#FFFFFF' },
-          { offset: '55%', color: '#F9E07A' },
-          { offset: '100%', color: '#F5C842' },
+          { offset: '55%', color: '#FFE566' },
+          { offset: '100%', color: '#FFD425' },
         ]
       : [
           { offset: '0%', color: '#1E3A5F' },
           { offset: '45%', color: '#4A90D9' },
-          { offset: '100%', color: '#F5C842' },
+          { offset: '100%', color: '#FFD425' },
         ]
 
   return (

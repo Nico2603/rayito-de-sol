@@ -8,13 +8,13 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <SectionWrapper id="faq" className="bg-sky-pale/50 py-24 md:py-32">
+    <SectionWrapper id="faq" className="py-24 md:py-32" style={{ backgroundColor: 'var(--color-bg-secondary)' }}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-sun-ink font-semibold text-xs uppercase tracking-[0.2em] mb-3">
+          <p className="font-semibold text-xs uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--color-accent-label)' }}>
             Preguntas frecuentes
           </p>
-          <h2 className="font-display text-3xl md:text-5xl font-semibold text-text-primary mb-4 tracking-tight">
+          <h2 className="font-display text-3xl md:text-5xl font-semibold mb-4 tracking-tight" style={{ color: 'var(--color-text-primary)' }}>
             FAQ
           </h2>
         </div>
@@ -23,17 +23,22 @@ export default function FAQ() {
           {faqItems.map((item, i) => (
             <div
               key={i}
-              className="bg-white rounded-xl border border-border-light overflow-hidden transition-shadow duration-300 hover:shadow-md"
+              className="rounded-xl border overflow-hidden transition-shadow duration-300 hover:shadow-md"
+              style={{
+                backgroundColor: 'var(--color-bg-card)',
+                borderColor: 'var(--color-border-light)',
+              }}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 className="w-full flex items-center justify-between px-6 py-5 text-left"
               >
-                <span className="font-medium text-text-primary pr-4">{item.question}</span>
+                <span className="font-medium pr-4" style={{ color: 'var(--color-text-primary)' }}>{item.question}</span>
                 <motion.span
                   animate={{ rotate: openIndex === i ? 135 : 0 }}
                   transition={{ duration: 0.2 }}
-                  className="text-sky-deep shrink-0"
+                  className="shrink-0"
+                  style={{ color: 'var(--color-accent-icon)' }}
                 >
                   <Plus className="w-5 h-5" strokeWidth={2} />
                 </motion.span>
@@ -47,7 +52,7 @@ export default function FAQ() {
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-5 text-text-secondary leading-relaxed">
+                    <div className="px-6 pb-5 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                       {item.answer}
                     </div>
                   </motion.div>

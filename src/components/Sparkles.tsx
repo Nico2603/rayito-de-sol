@@ -38,7 +38,7 @@ export default function Sparkles({ count = 6 }: { count?: number }) {
             height: `${s.size}px`,
             opacity: 0,
             animation: `sparkle ${s.duration}s ease-in-out ${s.delay}s infinite`,
-            boxShadow: `0 0 ${s.size * 3}px ${s.size}px rgba(245, 200, 66, 0.3)`,
+            boxShadow: `0 0 ${s.size * 3}px ${s.size}px rgba(255, 212, 37, 0.35)`,
           }}
         />
       ))}

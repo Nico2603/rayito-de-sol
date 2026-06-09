@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
-import { User, Users, ToyBrick, Video, Presentation } from 'lucide-react'
+import { User, ToyBrick, Video, Presentation } from 'lucide-react'
 
 export interface Service {
   icon: LucideIcon
@@ -12,11 +12,6 @@ export const services: Service[] = [
     icon: User,
     title: 'Terapia Individual',
     description: 'Espacio personalizado para trabajar ansiedad, depresión, autoestima y crecimiento personal. Sesiones online y presenciales.',
-  },
-  {
-    icon: Users,
-    title: 'Terapia Familiar',
-    description: 'Acompañamiento a familias para mejorar la comunicación, resolver conflictos y fortalecer vínculos afectivos.',
   },
   {
     icon: ToyBrick,

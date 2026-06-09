@@ -1,4 +1,4 @@
-import { Sun } from 'lucide-react'
+import Logo from './Logo'
 import InstagramIcon from './icons/InstagramIcon'
 import WhatsAppIcon from './icons/WhatsAppIcon'
 import { INSTAGRAM_URL, WHATSAPP_URL } from '../constants/social'
@@ -9,10 +9,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <Sun className="w-5 h-5 text-sun" strokeWidth={2.25} fill="currentColor" />
-            <span className="font-bold text-white text-lg">Rayito de Sol</span>
-          </div>
+          <Logo className="h-9 w-auto" variant="onDark" />
 
           {/* Social */}
           <div className="flex items-center gap-6">

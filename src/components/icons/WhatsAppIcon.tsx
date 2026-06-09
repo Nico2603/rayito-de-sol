@@ -12,7 +12,7 @@ export default function WhatsAppIcon({ className = 'w-5 h-5', variant = 'brand' 
     variant === 'light'
       ? [
           { offset: '0%', color: '#FFFFFF' },
-          { offset: '100%', color: '#F9E07A' },
+          { offset: '100%', color: '#FFE566' },
         ]
       : [
           { offset: '0%', color: '#1E3A5F' },
