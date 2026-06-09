@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-sky-deep: #1E3A5F;
+  --color-sky-cerulean: #4A90D9;
+  --color-sky-mid: #7BB8E8;
+  --color-sky-soft: #A8D8EA;
+  --color-sky-pale: #D6EAF8;
+  --color-sky-white: #F7F9FC;
+  --color-sun: #FFD425;
+  --color-sun-soft: #FFE566;
+  --color-sun-ink: #C48F0A;
+  --color-night-deep: #0B1622;
+  --color-night-mid: #162D50;
+  --color-night-star: #F8FAE5;
+  --color-night-purple: #2D1B69;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+:root {
+  --color-bg-primary: #F7F9FC;
+  --color-bg-secondary: #D6EAF8;
+  --color-bg-card: #FFFFFF;
+  --color-text-primary: #1A1A2E;
+  --color-text-secondary: #5A6A7E;
+  --color-text-placeholder: rgba(26, 26, 46, 0.5);
+  --color-text-on-hero: rgba(255, 255, 255, 0.9);
+  --color-border-light: #E5E9F0;
+  --color-nav-bg: #FFFFFF;
+  --color-accent-label: #C48F0A;
+  --color-accent-highlight: #1E3A5F;
+  --color-accent-icon: #1E3A5F;
+  --color-accent-badge-bg: rgba(214, 234, 248, 0.6);
+  --color-accent-badge-text: #1E3A5F;
+  --color-btn-secondary-bg: #1E3A5F;
+  --color-btn-secondary-text: #FFFFFF;
+  --gradient-hero: linear-gradient(180deg, #1E3A5F 0%, #4A90D9 30%, #7BB8E8 55%, #A8D8EA 82%, #D6EAF8 100%);
+  --gradient-hero-scrim: radial-gradient(ellipse 85% 52% at 50% 40%, rgb(30 58 95 / 0.48) 0%, rgb(30 58 95 / 0.12) 45%, transparent 72%);
+  --gradient-hero-horizon: linear-gradient(to top, rgba(214, 234, 248, 0.7) 0%, rgba(168, 216, 234, 0.15) 50%, transparent 100%);
+}
+
+.dark {
+  --color-bg-primary: #0F1923;
+  --color-bg-secondary: #162D50;
+  --color-bg-card: #1A2744;
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #B8C5D4;
+  --color-text-placeholder: rgba(241, 245, 249, 0.45);
+  --color-text-on-hero: rgba(255, 255, 255, 0.92);
+  --color-border-light: #1E3A5F;
+  --color-nav-bg: rgba(15, 25, 35, 0.9);
+  --color-accent-label: #FFD425;
+  --color-accent-highlight: #FFE566;
+  --color-accent-icon: #FFD425;
+  --color-accent-badge-bg: rgba(255, 212, 37, 0.15);
+  --color-accent-badge-text: #FFD425;
+  --color-btn-secondary-bg: #1E3A5F;
+  --color-btn-secondary-text: #FFFFFF;
+  --gradient-hero: linear-gradient(180deg, #070E18 0%, #0B1622 25%, #162D50 50%, #1E3A5F 75%, #0F1923 100%);
+  --gradient-hero-scrim: radial-gradient(ellipse 85% 52% at 50% 40%, rgb(255 212 37 / 0.10) 0%, rgb(255 212 37 / 0.03) 45%, transparent 72%);
+  --gradient-hero-horizon: linear-gradient(to top, rgba(15, 25, 35, 0.8) 0%, rgba(22, 45, 80, 0.2) 50%, transparent 100%);
+}
