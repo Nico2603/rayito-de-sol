@@ -1,7 +1,17 @@
 import { MapPin, Mail, ArrowRight } from 'lucide-react'
 import SectionWrapper from './SectionWrapper'
 import WhatsAppIcon from './icons/WhatsAppIcon'
-import { WHATSAPP_PHONE_DISPLAY, WHATSAPP_URL } from '../constants/social'
+import { WHATSAPP_URL } from '../constants/social'
+import {
+  CONTACT_SECTION_LABEL,
+  CONTACT_HEADING_START,
+  CONTACT_HEADING_ACCENT,
+  CONTACT_SUBCOPY,
+  contactInfoItems,
+  FORM_TITLE,
+  FORM_SUBMIT_TEXT,
+  WHATSAPP_CTA_TEXT,
+} from '../data/contact'
 
 export default function Contact() {
   return (
@@ -11,45 +21,38 @@ export default function Contact() {
           {/* Info */}
           <div>
             <p className="font-semibold text-xs uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--color-accent-label)' }}>
-              Contacto
+              {CONTACT_SECTION_LABEL}
             </p>
             <h2 className="font-display text-3xl md:text-5xl font-semibold mb-6 tracking-tight" style={{ color: 'var(--color-text-primary)' }}>
-              Agenda tu{' '}
-              <span style={{ color: 'var(--color-accent-highlight)' }}>primera sesión</span>
+              {CONTACT_HEADING_START}
+              <span style={{ color: 'var(--color-accent-highlight)' }}>{CONTACT_HEADING_ACCENT}</span>
             </h2>
             <p className="text-lg leading-relaxed mb-8" style={{ color: 'var(--color-text-secondary)' }}>
-              Da el primer paso hacia tu bienestar. Escríbeme y te responderé a la brevedad para
-              coordinar una cita.
+              {CONTACT_SUBCOPY}
             </p>
 
             <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-sun/10 flex items-center justify-center shrink-0">
-                  <MapPin className="w-5 h-5" strokeWidth={1.75} style={{ color: 'var(--color-accent-icon)' }} />
-                </div>
-                <div>
-                  <p className="font-medium" style={{ color: 'var(--color-text-primary)' }}>Ubicación</p>
-                  <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>Pereira, Colombia</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-sun/10 flex items-center justify-center shrink-0">
-                  <WhatsAppIcon className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="font-medium" style={{ color: 'var(--color-text-primary)' }}>WhatsApp</p>
-                  <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>{WHATSAPP_PHONE_DISPLAY}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-sun/10 flex items-center justify-center shrink-0">
-                  <Mail className="w-5 h-5" strokeWidth={1.75} style={{ color: 'var(--color-accent-icon)' }} />
-                </div>
-                <div>
-                  <p className="font-medium" style={{ color: 'var(--color-text-primary)' }}>Email</p>
-                  <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>hola@rayitodesol.com</p>
-                </div>
-              </div>
+              {contactInfoItems.map((item) => {
+                const iconEl =
+                  item.icon === 'whatsapp' ? (
+                    <WhatsAppIcon className="w-6 h-6" />
+                  ) : item.icon === 'map-pin' ? (
+                    <MapPin className="w-5 h-5" strokeWidth={1.75} style={{ color: 'var(--color-accent-icon)' }} />
+                  ) : (
+                    <Mail className="w-5 h-5" strokeWidth={1.75} style={{ color: 'var(--color-accent-icon)' }} />
+                  )
+                return (
+                  <div key={item.icon} className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-sun/10 flex items-center justify-center shrink-0">
+                      {iconEl}
+                    </div>
+                    <div>
+                      <p className="font-medium" style={{ color: 'var(--color-text-primary)' }}>{item.title}</p>
+                      <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>{item.value}</p>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
 
             {/* WhatsApp CTA */}
@@ -60,7 +63,7 @@ export default function Contact() {
               className="group inline-flex items-center gap-3 mt-8 bg-sun text-[#1A1A2E] font-semibold px-8 py-4 rounded-full hover:bg-sun-soft transition-all duration-300 shadow-lg shadow-sun/30"
             >
               <WhatsAppIcon className="w-5 h-5" />
-              <span>Escríbeme por WhatsApp</span>
+              <span>{WHATSAPP_CTA_TEXT}</span>
               <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2} />
             </a>
           </div>
@@ -70,7 +73,7 @@ export default function Contact() {
             backgroundColor: 'var(--color-bg-card)',
             borderColor: 'var(--color-border-light)',
           }}>
-            <h3 className="text-xl font-semibold mb-6" style={{ color: 'var(--color-text-primary)' }}>Envíame un mensaje</h3>
+            <h3 className="text-xl font-semibold mb-6" style={{ color: 'var(--color-text-primary)' }}>{FORM_TITLE}</h3>
             <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-1.5" style={{ color: 'var(--color-text-primary)' }}>
@@ -125,7 +128,7 @@ export default function Contact() {
                 className="w-full font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:opacity-90"
                 style={{ backgroundColor: 'var(--color-btn-secondary-bg)', color: 'var(--color-btn-secondary-text)' }}
               >
-                Enviar mensaje
+                {FORM_SUBMIT_TEXT}
               </button>
             </form>
           </div>
