@@ -2,6 +2,7 @@ import Logo from './Logo'
 import InstagramIcon from './icons/InstagramIcon'
 import WhatsAppIcon from './icons/WhatsAppIcon'
 import { INSTAGRAM_URL, WHATSAPP_URL } from '../constants/social'
+import { FOOTER_COPYRIGHT } from '../data/footer'
 
 export default function Footer() {
   return (
@@ -35,7 +36,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-sm text-white/50">
-            &copy; {new Date().getFullYear()} Rayito de Sol. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} {FOOTER_COPYRIGHT}
           </p>
         </div>
       </div>

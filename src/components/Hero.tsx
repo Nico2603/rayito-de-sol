@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import InteractiveSparkles from './InteractiveSparkles'
 import DayMode from './DayMode'
 import { useTheme } from '../context/ThemeContext'
+import { HERO_LABEL, HERO_TITLE_MAIN, HERO_TITLE_ACCENT, HERO_TAGLINE_START, HERO_TAGLINE_ACCENT, HERO_TAGLINE_END, HERO_SUBCOPY, HERO_CTA_TEXT } from '../data/hero'
 
 /* ── Gradientes para crossfade (valores fijos, no CSS vars) ── */
 const SKY_LIGHT = 'linear-gradient(180deg, #1E3A5F 0%, #4A90D9 30%, #7BB8E8 55%, #A8D8EA 82%, #D6EAF8 100%)'
@@ -99,7 +100,7 @@ export default function Hero() {
             transition={{ duration: 0.75, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             className={`text-sun-soft font-semibold text-sm md:text-base uppercase tracking-[0.2em] mb-6 ${glowClass}`}
           >
-            Psicología &amp; Bienestar
+            {HERO_LABEL}
           </motion.p>
 
           <motion.h1
@@ -107,8 +108,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             className={`font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold text-white mb-8 tracking-tight leading-[0.95] ${glowClass}`}
           >
-            Rayito de{' '}
-            <span className="text-sun">Sol</span>
+            {HERO_TITLE_MAIN}
+            <span className="text-sun">{HERO_TITLE_ACCENT}</span>
           </motion.h1>
 
           <motion.div
@@ -117,11 +118,11 @@ export default function Hero() {
             className="max-w-2xl mx-auto mb-10 space-y-4"
           >
             <p className={`font-display text-xl sm:text-2xl md:text-[1.75rem] text-white font-medium leading-snug ${glowClass}`}>
-              Un espacio seguro para tu{' '}
-              <span className="text-sun-soft">bienestar emocional</span>.
+              {HERO_TAGLINE_START}
+              <span className="text-sun-soft">{HERO_TAGLINE_ACCENT}</span>{HERO_TAGLINE_END}
             </p>
             <p className={`text-base sm:text-lg md:text-xl text-white/90 font-light leading-relaxed ${glowClass}`}>
-              Acompañamiento psicológico con calidez, profesionalismo y compromiso.
+              {HERO_SUBCOPY}
             </p>
           </motion.div>
 
@@ -135,7 +136,7 @@ export default function Hero() {
               whileTap={{ scale: 0.97 }}
               className="bg-sun text-text-primary font-semibold px-8 py-4 rounded-full text-lg shadow-lg shadow-sun/30 hover:shadow-xl hover:shadow-sun/40 transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
-              Agendar una cita
+              {HERO_CTA_TEXT}
             </motion.button>
           </motion.div>
         </motion.div>

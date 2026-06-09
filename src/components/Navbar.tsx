@@ -2,14 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Logo from './Logo'
 import { useTheme } from '../context/ThemeContext'
-
-const links = [
-  { label: 'Inicio', href: '#hero' },
-  { label: 'Sobre mí', href: '#about' },
-  { label: 'Enfoque', href: '#approach' },
-  { label: 'Servicios', href: '#services' },
-  { label: 'Contacto', href: '#contact' },
-]
+import { navLinks } from '../data/navigation'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -62,7 +55,7 @@ export default function Navbar() {
 
             {/* Desktop links + Theme toggle */}
             <nav className="hidden md:flex items-center gap-6">
-              {links.map((link) => (
+              {navLinks.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => handleClick(link.href)}
@@ -177,7 +170,7 @@ export default function Navbar() {
             }}
           >
             <nav className="flex flex-col px-4 py-6 gap-4">
-              {links.map((link, i) => (
+              {navLinks.map((link, i) => (
                 <motion.button
                   key={link.href}
                   initial={{ opacity: 0, x: -20 }}
