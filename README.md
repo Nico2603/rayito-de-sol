@@ -11,7 +11,7 @@ Terapia individual, atención infantil, sesiones online y talleres grupales con 
 |---|---|---|
 | **React** | ^19.2.6 | UI Framework |
 | **TypeScript** | ~6.0.2 | Tipado estático |
-| **Vite** | ^8.0.12 | Build tool / dev server |
+| **Vite** | ^8.0.16 | Build tool / dev server |
 | **Tailwind CSS** | ^4.3.0 | Estilos utilitarios |
 | **Framer Motion** | ^12.40.0 | Animaciones y transiciones |
 | **Lenis** | ^1.3.23 | Smooth scroll |
@@ -29,12 +29,15 @@ El proyecto cuenta con un **sistema de diseño completo** documentado en [`DESIG
 - **Componentes** — Navbar, Hero con partículas interactivas, About, Approach, Services, FAQ, Instagram Feed, Contact, Footer
 - **Animaciones** — Scroll reveal con SectionWrapper, sparkles doradas, MouseGlow, InteractiveSparkles canvas
 - **100% responsive** — mobile-first con breakpoints sm/md/lg/xl
+- **CSS modular** — tokens, animaciones y base separados en `src/styles/`
+- **Datos desacoplados** — textos y config en `src/data/`, lógica pura en `src/lib/`
+- **Tipos centralizados** — interfaces compartidas en `src/types/`
 
 ## 🧱 Estructura del Proyecto
 
 ```
 src/
-├── assets/images/           # Imágenes (logo, foto profesional)
+├── assets/images/           # Imágenes (logo, foto profesional, favicon)
 ├── components/
 │   ├── icons/               # Iconos SVG custom (WhatsApp, Instagram)
 │   ├── About.tsx            # Sección sobre la psicóloga
@@ -44,21 +47,41 @@ src/
 │   ├── Footer.tsx           # Pie de página con redes
 │   ├── Hero.tsx             # Hero principal con partículas
 │   ├── InstagramFeed.tsx    # Feed de Instagram integrado
-│   ├── InteractiveSparkles.tsx # Partículas canvas interactivas
-│   ├── Logo.tsx             # Componente de logo
+│   ├── InteractiveSparkles.tsx # Canvas lifecycle + render loop
+│   ├── Logo.tsx             # Componente de logo (SVG inline)
 │   ├── MouseGlow.tsx        # Brillo que sigue al mouse
 │   ├── Navbar.tsx           # Navegación con tema dual
 │   ├── SectionWrapper.tsx   # Wrapper de scroll reveal
 │   ├── Services.tsx         # Tarjetas de servicios
 │   └── Sparkles.tsx         # Sparkles decorativas CSS
-├── constants/social.ts      # Redes sociales y contactos
 ├── context/ThemeContext.tsx  # Contexto de tema día/noche
-├── data/                    # Datos de servicios, enfoque, FAQ
-├── hooks/                   # Hooks personalizados (mouse, Instagram)
-├── lib/                     # Utilidades (API Instagram)
-├── App.tsx                  # Componente raíz
-├── main.tsx                 # Entry point
-└── index.css                # Tokens de diseño + temas + animaciones
+├── data/                    # Datos puros (sin lógica)
+│   ├── hero.ts              # Textos del Hero
+│   ├── navigation.ts        # Links de navegación
+│   ├── contact.ts           # Campos de formulario + info
+│   ├── footer.ts            # Copyright + redes
+│   ├── approach.ts          # Valores del enfoque
+│   ├── services.ts          # Servicios ofrecidos
+│   └── faq.ts               # Preguntas frecuentes
+├── hooks/                   # Hooks personalizados
+│   ├── useMousePosition.ts  # Tracking de posición del mouse
+│   └── useInstagramFeed.ts  # Lógica de fetch de Instagram
+├── lib/                     # Utilidades framework-agnostic
+│   ├── instagram-api.ts     # Llamadas a Instagram Graph API
+│   ├── instagram-image.ts   # Parseo de URLs de imágenes
+│   └── particles.ts         # Física de partículas (pura)
+├── styles/                  # CSS modular
+│   ├── tokens.css           → @theme, :root, .dark (colores, spacing)
+│   ├── animations.css       → Keyframes, transiciones, reduced-motion
+│   ├── base.css             → Scrollbar, selection, hero glow, body
+│   └── index.css            → Barrel (import ordenado)
+├── types/                   # Tipos compartidos (TypeScript)
+│   ├── instagram.ts         → InstagramPost, FeedState, etc.
+│   ├── components.ts        → Service, ApproachValue, FAQItem
+│   └── theme.ts             → Theme, ThemeContextType
+├── App.tsx                  # Componente raíz (routing + layout)
+├── main.tsx                 # Entry point (ReactDOM.createRoot)
+└── index.css                # → re-exporta styles/index.css
 ```
 
 ## 🚀 Comandos
@@ -75,6 +98,10 @@ npm run preview    # Vista previa del build de producción
 
 # Linting
 npm run lint       # ESLint
+
+# Graphify (mapeo del código)
+npx graphify update .                     # AST rápido
+npx graphify extract . --backend gemini   # Extracción semántica (requiere GEMINI_API_KEY)
 ```
 
 ## 🧩 Secciones de la Landing
@@ -98,6 +125,7 @@ npm run lint       # ESLint
 | Variable | Descripción |
 |---|---|
 | `VITE_INSTAGRAM_TOKEN` | Token de Instagram Graph API (opcional, para feed) |
+| `GEMINI_API_KEY` | API Key de Google Gemini (para extracción semántica con Graphify) |
 
 ## 👩‍⚕️ Contacto
 

@@ -615,9 +615,29 @@ WHATSAPP_PHONE_DISPLAY = '+57 321 648 0414'
 
 | File | Export | Tipo |
 |---|---|---|
+| `data/hero.ts` | `heroContent` (label, title, tagline, copy) | `{ label, title, tagline, copy }` |
+| `data/navigation.ts` | `navLinks[]` | `NavLink[]` |
 | `data/approach.ts` | `aboutIntroLead`, `aboutIntroFollow`, `approachValues[]` | strings + `ApproachValue[]` |
 | `data/services.ts` | `services[]` | `Service[]` |
 | `data/faq.ts` | `faqItems[]` | `FAQItem[]` |
+| `data/contact.ts` | `contactInfo[]`, `formFields` | `ContactInfoItem[]` + form config |
+| `data/footer.ts` | `footerLinks[]`, `copyright` | strings + links |
+
+### 15.3 TypeScript Types
+
+| File | Exports |
+|---|---|
+| `types/instagram.ts` | `InstagramPost`, `InstagramFeedSource`, `InstagramFeedResult`, `FeedState`, `InstagramFallbackPost` |
+| `types/components.ts` | `Service`, `ApproachValue`, `FAQItem`, `ContactInfoItem` |
+| `types/theme.ts` | `Theme`, `ThemeContextType` |
+
+### 15.4 Lib Utils
+
+| File | Propósito |
+|---|---|
+| `lib/particles.ts` | Física de partículas pura (framework-agnostic): `Particle`, `createParticles()`, `getParticleConfig()` |
+| `lib/instagram-api.ts` | Llamadas a Instagram Graph API |
+| `lib/instagram-image.ts` | Parseo y proxy de URLs de imágenes Instagram |
 
 ---
 
@@ -661,22 +681,36 @@ src/
 │   ├── Services.tsx
 │   └── Sparkles.tsx
 ├── constants/
-│   └── social.ts            # Redes sociales
+│   └── social.ts            # Redes sociales + enlaces
 ├── context/
-│   └── ThemeContext.tsx      # Tema día/noche
-├── data/
+│   └── ThemeContext.tsx      # Tema día/noche (tipos en types/theme.ts)
+├── data/                    # Datos puros desacoplados de componentes
+│   ├── hero.ts              # Textos del Hero (label, title, tagline, copy)
+│   ├── navigation.ts        # Links de navegación
 │   ├── approach.ts          # Contenido "Sobre mí" + "Enfoque"
+│   ├── services.ts          # Servicios ofrecidos
 │   ├── faq.ts               # Preguntas frecuentes
-│   └── services.ts          # Servicios
+│   ├── contact.ts           # Campos de formulario + info de contacto
+│   └── footer.ts            # Copyright + redes sociales
 ├── hooks/
 │   ├── useInstagramFeed.ts  # Fetch feed de Instagram
 │   └── useMousePosition.ts  # Tracking de mouse (spring + canvas)
-├── lib/
+├── lib/                     # Lógica pura framework-agnostic
+│   ├── particles.ts         # Física de partículas (Particle, createParticles)
 │   ├── instagram-api.ts     # API de Instagram
-│   └── instagram-image.ts   # Proxy de imágenes Instagram
+│   └── instagram-image.ts   # Parseo de URLs de imágenes Instagram
+├── styles/                  # CSS modular
+│   ├── tokens.css           → @theme, :root, .dark (colores, spacing, tipografía)
+│   ├── animations.css       → Keyframes, transiciones, reduced-motion
+│   ├── base.css             → Scrollbar, selection, hero glow, body defaults
+│   └── index.css            → Barrel (import ordenado)
+├── types/                   # Tipos compartidos (TypeScript)
+│   ├── instagram.ts         → InstagramPost, FeedState, etc.
+│   ├── components.ts        → Service, ApproachValue, FAQItem
+│   └── theme.ts             → Theme, ThemeContextType
 ├── App.tsx
 ├── main.tsx
-└── index.css                # Design tokens + temas + animaciones
+└── index.css                → re-exporta styles/index.css
 ```
 
 ---
@@ -688,6 +722,7 @@ src/
 | Junio 2026 | 1.0.0 | Sistema de diseño inicial con tema dual, mouse interactions, partículas, y dark mode |
 | Junio 2026 | 1.1.0 | Ubicación actualizada a Pereira. Nuevo SunRays (god rays) para modo día. Noche: solo luciérnagas. Modo día: god rays + resplandor. |
 | Junio 2026 | 1.2.0 | Navbar: toggle icon color dinámico (contraste fijo). Contact: botón submit azul + texto blanco fijo. SunRays: 18 rayos + glow central + influencia mouse. Hero: Sparkles eliminado del modo día. Nuevos tokens CSS: `--color-btn-secondary-bg/text`. |
+| Junio 2026 | 1.3.0 | **Reestructuración conservadora.** CSS modularizado (`styles/tokens.css`, `animations.css`, `base.css`). Datos extraídos a `data/` (hero, navigation, contact, footer). Lógica de partículas separada a `lib/particles.ts`. Tipos centralizados en `types/`. Sin cambios visuales ni funcionales. Build y lint estables. |
 
 > **Este documento es la fuente de verdad centralizada para todo el diseño de Rayito de Sol.**
 > Cualquier cambio visual debe reflejarse aquí primero (o simultáneamente).
