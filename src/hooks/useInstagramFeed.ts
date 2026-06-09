@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { InstagramPost } from '../lib/instagram-api'
-
-type FeedState =
-  | { status: 'loading' }
-  | { status: 'success'; posts: InstagramPost[] }
-  | { status: 'error' }
+import type { InstagramPost, FeedState } from '../types/instagram'
 
 export function useInstagramFeed() {
   const [state, setState] = useState<FeedState>({ status: 'loading' })

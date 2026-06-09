@@ -1,20 +1,5 @@
+import type { InstagramPost, InstagramFeedResult } from '../types/instagram'
 import { INSTAGRAM_FALLBACK_POSTS } from '../data/instagram-posts'
-
-export interface InstagramPost {
-  id: string
-  shortcode: string
-  permalink: string
-  thumbnailUrl: string
-  isVideo: boolean
-  caption?: string
-}
-
-export type InstagramFeedSource = 'live' | 'fallback'
-
-export interface InstagramFeedResult {
-  posts: InstagramPost[]
-  source: InstagramFeedSource
-}
 
 const IG_APP_ID = '936619743392459'
 const IG_USER_AGENT =

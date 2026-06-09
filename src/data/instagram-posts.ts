@@ -1,8 +1,4 @@
-export type InstagramFallbackPost = {
-  shortcode: string
-  isVideo: boolean
-  caption: string
-}
+import type { InstagramFallbackPost } from '../types/instagram'
 
 /** Respaldo cuando la API de Instagram limita peticiones (401 / rate limit). */
 export const INSTAGRAM_FALLBACK_POSTS: InstagramFallbackPost[] = [

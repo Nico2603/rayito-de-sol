@@ -1,11 +1,5 @@
-import type { LucideIcon } from 'lucide-react'
+import type { ApproachValue } from '../types/components'
 import { HeartHandshake, Sprout, BadgeCheck } from 'lucide-react'
-
-export interface ApproachValue {
-  icon: LucideIcon
-  title: string
-  description: string
-}
 
 export const aboutIntroLead =
   'Psicóloga apasionada por el bienestar emocional y el crecimiento personal. Mi enfoque integra la calidez humana, el rigor científico y la transformación personal.'

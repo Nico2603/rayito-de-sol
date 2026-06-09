@@ -1,11 +1,5 @@
-import type { LucideIcon } from 'lucide-react'
+import type { Service } from '../types/components'
 import { User, ToyBrick, Video, Presentation } from 'lucide-react'
-
-export interface Service {
-  icon: LucideIcon
-  title: string
-  description: string
-}
 
 export const services: Service[] = [
   {

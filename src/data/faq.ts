@@ -1,7 +1,6 @@
-export interface FAQItem {
-  question: string
-  answer: string
-}
+import type { FAQItem } from '../types/components'
+
+
 
 export const faqItems: FAQItem[] = [
   {
