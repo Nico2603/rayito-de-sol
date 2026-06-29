@@ -1,6 +1,6 @@
-import { Helmet } from 'react-helmet-async'
+import SeoHelmet from '../components/SeoHelmet'
 import Footer from '../components/Footer'
-import { CONTACT_EMAIL, SITE_URL } from '../constants/social'
+import { CONTACT_EMAIL } from '../constants/social'
 
 const pageTitle = 'Política de privacidad | Rayito de Sol'
 const pageDescription =
@@ -37,16 +37,11 @@ const sections = [
 export default function PoliticaPrivacidad() {
   return (
     <>
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <link rel="canonical" href={`${SITE_URL}/politica-privacidad`} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-        <meta property="og:url" content={`${SITE_URL}/politica-privacidad`} />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={pageDescription} />
-      </Helmet>
+      <SeoHelmet
+        title={pageTitle}
+        description={pageDescription}
+        canonicalPath="/politica-privacidad"
+      />
 
       <main className="bg-[var(--color-bg-primary)] pb-20 pt-28">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">

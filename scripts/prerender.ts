@@ -1,12 +1,29 @@
 import { spawn, type ChildProcess } from 'node:child_process'
+import { createServer } from 'node:net'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
-import puppeteer from 'puppeteer'
+import puppeteer, { type Browser } from 'puppeteer'
 import { PRERENDER_ROUTES } from '../src/constants/seo-routes.ts'
 
 const DIST_DIR = resolve(process.cwd(), 'dist')
-const PREVIEW_PORT = 4173
-const PREVIEW_URL = `http://127.0.0.1:${PREVIEW_PORT}`
+
+async function getAvailablePort(): Promise<number> {
+  return new Promise((resolvePort, reject) => {
+    const server = createServer()
+    server.unref()
+    server.on('error', reject)
+    server.listen(0, '127.0.0.1', () => {
+      const address = server.address()
+      if (!address || typeof address === 'string') {
+        server.close()
+        reject(new Error('Could not resolve preview port'))
+        return
+      }
+      const { port } = address
+      server.close(() => resolvePort(port))
+    })
+  })
+}
 
 function waitForServer(url: string, timeoutMs = 60_000): Promise<void> {
   const start = Date.now()
@@ -35,20 +52,26 @@ function waitForServer(url: string, timeoutMs = 60_000): Promise<void> {
   })
 }
 
-function startPreview(): ChildProcess {
-  const isWindows = process.platform === 'win32'
-  const command = isWindows ? 'npx.cmd' : 'npx'
-  const child = spawn(command, ['vite', 'preview', '--port', String(PREVIEW_PORT), '--strictPort'], {
-    cwd: process.cwd(),
-    stdio: 'pipe',
-    shell: isWindows,
+function startPreview(port: number): ChildProcess {
+  const child = spawn(
+    process.platform === 'win32' ? 'npm.cmd' : 'npm',
+    ['run', 'preview', '--', '--port', String(port), '--strictPort', '--host', '127.0.0.1'],
+    {
+      cwd: process.cwd(),
+      stdio: 'pipe',
+      shell: process.platform === 'win32',
+      env: { ...process.env },
+    },
+  )
+
+  child.stdout?.on('data', (chunk: Buffer) => {
+    const message = chunk.toString()
+    if (message.includes('Local:')) console.log(message.trim())
   })
 
   child.stderr?.on('data', (chunk: Buffer) => {
-    const message = chunk.toString()
-    if (message.includes('error') || message.includes('Error')) {
-      console.error(message)
-    }
+    const message = chunk.toString().trim()
+    if (message) console.error(message)
   })
 
   return child
@@ -60,9 +83,9 @@ function outputPathForRoute(routePath: string): string {
   return resolve(DIST_DIR, normalized, 'index.html')
 }
 
-async function prerenderRoute(browser: puppeteer.Browser, routePath: string): Promise<void> {
+async function prerenderRoute(browser: Browser, previewUrl: string, routePath: string): Promise<void> {
   const page = await browser.newPage()
-  const url = `${PREVIEW_URL}${routePath === '/' ? '/' : routePath}`
+  const url = `${previewUrl}${routePath === '/' ? '/' : routePath}`
 
   await page.goto(url, { waitUntil: 'networkidle0', timeout: 90_000 })
   await page.waitForSelector('#root', { timeout: 30_000 })
@@ -80,10 +103,12 @@ async function prerenderRoute(browser: puppeteer.Browser, routePath: string): Pr
 }
 
 async function main(): Promise<void> {
-  const preview = startPreview()
+  const port = await getAvailablePort()
+  const previewUrl = `http://127.0.0.1:${port}`
+  const preview = startPreview(port)
 
   try {
-    await waitForServer(PREVIEW_URL)
+    await waitForServer(previewUrl)
     const browser = await puppeteer.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -91,7 +116,7 @@ async function main(): Promise<void> {
 
     try {
       for (const route of PRERENDER_ROUTES) {
-        await prerenderRoute(browser, route.path)
+        await prerenderRoute(browser, previewUrl, route.path)
       }
     } finally {
       await browser.close()

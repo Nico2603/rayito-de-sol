@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { Plus } from 'lucide-react'
 import SectionWrapper from './SectionWrapper'
 import { buildWhatsappBookingUrl } from '../constants/social'
 import { faqItems } from '../data/faq'
+import { getAllGuias } from '../data/guias/content'
 import { trackWhatsappClick } from '../lib/analytics'
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const faqWhatsappUrl = buildWhatsappBookingUrl('faq')
+  const guias = getAllGuias()
 
   return (
     <SectionWrapper id="faq" className="py-24 md:py-32" style={{ backgroundColor: 'var(--color-bg-secondary)' }}>
@@ -55,13 +58,52 @@ export default function FAQ() {
                 }`}
               >
                 <div className="overflow-hidden">
-                  <div className="px-6 pb-5 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                  <div className="px-6 pb-5 leading-relaxed faq-answer" style={{ color: 'var(--color-text-secondary)' }}>
                     {item.answer}
                   </div>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12">
+          <h3 className="mb-4 text-center font-display text-2xl font-semibold" style={{ color: 'var(--color-text-primary)' }}>
+            Preguntas por tema
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link
+              to="/terapia-ansiedad-pereira"
+              className="rounded-full border px-4 py-2 text-sm font-medium transition-colors hover:bg-sun/10"
+              style={{ borderColor: 'var(--color-border-light)', color: 'var(--color-text-secondary)' }}
+            >
+              Ansiedad y burnout
+            </Link>
+            <Link
+              to="/psicologia-infantil-pereira"
+              className="rounded-full border px-4 py-2 text-sm font-medium transition-colors hover:bg-sun/10"
+              style={{ borderColor: 'var(--color-border-light)', color: 'var(--color-text-secondary)' }}
+            >
+              Psicología infantil
+            </Link>
+            <Link
+              to="/terapia-online-colombia"
+              className="rounded-full border px-4 py-2 text-sm font-medium transition-colors hover:bg-sun/10"
+              style={{ borderColor: 'var(--color-border-light)', color: 'var(--color-text-secondary)' }}
+            >
+              Terapia online
+            </Link>
+            {guias.slice(0, 3).map((guia) => (
+              <Link
+                key={guia.slug}
+                to={guia.path}
+                className="rounded-full border px-4 py-2 text-sm font-medium transition-colors hover:bg-sun/10"
+                style={{ borderColor: 'var(--color-border-light)', color: 'var(--color-text-secondary)' }}
+              >
+                {guia.title.split('|')[0]?.trim()}
+              </Link>
+            ))}
+          </div>
         </div>
 
         <div className="mt-10 text-center rounded-2xl border p-6" style={{ backgroundColor: 'var(--color-bg-card)', borderColor: 'var(--color-border-light)' }}>

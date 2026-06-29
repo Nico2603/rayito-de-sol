@@ -1,0 +1,34 @@
+RAYITO DE SOL — CHECKLIST DE ENTIDAD EXTERNA (AEO/GEO)
+Actualizar NAP idéntico en todos los directorios.
+
+=== NAP OFICIAL (copiar exacto) ===
+Nombre: Rayito de Sol — Psicología
+Profesional: María Camila Alzate Calzada, Psicóloga clínica
+Dirección: Carrera 12 #1-28, sector La Circunvalar, La Rebeca, Psicoartes
+Ciudad: Pereira, Risaralda, Colombia
+Código postal: 660003
+Teléfono: +57 310 750 6153
+Email: psico.camilaa@gmail.com
+Web: https://rayitodesolpsico.com
+
+=== PERFILES A ACTUALIZAR ===
+[ ] Google Business Profile — mismo NAP, categoría Psicólogo, enlace al sitio
+[ ] LinkedIn María Camila — URL del sitio, especialidades, credenciales
+[ ] Instagram @rayitodesol.psico — bio con rayitodesolpsico.com
+[ ] Doctoralia Colombia (si aplica)
+[ ] Directorio Colegio Colombiano de Psicólogos (Colpsic) si tiene listado público
+
+=== RESEÑAS GOOGLE (meta: 4-6/mes) ===
+[ ] Solicitar reseñas a pacientes satisfechos con mención natural de ansiedad, infantil o Pereira
+[ ] Responder todas las reseñas en GBP en menos de 48 h
+
+=== BING / INDEXACIÓN ===
+[ ] Registrar sitio en Bing Webmaster Tools
+[ ] Enviar sitemap: https://rayitodesolpsico.com/sitemap.xml
+[ ] Verificar Google Search Console (reemplazar PENDIENTE_VERIFICACION_GSC en index.html)
+
+=== OMNICANAL POR GUÍA PUBLICADA ===
+[ ] 1 FAQ → carrusel Instagram
+[ ] Enlace interno desde home o servicios
+[ ] Publicación en LinkedIn con enlace a la guía
+[ ] Verificar que llms.txt incluya resumen (se regenera en cada build)

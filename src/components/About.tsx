@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { GraduationCap, Brain, Baby } from 'lucide-react'
 import mariaCamilaFace from '../assets/images/MariaCamilaFace.webp'
 import { aboutIntroLead, aboutIntroFollow } from '../data/approach'
@@ -44,6 +45,13 @@ export default function About() {
                 Atención Infantil
               </span>
             </div>
+            <Link
+              to="/sobre-maria-camila"
+              className="mt-6 inline-flex text-sm font-semibold hover:underline"
+              style={{ color: 'var(--color-accent-highlight)' }}
+            >
+              Conocer formación y credenciales →
+            </Link>
           </div>
         </div>
       </div>

@@ -28,72 +28,354 @@
     <meta name="twitter:image" content="https://rayitodesolpsico.com/og-image.webp" />
     <meta name="twitter:image:alt" content="María Camila — psicóloga en Pereira, consultorio Rayito de Sol" />
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://rayitodesolpsico.com/#website",
+      "name": "Rayito de Sol — Psicología",
+      "url": "https://rayitodesolpsico.com",
+      "inLanguage": "es-CO",
+      "publisher": {
+        "@id": "https://rayitodesolpsico.com/#business"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://rayitodesolpsico.com/#person",
+      "name": "María Camila Alzate Calzada",
+      "givenName": "María Camila",
+      "jobTitle": "Psicóloga clínica",
+      "description": "Psicóloga clínica en Pereira, Risaralda, con enfoque cognitivo-conductual (TCC). Acompaña procesos de ansiedad, burnout laboral, psicología infantil y terapia online en Colombia.",
+      "url": "https://rayitodesolpsico.com/sobre-maria-camila",
+      "image": "https://rayitodesolpsico.com/og-image.webp",
+      "email": "psico.camilaa@gmail.com",
+      "telephone": "+573107506153",
+      "worksFor": {
+        "@id": "https://rayitodesolpsico.com/#business"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Universidad Católica de Pereira",
+        "url": "https://www.ucp.edu.co/psicologia/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Título profesional de Psicología",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "Universidad Católica de Pereira"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Tarjeta Profesional de Psicología",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "Colegio Colombiano de Psicólogos (Colpsic)"
+          }
+        }
+      ],
+      "knowsAbout": [
+        "ansiedad",
+        "burnout laboral",
+        "estrés crónico",
+        "psicología infantil",
+        "terapia cognitivo-conductual",
+        "terapia online",
+        "regulación emocional",
+        "acompañamiento familiar",
+        "bienestar emocional"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/maria-camila-alzate-calzada/",
+        "https://www.instagram.com/rayitodesol.psico/"
+      ]
+    },
+    {
+      "@type": "MedicalBusiness",
+      "@id": "https://rayitodesolpsico.com/#business",
+      "name": "Rayito de Sol",
+      "description": "Consultorio psicológico en Pereira, Risaralda. Terapia individual, infantil y online.",
+      "url": "https://rayitodesolpsico.com",
+      "image": "https://rayitodesolpsico.com/og-image.webp",
+      "telephone": "+573107506153",
+      "email": "psico.camilaa@gmail.com",
+      "priceRange": "COP 50.000 - COP 300.000",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "telephone": "+573107506153",
+          "email": "psico.camilaa@gmail.com",
+          "availableLanguage": [
+            "es-CO"
+          ],
+          "areaServed": "CO"
+        }
+      ],
+      "hasMap": "https://maps.google.com/?q=Carrera+12+%231-28+Pereira+Risaralda",
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Pereira"
+        },
+        {
+          "@type": "Place",
+          "name": "Dosquebradas"
+        },
+        {
+          "@type": "Place",
+          "name": "Santa Rosa de Cabal"
+        },
+        {
+          "@type": "Place",
+          "name": "Risaralda"
+        },
+        {
+          "@type": "Place",
+          "name": "Colombia"
+        }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Monday",
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Tuesday",
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Wednesday",
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Thursday",
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Friday",
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Saturday",
+          "opens": "08:00",
+          "closes": "14:00"
+        }
+      ],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 4.8143,
+        "longitude": -75.6946
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios de psicología",
+        "itemListElement": [
           {
-            "@type": "WebSite",
-            "@id": "https://rayitodesolpsico.com/#website",
-            "name": "Rayito de Sol — Psicología",
-            "url": "https://rayitodesolpsico.com",
-            "inLanguage": "es-CO"
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Terapia para ansiedad en Pereira",
+              "description": "Acompañamiento psicológico para ansiedad, estrés laboral y agotamiento emocional con enfoque clínico."
+            }
           },
           {
-            "@type": "Person",
-            "@id": "https://rayitodesolpsico.com/#person",
-            "name": "María Camila",
-            "jobTitle": "Psicóloga",
-            "url": "https://rayitodesolpsico.com",
-            "email": "psico.camilaa@gmail.com",
-            "telephone": "+573107506153",
-            "image": "https://rayitodesolpsico.com/og-image.webp",
-            "worksFor": {
-              "@id": "https://rayitodesolpsico.com/#business"
-            },
-            "sameAs": [
-              "https://www.linkedin.com/in/maria-camila-alzate-calzada/",
-              "https://www.instagram.com/rayitodesol.psico/"
-            ]
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Psicología infantil en Pereira",
+              "description": "Atención psicológica para niños con acompañamiento a madres, padres y cuidadores."
+            }
           },
           {
-            "@type": "MedicalBusiness",
-            "@id": "https://rayitodesolpsico.com/#business",
-            "name": "Rayito de Sol",
-            "description": "Consultorio psicológico en Pereira, Risaralda. Terapia individual, infantil y online.",
-            "url": "https://rayitodesolpsico.com",
-            "image": "https://rayitodesolpsico.com/og-image.webp",
-            "telephone": "+573107506153",
-            "email": "psico.camilaa@gmail.com",
-            "priceRange": "COP 50.000 - COP 300.000",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Carrera 12 #1-28, sector La Circunvalar, La Rebeca, Psicoartes",
-              "addressLocality": "Pereira",
-              "addressRegion": "Risaralda",
-              "postalCode": "660003",
-              "addressCountry": "CO"
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 4.8143,
-              "longitude": -75.6946
-            },
-            "openingHoursSpecification": [
-              { "@type": "OpeningHoursSpecification", "dayOfWeek": "https://schema.org/Monday", "opens": "08:00", "closes": "18:00" },
-              { "@type": "OpeningHoursSpecification", "dayOfWeek": "https://schema.org/Tuesday", "opens": "08:00", "closes": "18:00" },
-              { "@type": "OpeningHoursSpecification", "dayOfWeek": "https://schema.org/Wednesday", "opens": "08:00", "closes": "18:00" },
-              { "@type": "OpeningHoursSpecification", "dayOfWeek": "https://schema.org/Thursday", "opens": "08:00", "closes": "18:00" },
-              { "@type": "OpeningHoursSpecification", "dayOfWeek": "https://schema.org/Friday", "opens": "08:00", "closes": "18:00" },
-              { "@type": "OpeningHoursSpecification", "dayOfWeek": "https://schema.org/Saturday", "opens": "08:00", "closes": "14:00" }
-            ],
-            "sameAs": [
-              "https://www.instagram.com/rayitodesol.psico/",
-              "https://www.linkedin.com/in/maria-camila-alzate-calzada/",
-              "https://maps.google.com/?q=Carrera+12+%231-28+Pereira+Risaralda"
-            ]
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Terapia psicológica online en Colombia",
+              "description": "Sesiones virtuales para adultos y familias que buscan flexibilidad y continuidad terapéutica."
+            }
           }
         ]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Carrera 12 #1-28, sector La Circunvalar, La Rebeca, Psicoartes",
+        "postalCode": "660003",
+        "addressLocality": "Pereira",
+        "addressRegion": "Risaralda",
+        "addressCountry": "CO"
+      },
+      "sameAs": [
+        "https://www.instagram.com/rayitodesol.psico/",
+        "https://www.linkedin.com/in/maria-camila-alzate-calzada/",
+        "https://maps.google.com/?q=Carrera+12+%231-28+Pereira+Risaralda",
+        "https://g.page/r/Cf1Qj7bN8tXNEBM/review",
+        "https://wa.me/573107506153?text=Hola%2C%20quiero%20agendar%20mi%20primera%20sesi%C3%B3n%20psicol%C3%B3gica.%20Llegu%C3%A9%20desde%3A%20sitio%20web"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://rayitodesolpsico.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo sé si necesito iniciar terapia psicológica?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si llevas semanas con ansiedad, tristeza, irritabilidad, dificultades para dormir o sientes que tus emociones te sobrepasan, iniciar terapia puede ayudarte a recuperar claridad y bienestar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Atiendes casos de ansiedad y burnout laboral en Pereira?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Trabajo procesos para ansiedad, estrés crónico y agotamiento laboral (burnout), con estrategias prácticas para regular emociones, establecer límites y prevenir recaídas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo es la primera sesión psicológica?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La primera sesión es una valoración inicial. Revisamos tu motivo de consulta, tus objetivos y acordamos un plan de trabajo claro para que sepas qué esperar desde el inicio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto dura cada sesión y con qué frecuencia se recomienda?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cada sesión dura entre 50 y 60 minutos. La frecuencia más común es semanal al inicio, y luego se ajusta según tu evolución clínica y disponibilidad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Atiendes niños y acompañas a padres o cuidadores?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Atiendo infancia desde los 4 años y acompaño a madres, padres o cuidadores para alinear estrategias en casa, colegio y consulta."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿La terapia online funciona igual que la presencial?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, cuando se realiza con estructura clínica. Las sesiones online mantienen objetivos, técnicas y seguimiento terapéutico, y son ideales si necesitas flexibilidad de horarios."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué modalidades ofreces: presencial, online o híbrida?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ofrezco atención presencial en Pereira, sesiones online para Colombia y modalidad híbrida según tus necesidades y evolución del proceso."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Trabajas con EPS o medicina prepagada?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La atención es particular. Si tu plan de medicina prepagada o seguro contempla reembolso, puedo entregar soporte para que gestiones el trámite."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es el costo de la consulta psicológica?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El valor depende de la modalidad y tipo de proceso. Escríbeme por WhatsApp y te comparto tarifas, disponibilidad y opciones de agenda."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué temas puedes acompañar en terapia individual?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Trabajo ansiedad, depresión, autoestima, duelo, regulación emocional, relaciones interpersonales y toma de decisiones en momentos de cambio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué pasa si no sé por dónde empezar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No necesitas llegar con todo claro. En la primera sesión ordenamos lo que estás viviendo, priorizamos objetivos y definimos pasos concretos para avanzar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo agendo una cita?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Puedes agendar directamente por WhatsApp. Te confirmaré horarios disponibles y te indicaré el siguiente paso para tu primera sesión."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Dónde está ubicado el consultorio en Pereira?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El consultorio está en Carrera 12 #1-28, sector La Circunvalar, La Rebeca (Psicoartes), Pereira, Risaralda. También ofrezco terapia online para quienes están en otras ciudades de Colombia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Quién es la psicóloga del consultorio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Soy María Camila Alzate Calzada, psicóloga clínica titulada por la Universidad Católica de Pereira, con enfoque cognitivo-conductual. Puedes conocer más en la página Sobre María Camila."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Hay guías o recursos sobre salud mental en el sitio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Publicamos guías sobre cuándo iniciar terapia, ansiedad y burnout, psicología infantil, terapia online y qué esperar en la primera sesión. Están disponibles en la sección de guías del sitio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Atiendes adolescentes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Acompaño procesos emocionales en adolescencia y también orientación a familias cuando es necesario, con modalidad presencial en Pereira u online."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://rayitodesolpsico.com/#speakable",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "#hero h1",
+          "#faq h2",
+          ".faq-answer"
+        ]
       }
+    }
+  ]
+}
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -63,4 +63,24 @@ export const faqItems: FAQItem[] = [
     answer:
       'Puedes agendar directamente por WhatsApp. Te confirmaré horarios disponibles y te indicaré el siguiente paso para tu primera sesión.',
   },
+  {
+    question: '¿Dónde está ubicado el consultorio en Pereira?',
+    answer:
+      'El consultorio está en Carrera 12 #1-28, sector La Circunvalar, La Rebeca (Psicoartes), Pereira, Risaralda. También ofrezco terapia online para quienes están en otras ciudades de Colombia.',
+  },
+  {
+    question: '¿Quién es la psicóloga del consultorio?',
+    answer:
+      'Soy María Camila Alzate Calzada, psicóloga clínica titulada por la Universidad Católica de Pereira, con enfoque cognitivo-conductual. Puedes conocer más en la página Sobre María Camila.',
+  },
+  {
+    question: '¿Hay guías o recursos sobre salud mental en el sitio?',
+    answer:
+      'Sí. Publicamos guías sobre cuándo iniciar terapia, ansiedad y burnout, psicología infantil, terapia online y qué esperar en la primera sesión. Están disponibles en la sección de guías del sitio.',
+  },
+  {
+    question: '¿Atiendes adolescentes?',
+    answer:
+      'Sí. Acompaño procesos emocionales en adolescencia y también orientación a familias cuando es necesario, con modalidad presencial en Pereira u online.',
+  },
 ]

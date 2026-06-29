@@ -1,16 +1,19 @@
-import { useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import Lenis from 'lenis'
+import { useEffect } from 'react'
 import GoogleAnalytics from './components/GoogleAnalytics'
 import FloatingWhatsAppButton from './components/FloatingWhatsAppButton'
 import Navbar from './components/Navbar'
+import { ThemeProvider } from './context/ThemeContext'
+import GuiaPage from './pages/GuiaPage'
 import Home from './pages/Home'
 import PoliticaPrivacidad from './pages/PoliticaPrivacidad'
 import PsicologiaInfantilPereira from './pages/PsicologiaInfantilPereira'
+import SobreMariaCamila from './pages/SobreMariaCamila'
 import TerapiaAnsiedadPereira from './pages/TerapiaAnsiedadPereira'
-import { ThemeProvider } from './context/ThemeContext'
+import TerapiaOnlineColombia from './pages/TerapiaOnlineColombia'
 
 export default function App() {
   const location = useLocation()
@@ -59,10 +62,10 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/terapia-ansiedad-pereira" element={<TerapiaAnsiedadPereira />} />
-        <Route
-          path="/psicologia-infantil-pereira"
-          element={<PsicologiaInfantilPereira />}
-        />
+        <Route path="/psicologia-infantil-pereira" element={<PsicologiaInfantilPereira />} />
+        <Route path="/terapia-online-colombia" element={<TerapiaOnlineColombia />} />
+        <Route path="/sobre-maria-camila" element={<SobreMariaCamila />} />
+        <Route path="/guias/:slug" element={<GuiaPage />} />
         <Route path="/politica-privacidad" element={<PoliticaPrivacidad />} />
       </Routes>
       <FloatingWhatsAppButton />

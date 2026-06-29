@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
 
+# Archivo para motores de respuesta / LLMs
+# https://rayitodesolpsico.com/llms.txt
+
 Host: https://rayitodesolpsico.com
 Sitemap: https://rayitodesolpsico.com/sitemap.xml

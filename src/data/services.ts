@@ -20,6 +20,8 @@ export const services: Service[] = [
     icon: Video,
     title: 'Terapia Online',
     description: 'Sesiones virtuales desde la comodidad de tu hogar. Misma calidad y compromiso que la terapia presencial.',
+    href: '/terapia-online-colombia',
+    ctaLabel: 'Conocer terapia online',
   },
   {
     icon: Presentation,

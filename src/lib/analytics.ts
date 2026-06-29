@@ -21,6 +21,8 @@ export type WhatsappClickLocation =
   | 'hero_primary'
   | 'floating_button'
   | 'faq_cta'
+  | 'guia_cta'
+  | 'about_page'
   | 'navbar_cta'
   | 'topic_page'
 export type InstagramClickLocation = 'footer'
