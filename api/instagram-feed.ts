@@ -21,7 +21,8 @@ export default {
           },
         },
       )
-    } catch {
+    } catch (error) {
+      console.error('[api/instagram-feed] Error al construir el feed.', error)
       return Response.json(
         { error: 'No se pudo cargar el feed de Instagram' },
         { status: 502, headers: { 'Cache-Control': 'no-store' } },

@@ -1,5 +1,6 @@
 const IG_USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+const IG_IMAGE_TIMEOUT_MS = 6500
 
 export function isAllowedInstagramImageUrl(url: string): boolean {
   try {
@@ -25,12 +26,18 @@ export async function fetchInstagramImage(url: string): Promise<Response> {
     return new Response('URL no permitida', { status: 403 })
   }
 
-  const upstream = await fetch(url, {
-    headers: {
-      Referer: 'https://www.instagram.com/',
-      'User-Agent': IG_USER_AGENT,
-    },
-  })
+  let upstream: Response
+  try {
+    upstream = await fetch(url, {
+      headers: {
+        Referer: 'https://www.instagram.com/',
+        'User-Agent': IG_USER_AGENT,
+      },
+      signal: AbortSignal.timeout(IG_IMAGE_TIMEOUT_MS),
+    })
+  } catch {
+    return new Response('No se pudo obtener la imagen', { status: 502 })
+  }
 
   if (!upstream.ok) {
     return new Response('No se pudo obtener la imagen', { status: upstream.status })

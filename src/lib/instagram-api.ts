@@ -117,23 +117,27 @@ async function fetchFallbackInstagramPosts(limit: number): Promise<InstagramPost
     }),
   )
 
-  const posts: InstagramPost[] = []
+  const postsByShortcode = new Map<string, InstagramPost>()
   results.forEach((result, index) => {
     if (result.status === 'rejected') {
       console.warn(`[instagram-api] Falló miniatura fallback: ${selected[index]?.shortcode}`)
       return
     }
     if (result.value) {
-      posts.push(result.value)
+      postsByShortcode.set(result.value.shortcode, result.value)
     }
   })
 
-  if (posts.length > 0) {
-    return posts
+  const missingCount = selected.length - postsByShortcode.size
+  if (missingCount > 0) {
+    console.warn(
+      `[instagram-api] ${missingCount} miniaturas fallback no se resolvieron. Se usa placeholder local para completar el grid.`,
+    )
   }
 
-  console.warn('[instagram-api] Todas las miniaturas fallback fallaron. Se usa placeholder local.')
-  return selected.map((post) => buildFallbackPost(post, FALLBACK_PLACEHOLDER_THUMBNAIL))
+  return selected.map(
+    (post) => postsByShortcode.get(post.shortcode) ?? buildFallbackPost(post, FALLBACK_PLACEHOLDER_THUMBNAIL),
+  )
 }
 
 export async function fetchInstagramFeed(
