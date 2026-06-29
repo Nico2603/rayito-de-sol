@@ -99,6 +99,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
     <title>Psicóloga en Pereira | Rayito de Sol — Terapia y Bienestar</title>
+    <!-- Google tag (gtag.js) — etiqueta base GA4; eventos SPA en src/lib/analytics.ts -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B1Z8RGJK1P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      window.gtag = window.gtag || gtag
+      gtag('js', new Date())
+      gtag('config', 'G-B1Z8RGJK1P', { send_page_view: false })
+    </script>
   </head>
   <body>
     <div id="root"></div>

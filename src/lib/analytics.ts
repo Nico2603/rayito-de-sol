@@ -173,11 +173,18 @@ export function trackPageView(path: string): void {
   if (path === lastTrackedPath) return
   lastTrackedPath = path
 
-  trackEvent('page_view', {
+  const pageParams = {
     page_path: path,
     page_location: `${window.location.origin}${path}`,
     page_title: document.title,
-  })
+  }
+
+  if (mode === 'ga' && isValidGaMeasurementId(GA_MEASUREMENT_ID)) {
+    window.gtag?.('config', GA_MEASUREMENT_ID, pageParams)
+    return
+  }
+
+  trackEvent('page_view', pageParams)
 }
 
 export function trackWhatsappClick(location: WhatsappClickLocation): void {
