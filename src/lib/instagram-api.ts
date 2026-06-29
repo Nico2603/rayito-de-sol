@@ -1,4 +1,4 @@
-import type { InstagramPost, InstagramFeedResult } from '../types/instagram'
+import type { InstagramPost, InstagramFeedResult } from '../types/instagram.js'
 import { INSTAGRAM_FALLBACK_POSTS } from '../data/instagram-posts.js'
 
 const IG_APP_ID = '936619743392459'

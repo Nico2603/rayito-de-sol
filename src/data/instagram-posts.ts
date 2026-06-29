@@ -1,4 +1,4 @@
-import type { InstagramFallbackPost } from '../types/instagram'
+import type { InstagramFallbackPost } from '../types/instagram.js'
 
 /** Respaldo cuando la API de Instagram limita peticiones (401 / rate limit). */
 export const INSTAGRAM_FALLBACK_POSTS: InstagramFallbackPost[] = [
