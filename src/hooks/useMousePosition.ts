@@ -41,39 +41,68 @@ export function useSpringMousePosition(
 }
 
 /**
- * Hook que almacena la posición del mouse en un ref mutable.
- * Ideal para animation loops con canvas (no causa re-renders).
+ * Hook que almacena la posición del puntero en un ref mutable.
+ * Mouse en desktop; touchmove en dispositivos táctiles. Ideal para loops canvas.
  */
 export function useCanvasMousePosition() {
-  const mouseRef = useRef({ x: -1000, y: -1000, smoothX: -1000, smoothY: -1000 })
+  const pointerRef = useRef({ x: -1000, y: -1000 })
 
   useEffect(() => {
-    const isMouseDevice = window.matchMedia('(pointer: fine)').matches
-    if (!isMouseDevice) {
-      mouseRef.current = { x: -1000, y: -1000, smoothX: -1000, smoothY: -1000 }
-      return
+    const reset = () => {
+      pointerRef.current.x = -1000
+      pointerRef.current.y = -1000
+    }
+
+    const setFromTouch = (touches: TouchList) => {
+      if (touches.length === 0) return
+      const touch = touches[0]
+      pointerRef.current.x = touch.clientX
+      pointerRef.current.y = touch.clientY
     }
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current.x = e.clientX
-      mouseRef.current.y = e.clientY
+      pointerRef.current.x = e.clientX
+      pointerRef.current.y = e.clientY
     }
 
     const handleMouseLeave = () => {
-      mouseRef.current.x = -1000
-      mouseRef.current.y = -1000
+      reset()
+    }
+
+    const handleTouchStart = (e: TouchEvent) => {
+      setFromTouch(e.touches)
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      setFromTouch(e.touches)
+    }
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (e.touches.length === 0) {
+        reset()
+        return
+      }
+      setFromTouch(e.touches)
     }
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true })
     document.addEventListener('mouseleave', handleMouseLeave)
+    window.addEventListener('touchstart', handleTouchStart, { passive: true })
+    window.addEventListener('touchmove', handleTouchMove, { passive: true })
+    window.addEventListener('touchend', handleTouchEnd, { passive: true })
+    window.addEventListener('touchcancel', handleTouchEnd, { passive: true })
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseleave', handleMouseLeave)
+      window.removeEventListener('touchstart', handleTouchStart)
+      window.removeEventListener('touchmove', handleTouchMove)
+      window.removeEventListener('touchend', handleTouchEnd)
+      window.removeEventListener('touchcancel', handleTouchEnd)
     }
   }, [])
 
-  return mouseRef
+  return pointerRef
 }
 
 /**

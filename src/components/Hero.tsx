@@ -48,7 +48,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-[calc(4rem+2.5rem)] pb-12 md:pt-[calc(4rem+2rem)] md:pb-16">
       {/* ══════ Cielo — crossfade entre claro/oscuro ══════ */}
       {/* Capa clara (default) */}
       <div
@@ -102,7 +102,7 @@ export default function Hero() {
         style={{ background: HORIZON_DARK, transition: CROSSFADE, opacity: isDark ? 1 : 0 }}
       />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center -translate-y-6 sm:-translate-y-10 md:-translate-y-12">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
         <motion.div
           initial="initial"
           animate="animate"

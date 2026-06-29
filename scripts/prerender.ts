@@ -2,8 +2,27 @@ import { spawn, type ChildProcess } from 'node:child_process'
 import { createServer } from 'node:net'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
+import chromium from '@sparticuz/chromium'
 import puppeteer, { type Browser } from 'puppeteer'
+import puppeteerCore from 'puppeteer-core'
 import { PRERENDER_ROUTES } from '../src/constants/seo-routes.ts'
+
+const isVercelBuild = process.env.VERCEL === '1'
+
+async function launchBrowser(): Promise<Browser> {
+  if (isVercelBuild) {
+    return puppeteerCore.launch({
+      args: chromium.args,
+      executablePath: await chromium.executablePath(),
+      headless: true,
+    }) as Promise<Browser>
+  }
+
+  return puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  })
+}
 
 const DIST_DIR = resolve(process.cwd(), 'dist')
 
@@ -109,10 +128,7 @@ async function main(): Promise<void> {
 
   try {
     await waitForServer(previewUrl)
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    })
+    const browser = await launchBrowser()
 
     try {
       for (const route of PRERENDER_ROUTES) {

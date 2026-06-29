@@ -33,10 +33,9 @@ export default function InteractiveSparkles() {
     if (!ctx) return
 
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const isMouseDevice = window.matchMedia('(pointer: fine)').matches
 
-    // ── Modo estático (reduced-motion o touch) ──
-    if (isReduced || !isMouseDevice) {
+    // ── Modo estático (solo reduced-motion) ──
+    if (isReduced) {
       const staticSparkles = Array.from({ length: 14 }, () => ({
         x: Math.random() * 100,
         y: Math.random() * 100,
@@ -81,7 +80,7 @@ export default function InteractiveSparkles() {
       return () => cancelAnimationFrame(rafRef.current)
     }
 
-    // ── Modo interactivo (mouse) ──
+    // ── Modo interactivo (mouse / touch) ──
     const resize = () => {
       if (!canvas) return
       dimsRef.current.w = canvas.width = canvas.offsetWidth
