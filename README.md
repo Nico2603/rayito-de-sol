@@ -138,6 +138,7 @@ npx graphify extract . --backend gemini   # Extracción semántica (requiere GEM
 
 ```env
 VITE_WEB3FORMS_ACCESS_KEY=tu_access_key_aqui
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 5. **Dominio en Web3Forms** (panel del formulario → Domain name):
@@ -152,16 +153,29 @@ VITE_WEB3FORMS_ACCESS_KEY=tu_access_key_aqui
 - **WhatsApp:** [+57 310 750 6153](https://wa.me/573107506153)
 - **Ubicación:** Pereira, Risaralda, Colombia
 
+## 📊 Google Analytics 4
+
+1. Crear propiedad en [analytics.google.com](https://analytics.google.com) → flujo de datos **Web** → URL `https://rayitodesolpsico.com`.
+2. Copiar el **ID de medición** (`G-XXXXXXXXXX`).
+3. Local: añadir `VITE_GA_MEASUREMENT_ID=G-...` en `.env`.
+4. **Vercel** → Settings → Environment Variables → `VITE_GA_MEASUREMENT_ID` (Production).
+5. Tras deploy: GA4 → **Informes** → **Tiempo real** para confirmar visitas.
+
+Eventos personalizados: `whatsapp_click` (contact_info, contact_cta, footer) y `contact_form_submit`.
+
 ## 🔍 SEO / Google Search Console
 
-Pasos recomendados tras cada deploy con cambios SEO:
+Pasos tras el deploy:
 
-1. **Verificar dominio** en [Google Search Console](https://search.google.com/search-console) (`rayitodesolpsico.com`).
-2. **Enviar sitemap:** `https://rayitodesolpsico.com/sitemap.xml`
-3. **Google Business Profile** (si hay consultorio presencial): mismo NAP (nombre, teléfono, email, ciudad) que el JSON-LD en `src/lib/structured-data.ts`.
-4. **Validar rich results:** [Rich Results Test](https://search.google.com/test/rich-results) — FAQPage debe aparecer válido.
-5. **Bing Webmaster Tools** (opcional): mismo sitemap.
-6. Enlazar el dominio desde la bio de Instagram ([@rayitodesol.psico](https://www.instagram.com/rayitodesol.psico/)).
+1. **Verificar dominio** en [Google Search Console](https://search.google.com/search-console) (`https://rayitodesolpsico.com`).
+   - Método recomendado: etiqueta HTML en `index.html` (descomentar la línea `google-site-verification` y pegar el código de GSC).
+   - Alternativa: verificación vía Google Analytics (cuando GA4 esté activo en producción).
+2. **Enviar sitemap:** `sitemap.xml` (URL completa: `https://rayitodesolpsico.com/sitemap.xml`).
+3. **Inspección de URLs** → `https://rayitodesolpsico.com/` → **Solicitar indexación**.
+4. **Google Business Profile** (consultorio presencial): mismo NAP que `src/lib/structured-data.ts`.
+5. **Validar rich results:** [Rich Results Test](https://search.google.com/test/rich-results) — FAQPage debe aparecer válido.
+6. **Bing Webmaster Tools** (opcional): mismo sitemap.
+7. Enlazar el dominio desde la bio de Instagram ([@rayitodesol.psico](https://www.instagram.com/rayitodesol.psico/)).
 
 ---
 

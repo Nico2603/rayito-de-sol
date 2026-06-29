@@ -1,11 +1,14 @@
 import { useCallback, useState, type FormEvent } from 'react'
+import { DEFAULT_PHONE_COUNTRY_ID, getPhoneCountry } from '../data/phone-countries'
+import { trackContactFormSubmit } from '../lib/analytics'
 import { submitContactEmail } from '../lib/contact-email'
-import { isValidColombianPhone } from '../lib/phone'
-import { FORM_ERROR_MESSAGE, FORM_SUCCESS_MESSAGE } from '../data/contact'
+import { digitsOnly, isValidPhoneForCountry } from '../lib/phone'
+import { FORM_ERROR_MESSAGE } from '../data/contact'
 
 export interface ContactFormFields {
   name: string
   email: string
+  phoneCountry: string
   phone: string
   message: string
 }
@@ -22,6 +25,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const EMPTY_FIELDS: ContactFormFields = {
   name: '',
   email: '',
+  phoneCountry: DEFAULT_PHONE_COUNTRY_ID,
   phone: '',
   message: '',
 }
@@ -40,9 +44,11 @@ function validateFields(fields: ContactFormFields): ContactFormErrors {
   }
 
   if (!fields.phone.trim()) {
-    errors.phone = 'Ingresa un número de teléfono válido (ej. 310 750 6153).'
-  } else if (!isValidColombianPhone(fields.phone)) {
-    errors.phone = 'Ingresa un número de teléfono válido (ej. 310 750 6153).'
+    const country = getPhoneCountry(fields.phoneCountry)
+    errors.phone = `Ingresa un número de teléfono válido (ej. ${country.placeholder}).`
+  } else if (!isValidPhoneForCountry(fields.phoneCountry, digitsOnly(fields.phone))) {
+    const country = getPhoneCountry(fields.phoneCountry)
+    errors.phone = `Ingresa un número de teléfono válido (ej. ${country.placeholder}).`
   }
 
   if (fields.message.trim().length < 10) {
@@ -56,23 +62,30 @@ export function useContactForm() {
   const [fields, setFields] = useState<ContactFormFields>(EMPTY_FIELDS)
   const [errors, setErrors] = useState<ContactFormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [submittedName, setSubmittedName] = useState('')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const updateField = useCallback(
     (field: keyof ContactFormFields, value: string) => {
       setFields((prev) => ({ ...prev, [field]: value }))
       setErrors((prev) => ({ ...prev, [field]: undefined }))
-      setSuccessMessage(null)
       setErrorMessage(null)
     },
     [],
   )
 
+  const resetForm = useCallback(() => {
+    setIsSuccess(false)
+    setSubmittedName('')
+    setFields(EMPTY_FIELDS)
+    setErrors({})
+    setErrorMessage(null)
+  }, [])
+
   const handleSubmit = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault()
-      setSuccessMessage(null)
       setErrorMessage(null)
 
       const nextErrors = validateFields(fields)
@@ -87,8 +100,10 @@ export function useContactForm() {
       const result = await submitContactEmail(fields)
 
       if (result.ok) {
+        trackContactFormSubmit()
+        setSubmittedName(fields.name.trim())
         setFields(EMPTY_FIELDS)
-        setSuccessMessage(FORM_SUCCESS_MESSAGE)
+        setIsSuccess(true)
       } else {
         setErrorMessage(result.error ?? FORM_ERROR_MESSAGE)
       }
@@ -102,9 +117,11 @@ export function useContactForm() {
     fields,
     errors,
     isSubmitting,
-    successMessage,
+    isSuccess,
+    submittedName,
     errorMessage,
     updateField,
     handleSubmit,
+    resetForm,
   }
 }

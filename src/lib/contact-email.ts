@@ -1,8 +1,9 @@
-import { normalizePhone } from './phone'
+import { normalizePhone, toInternationalPhone, formatPhoneDisplay, digitsOnly } from './phone'
 
 export interface ContactEmailFields {
   name: string
   email: string
+  phoneCountry: string
   phone: string
   message: string
 }
@@ -36,11 +37,11 @@ export async function submitContactEmail(
         access_key: accessKey,
         name: fields.name.trim(),
         email: fields.email.trim(),
-        phone: normalizePhone(fields.phone),
+        phone: normalizePhone(toInternationalPhone(fields.phoneCountry, digitsOnly(fields.phone))),
         message: [
           fields.message.trim(),
           '',
-          `Teléfono: ${fields.phone.trim()}`,
+          `Teléfono: ${formatPhoneDisplay(fields.phoneCountry, fields.phone)}`,
           fields.email.trim() ? `Correo: ${fields.email.trim()}` : null,
         ]
           .filter(Boolean)

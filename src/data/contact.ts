@@ -37,5 +37,12 @@ export const FORM_PHONE_LABEL = 'Teléfono'
 export const FORM_PHONE_PLACEHOLDER = '310 750 6153'
 export const WHATSAPP_CTA_TEXT = 'Escríbeme por WhatsApp'
 export const FORM_SUCCESS_MESSAGE = 'Tu mensaje fue enviado. Te responderé pronto.'
+export const FORM_SUCCESS_TITLE = '¡Gracias por contactarme!'
+export const FORM_SUCCESS_TRUST =
+  'Aprecio que hayas dado este paso y confíes en mí para acompañarte.'
+export const FORM_SUCCESS_RESPONSE = 'Te responderé cuanto antes para coordinar tu cita.'
+export const FORM_SUCCESS_GREETING = (name: string) =>
+  name ? `Gracias, ${name}.` : 'Tu mensaje llegó con éxito.'
+export const FORM_SUCCESS_ANOTHER = 'Enviar otro mensaje'
 export const FORM_ERROR_MESSAGE =
   'No pudimos enviar tu mensaje. Intenta de nuevo o escríbeme por WhatsApp.'

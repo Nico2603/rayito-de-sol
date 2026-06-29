@@ -1,7 +1,11 @@
-import { MapPin, Mail, ArrowRight } from 'lucide-react'
+import { MapPin, Mail, ArrowRight, Loader2 } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
 import SectionWrapper from './SectionWrapper'
+import ContactFormSuccess from './ContactFormSuccess'
+import PhoneInput from './PhoneInput'
 import WhatsAppIcon from './icons/WhatsAppIcon'
 import { WHATSAPP_URL } from '../constants/social'
+import { trackWhatsappClick } from '../lib/analytics'
 import {
   CONTACT_SECTION_LABEL,
   CONTACT_HEADING_START,
@@ -12,7 +16,6 @@ import {
   FORM_SUBMIT_TEXT,
   FORM_SENDING_TEXT,
   FORM_PHONE_LABEL,
-  FORM_PHONE_PLACEHOLDER,
   WHATSAPP_CTA_TEXT,
 } from '../data/contact'
 import { useContactForm } from '../hooks/useContactForm'
@@ -25,15 +28,24 @@ const inputStyle = {
 
 const errorStyle = { color: '#DC2626' } as const
 
+const formExit = {
+  opacity: 0,
+  y: -16,
+  scale: 0.98,
+  transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] as const },
+}
+
 export default function Contact() {
   const {
     fields,
     errors,
     isSubmitting,
-    successMessage,
+    isSuccess,
+    submittedName,
     errorMessage,
     updateField,
     handleSubmit,
+    resetForm,
   } = useContactForm()
 
   return (
@@ -88,6 +100,11 @@ export default function Contact() {
                     href={item.href}
                     target={item.icon === 'whatsapp' ? '_blank' : undefined}
                     rel={item.icon === 'whatsapp' ? 'noopener noreferrer' : undefined}
+                    onClick={
+                      item.icon === 'whatsapp'
+                        ? () => trackWhatsappClick('contact_info')
+                        : undefined
+                    }
                     className="text-sm hover:underline transition-colors duration-200"
                     style={{ color: 'var(--color-text-secondary)' }}
                   >
@@ -119,6 +136,7 @@ export default function Contact() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsappClick('contact_cta')}
               className="group inline-flex items-center gap-3 mt-8 bg-sun text-[#1A1A2E] font-semibold px-8 py-4 rounded-full hover:bg-sun-soft transition-all duration-300 shadow-lg shadow-sun/30"
             >
               <WhatsAppIcon className="w-5 h-5" />
@@ -131,17 +149,37 @@ export default function Contact() {
           </div>
 
           {/* Form */}
-          <div
-            className="rounded-2xl p-8 border shadow-sm"
+          <motion.div
+            layout
+            className="rounded-2xl p-8 border shadow-sm overflow-hidden"
             style={{
               backgroundColor: 'var(--color-bg-card)',
               borderColor: 'var(--color-border-light)',
             }}
+            transition={{ layout: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } }}
           >
-            <h3 className="text-xl font-semibold mb-6" style={{ color: 'var(--color-text-primary)' }}>
-              {FORM_TITLE}
-            </h3>
-            <form className="space-y-5" onSubmit={handleSubmit} noValidate>
+            <AnimatePresence mode="wait" initial={false}>
+              {isSuccess ? (
+                <ContactFormSuccess
+                  key="success"
+                  submittedName={submittedName}
+                  onReset={resetForm}
+                />
+              ) : (
+                <motion.div
+                  key="form"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={formExit}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <h3
+                    className="text-xl font-semibold mb-6"
+                    style={{ color: 'var(--color-text-primary)' }}
+                  >
+                    {FORM_TITLE}
+                  </h3>
+                  <form className="space-y-5" onSubmit={handleSubmit} noValidate>
               <input
                 type="checkbox"
                 name="botcheck"
@@ -206,34 +244,15 @@ export default function Contact() {
                   </p>
                 ) : null}
               </div>
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium mb-1.5"
-                  style={{ color: 'var(--color-text-primary)' }}
-                >
-                  {FORM_PHONE_LABEL}
-                </label>
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  required
-                  autoComplete="tel"
-                  value={fields.phone}
-                  onChange={(e) => updateField('phone', e.target.value)}
-                  aria-invalid={errors.phone ? true : undefined}
-                  aria-describedby={errors.phone ? 'phone-error' : undefined}
-                  placeholder={FORM_PHONE_PLACEHOLDER}
-                  className="w-full border rounded-xl px-4 py-3 focus:outline-none focus:border-sky-cerulean focus:ring-2 focus:ring-sky-cerulean/10 transition-all duration-200"
-                  style={inputStyle}
-                />
-                {errors.phone ? (
-                  <p id="phone-error" className="mt-1.5 text-sm" style={errorStyle} role="alert">
-                    {errors.phone}
-                  </p>
-                ) : null}
-              </div>
+              <PhoneInput
+                id="phone"
+                label={FORM_PHONE_LABEL}
+                countryId={fields.phoneCountry}
+                value={fields.phone}
+                onCountryChange={(countryId) => updateField('phoneCountry', countryId)}
+                onChange={(nationalDigits) => updateField('phone', nationalDigits)}
+                error={errors.phone}
+              />
               <div>
                 <label
                   htmlFor="message"
@@ -262,18 +281,6 @@ export default function Contact() {
                   </p>
                 ) : null}
               </div>
-              {successMessage ? (
-                <p
-                  className="text-sm rounded-xl px-4 py-3"
-                  style={{
-                    backgroundColor: 'var(--color-accent-badge-bg)',
-                    color: 'var(--color-accent-badge-text)',
-                  }}
-                  role="status"
-                >
-                  {successMessage}
-                </p>
-              ) : null}
               {errorMessage ? (
                 <p
                   className="text-sm rounded-xl px-4 py-3"
@@ -286,19 +293,30 @@ export default function Contact() {
                   {errorMessage}
                 </p>
               ) : null}
-              <button
+              <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
+                whileTap={isSubmitting ? undefined : { scale: 0.985 }}
+                className="w-full font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 style={{
                   backgroundColor: 'var(--color-btn-secondary-bg)',
                   color: 'var(--color-btn-secondary-text)',
                 }}
               >
-                {isSubmitting ? FORM_SENDING_TEXT : FORM_SUBMIT_TEXT}
-              </button>
-            </form>
-          </div>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />
+                    {FORM_SENDING_TEXT}
+                  </>
+                ) : (
+                  FORM_SUBMIT_TEXT
+                )}
+              </motion.button>
+                  </form>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </div>
     </SectionWrapper>
