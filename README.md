@@ -106,14 +106,21 @@ npx graphify extract . --backend gemini   # Extracción semántica (requiere GEM
 
 ## 🧩 Secciones de la Landing
 
-1. **Hero** — Cielo Van Gogh con partículas animadas, brillo interactivo, CTA a WhatsApp
+1. **Hero** — Cielo Van Gogh con partículas animadas, brillo interactivo, CTA principal a WhatsApp + CTA secundario a formulario
 2. **About** — Foto de la psicóloga, credenciales, badges (Titulada, TCC, Atención Infantil)
 3. **Approach** — Valores: Humanista, Transformación, Clínico
-4. **Services** — Terapia Individual, Atención Infantil, Terapia Online, Talleres
-5. **FAQ** — Preguntas frecuentes con acordeón animado
-6. **Contact** — Formulario + WhatsApp directo + ubicación
-7. **Instagram Feed** — Grid de publicaciones de Instagram
-8. **Footer** — Redes sociales, enlaces, copyright
+4. **Services** — Terapia Individual, Atención Infantil, Terapia Online, Talleres + enlaces a páginas temáticas
+5. **FAQ** — Preguntas frecuentes ampliadas con CTA de cierre a WhatsApp
+6. **Testimonials** — Prueba social y botón de reseñas
+7. **Contact** — Formulario + WhatsApp directo + ubicación completa + horarios
+8. **Instagram Feed** — Grid de publicaciones de Instagram
+9. **Footer** — Redes sociales, enlaces SEO y política de privacidad
+
+## 🧭 Páginas SEO de intención alta
+
+- `/terapia-ansiedad-pereira`
+- `/psicologia-infantil-pereira`
+- `/politica-privacidad`
 
 ## 🌐 Despliegue
 
@@ -151,7 +158,7 @@ VITE_GA_MEASUREMENT_ID=G-B1Z8RGJK1P
 
 - **Instagram:** [@rayitodesol.psico](https://www.instagram.com/rayitodesol.psico/)
 - **WhatsApp:** [+57 310 750 6153](https://wa.me/573107506153)
-- **Ubicación:** Pereira, Risaralda, Colombia
+- **Ubicación:** Carrera 12 #1-28, sector La Circunvalar, La Rebeca, Psicoartes, Pereira
 
 ## 📊 Google Analytics 4
 
@@ -161,14 +168,19 @@ VITE_GA_MEASUREMENT_ID=G-B1Z8RGJK1P
 4. **Vercel** → Settings → Environment Variables → `VITE_GA_MEASUREMENT_ID` (Production).
 5. Tras deploy: GA4 → **Informes** → **Tiempo real** para confirmar visitas.
 
-Eventos personalizados: `whatsapp_click` (contact_info, contact_cta, footer) y `contact_form_submit`.
+Eventos personalizados clave:
+
+- `whatsapp_click` (hero, navbar, faq, contact, footer, floating_button, topic_page)
+- `hero_cta_click` (hero_primary, hero_secondary)
+- `contact_form_start`, `contact_form_submit`, `contact_form_error`
+- `review_click` (testimonials, contact, footer)
 
 ## 🔍 SEO / Google Search Console
 
 Pasos tras el deploy:
 
 1. **Verificar dominio** en [Google Search Console](https://search.google.com/search-console) (`https://rayitodesolpsico.com`).
-   - Método recomendado: etiqueta HTML en `index.html` (descomentar la línea `google-site-verification` y pegar el código de GSC).
+   - Método recomendado: reemplazar `PENDIENTE_VERIFICACION_GSC` en `index.html` con el código de verificación que entrega Search Console.
    - Alternativa: verificación vía Google Analytics (cuando GA4 esté activo en producción).
 2. **Enviar sitemap:** `sitemap.xml` (URL completa: `https://rayitodesolpsico.com/sitemap.xml`).
 3. **Inspección de URLs** → `https://rayitodesolpsico.com/` → **Solicitar indexación**.
@@ -176,6 +188,14 @@ Pasos tras el deploy:
 5. **Validar rich results:** [Rich Results Test](https://search.google.com/test/rich-results) — FAQPage debe aparecer válido.
 6. **Bing Webmaster Tools** (opcional): mismo sitemap.
 7. Enlazar el dominio desde la bio de Instagram ([@rayitodesol.psico](https://www.instagram.com/rayitodesol.psico/)).
+
+## 📈 Growth loop mensual (captación + viralidad)
+
+- Publicar 2 piezas de contenido al mes (ansiedad/burnout y psicología infantil).
+- Solicitar 4-6 reseñas de calidad al mes en Google Business Profile.
+- Reutilizar cada pieza como FAQ corta + carrusel + enlace interno a páginas temáticas.
+- Revisar semanalmente los eventos de conversión en GA4 (`whatsapp_click`, `review_click`, `contact_form_submit`).
+- Ejecutar 1 experimento quincenal de copy/orden de bloques y comparar impacto en clics a WhatsApp.
 
 ---
 

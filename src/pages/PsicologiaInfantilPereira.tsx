@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import Footer from '../components/Footer'
 import { buildWhatsappBookingUrl, SITE_URL } from '../constants/social'
 import { trackWhatsappClick } from '../lib/analytics'
+import { buildTopicStructuredData } from '../lib/structured-data'
 
 const pageTitle = 'Psicología infantil en Pereira | Rayito de Sol'
 const pageDescription =
@@ -34,6 +35,13 @@ const topicFaq = [
   },
 ]
 
+const structuredData = buildTopicStructuredData(
+  '/psicologia-infantil-pereira',
+  pageTitle,
+  pageDescription,
+  topicFaq,
+)
+
 export default function PsicologiaInfantilPereira() {
   const whatsappUrl = buildWhatsappBookingUrl('pagina psicologia infantil pereira')
 
@@ -48,6 +56,7 @@ export default function PsicologiaInfantilPereira() {
         <meta property="og:url" content={`${SITE_URL}/psicologia-infantil-pereira`} />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
       <main className="pt-28">

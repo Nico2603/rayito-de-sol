@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import Footer from '../components/Footer'
 import { buildWhatsappBookingUrl, SITE_URL } from '../constants/social'
 import { trackWhatsappClick } from '../lib/analytics'
+import { buildTopicStructuredData } from '../lib/structured-data'
 
 const pageTitle = 'Terapia para ansiedad en Pereira | Rayito de Sol'
 const pageDescription =
@@ -34,6 +35,13 @@ const topicFaq = [
   },
 ]
 
+const structuredData = buildTopicStructuredData(
+  '/terapia-ansiedad-pereira',
+  pageTitle,
+  pageDescription,
+  topicFaq,
+)
+
 export default function TerapiaAnsiedadPereira() {
   const whatsappUrl = buildWhatsappBookingUrl('pagina ansiedad pereira')
 
@@ -48,6 +56,7 @@ export default function TerapiaAnsiedadPereira() {
         <meta property="og:url" content={`${SITE_URL}/terapia-ansiedad-pereira`} />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
       <main className="pt-28">

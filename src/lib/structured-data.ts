@@ -22,6 +22,11 @@ import {
 } from '../constants/seo'
 import { faqItems } from '../data/faq'
 
+interface TopicFaqItem {
+  question: string
+  answer: string
+}
+
 export function buildHomeStructuredData() {
   const telephone = `+${WHATSAPP_PHONE_E164}`
 
@@ -109,6 +114,41 @@ export function buildHomeStructuredData() {
         '@type': 'FAQPage',
         '@id': `${SITE_URL}/#faq`,
         mainEntity: faqItems.map((item) => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: item.answer,
+          },
+        })),
+      },
+    ],
+  }
+}
+
+export function buildTopicStructuredData(
+  slug: string,
+  title: string,
+  description: string,
+  faq: TopicFaqItem[],
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `${SITE_URL}${slug}#webpage`,
+        url: `${SITE_URL}${slug}`,
+        name: title,
+        description,
+        inLanguage: 'es-CO',
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        about: { '@id': `${SITE_URL}/#business` },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${SITE_URL}${slug}#faq`,
+        mainEntity: faq.map((item) => ({
           '@type': 'Question',
           name: item.question,
           acceptedAnswer: {

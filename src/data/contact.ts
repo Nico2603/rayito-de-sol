@@ -1,8 +1,8 @@
 import {
+  buildWhatsappBookingUrl,
   CONTACT_EMAIL,
   GOOGLE_MAPS_URL,
   GOOGLE_REVIEW_URL,
-  WHATSAPP_BOOKING_URL,
   WHATSAPP_PHONE_DISPLAY,
   WHATSAPP_URL,
 } from '../constants/social'
@@ -53,7 +53,7 @@ export const FORM_SENDING_TEXT = 'Enviando…'
 export const FORM_PHONE_LABEL = 'Teléfono'
 export const FORM_PHONE_PLACEHOLDER = '310 750 6153'
 export const WHATSAPP_CTA_TEXT = 'Agendar por WhatsApp'
-export const WHATSAPP_PRIMARY_URL = WHATSAPP_BOOKING_URL
+export const WHATSAPP_PRIMARY_URL = buildWhatsappBookingUrl('seccion contacto')
 export const GOOGLE_REVIEW_CTA_TEXT = 'Dejar reseña en Google'
 export const GOOGLE_REVIEW_CTA_URL = GOOGLE_REVIEW_URL
 export const FORM_SUCCESS_MESSAGE = 'Tu mensaje fue enviado. Te responderé pronto.'
