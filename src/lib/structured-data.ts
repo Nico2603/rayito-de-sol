@@ -4,7 +4,14 @@ import {
   SITE_URL,
   WHATSAPP_PHONE_E164,
 } from '../constants/social'
-import { SEO_LOCALITY, SEO_SITE_NAME } from '../constants/seo'
+import {
+  SEO_LOCALITY,
+  SEO_OG_IMAGE,
+  SEO_POSTAL_CODE,
+  SEO_PRICE_RANGE,
+  SEO_SITE_NAME,
+  SEO_STREET_ADDRESS,
+} from '../constants/seo'
 import { faqItems } from '../data/faq'
 
 export function buildHomeStructuredData() {
@@ -37,10 +44,14 @@ export function buildHomeStructuredData() {
         description:
           'Consultorio psicológico en Pereira, Risaralda. Terapia individual, infantil y online.',
         url: SITE_URL,
+        image: SEO_OG_IMAGE,
         telephone,
         email: CONTACT_EMAIL,
+        priceRange: SEO_PRICE_RANGE,
         address: {
           '@type': 'PostalAddress',
+          streetAddress: SEO_STREET_ADDRESS,
+          postalCode: SEO_POSTAL_CODE,
           addressLocality: SEO_LOCALITY.city,
           addressRegion: SEO_LOCALITY.region,
           addressCountry: SEO_LOCALITY.country,

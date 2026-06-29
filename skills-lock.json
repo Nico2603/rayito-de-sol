@@ -79,6 +79,18 @@
       "skillPath": "skills/frontend-design/SKILL.md",
       "computedHash": "93f53fd1c0352d3d7ec17b8f73d7351bf76f4821e55d123c9d2abc2c53ba48e4"
     },
+    "google-analytics-admin-api-basics": {
+      "source": "google/skills",
+      "sourceType": "github",
+      "skillPath": "skills/analytics/google-analytics-admin-api-basics/SKILL.md",
+      "computedHash": "3d8dd557e91b442c3a72edbfd8edc453cc52a572913fffe671dec0e266518711"
+    },
+    "google-analytics-data-api-basics": {
+      "source": "google/skills",
+      "sourceType": "github",
+      "skillPath": "skills/analytics/google-analytics-data-api-basics/SKILL.md",
+      "computedHash": "10415525a9014de2abfa4533b737e163c5ad08e1ecf7083829b21a63ec278493"
+    },
     "high-end-visual-design": {
       "source": "leonxlnx/taste-skill",
       "sourceType": "github",
