@@ -5,7 +5,7 @@ export const aboutIntroLead =
   'Psicóloga apasionada por el bienestar emocional y el crecimiento personal. Mi enfoque integra la calidez humana, el rigor científico y la transformación personal.'
 
 export const aboutIntroFollow =
-  'Ofrezco un acompañamiento cercano y profesional, basado en la evidencia psicológica, donde cada persona es vista más allá de un diagnóstico y acompañada en la construcción de cambios significativos para su bienestar.'
+  'Desde Pereira, Risaralda, ofrezco un acompañamiento cercano y profesional, basado en la evidencia psicológica, donde cada persona es vista más allá de un diagnóstico y acompañada en la construcción de cambios significativos para su bienestar.'
 
 export const approachValues: ApproachValue[] = [
   {

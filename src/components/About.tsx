@@ -11,7 +11,7 @@ export default function About() {
           <div className="relative">
             <img
               src={mariaCamilaFace}
-              alt="María Camila - Psicóloga"
+              alt="María Camila, psicóloga clínica en Pereira, Colombia"
               className="w-full h-auto object-cover [mask-image:linear-gradient(to_top,transparent_0%,black_10%)] [-webkit-mask-image:linear-gradient(to_top,transparent_0%,black_10%)]"
               loading="lazy"
             />

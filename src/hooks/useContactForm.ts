@@ -1,16 +1,19 @@
 import { useCallback, useState, type FormEvent } from 'react'
 import { submitContactEmail } from '../lib/contact-email'
+import { isValidColombianPhone } from '../lib/phone'
 import { FORM_ERROR_MESSAGE, FORM_SUCCESS_MESSAGE } from '../data/contact'
 
 export interface ContactFormFields {
   name: string
   email: string
+  phone: string
   message: string
 }
 
 export interface ContactFormErrors {
   name?: string
   email?: string
+  phone?: string
   message?: string
 }
 
@@ -19,19 +22,27 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const EMPTY_FIELDS: ContactFormFields = {
   name: '',
   email: '',
+  phone: '',
   message: '',
 }
 
 function validateFields(fields: ContactFormFields): ContactFormErrors {
   const errors: ContactFormErrors = {}
   const name = fields.name.trim()
+  const email = fields.email.trim()
 
   if (name.length < 2) {
     errors.name = 'Escribe tu nombre (mínimo 2 caracteres).'
   }
 
-  if (!EMAIL_PATTERN.test(fields.email.trim())) {
+  if (email.length > 0 && !EMAIL_PATTERN.test(email)) {
     errors.email = 'Ingresa un correo electrónico válido.'
+  }
+
+  if (!fields.phone.trim()) {
+    errors.phone = 'Ingresa un número de teléfono válido (ej. 310 750 6153).'
+  } else if (!isValidColombianPhone(fields.phone)) {
+    errors.phone = 'Ingresa un número de teléfono válido (ej. 310 750 6153).'
   }
 
   if (fields.message.trim().length < 10) {

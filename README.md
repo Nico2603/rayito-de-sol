@@ -1,6 +1,6 @@
 # Rayito de Sol 🌤️🌙 — Psicología & Bienestar Emocional
 
-**Landing page profesional** para el consultorio psicológico de María Camila en Bogotá, Colombia.  
+**Landing page profesional** para el consultorio psicológico de María Camila en Pereira, Risaralda, Colombia.  
 Terapia individual, atención infantil, sesiones online y talleres grupales con un enfoque cálido, humano y clínico.
 
 ---
@@ -133,18 +133,35 @@ npx graphify extract . --backend gemini   # Extracción semántica (requiere GEM
 
 1. En [web3forms.com](https://web3forms.com), registra el correo de destino (`psico.camilaa@gmail.com`).
 2. Copia el **access key** que llega al correo.
-3. En **Vercel** → Project Settings → Environment Variables, añade `VITE_WEB3FORMS_ACCESS_KEY`.
-4. En local, crea `.env.local` en la raíz del proyecto (no se commitea):
+3. En **Vercel** → Project Settings → Environment Variables, añade `VITE_WEB3FORMS_ACCESS_KEY` (Production, Development y Preview).
+4. En local, copia [`.env.example`](.env.example) a `.env.local` y pega tu key:
 
 ```env
 VITE_WEB3FORMS_ACCESS_KEY=tu_access_key_aqui
 ```
 
+5. **Dominio en Web3Forms** (panel del formulario → Domain name):
+   - Desarrollo: `localhost`
+   - Producción: `rayitodesolpsico.com` (y/o `rayito-de-sol.vercel.app`)
+
+   Cambia el dominio cuando pases de local a producción; no hace falta tocar código.
+
 ## 👩‍⚕️ Contacto
 
 - **Instagram:** [@rayitodesol.psico](https://www.instagram.com/rayitodesol.psico/)
 - **WhatsApp:** [+57 310 750 6153](https://wa.me/573107506153)
-- **Ubicación:** Bogotá, Colombia
+- **Ubicación:** Pereira, Risaralda, Colombia
+
+## 🔍 SEO / Google Search Console
+
+Pasos recomendados tras cada deploy con cambios SEO:
+
+1. **Verificar dominio** en [Google Search Console](https://search.google.com/search-console) (`rayitodesolpsico.com`).
+2. **Enviar sitemap:** `https://rayitodesolpsico.com/sitemap.xml`
+3. **Google Business Profile** (si hay consultorio presencial): mismo NAP (nombre, teléfono, email, ciudad) que el JSON-LD en `src/lib/structured-data.ts`.
+4. **Validar rich results:** [Rich Results Test](https://search.google.com/test/rich-results) — FAQPage debe aparecer válido.
+5. **Bing Webmaster Tools** (opcional): mismo sitemap.
+6. Enlazar el dominio desde la bio de Instagram ([@rayitodesol.psico](https://www.instagram.com/rayitodesol.psico/)).
 
 ---
 

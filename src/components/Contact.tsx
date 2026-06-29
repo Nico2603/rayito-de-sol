@@ -11,6 +11,8 @@ import {
   FORM_TITLE,
   FORM_SUBMIT_TEXT,
   FORM_SENDING_TEXT,
+  FORM_PHONE_LABEL,
+  FORM_PHONE_PLACEHOLDER,
   WHATSAPP_CTA_TEXT,
 } from '../data/contact'
 import { useContactForm } from '../hooks/useContactForm'
@@ -189,7 +191,6 @@ export default function Contact() {
                   id="email"
                   name="email"
                   type="email"
-                  required
                   autoComplete="email"
                   value={fields.email}
                   onChange={(e) => updateField('email', e.target.value)}
@@ -202,6 +203,34 @@ export default function Contact() {
                 {errors.email ? (
                   <p id="email-error" className="mt-1.5 text-sm" style={errorStyle} role="alert">
                     {errors.email}
+                  </p>
+                ) : null}
+              </div>
+              <div>
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium mb-1.5"
+                  style={{ color: 'var(--color-text-primary)' }}
+                >
+                  {FORM_PHONE_LABEL}
+                </label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  autoComplete="tel"
+                  value={fields.phone}
+                  onChange={(e) => updateField('phone', e.target.value)}
+                  aria-invalid={errors.phone ? true : undefined}
+                  aria-describedby={errors.phone ? 'phone-error' : undefined}
+                  placeholder={FORM_PHONE_PLACEHOLDER}
+                  className="w-full border rounded-xl px-4 py-3 focus:outline-none focus:border-sky-cerulean focus:ring-2 focus:ring-sky-cerulean/10 transition-all duration-200"
+                  style={inputStyle}
+                />
+                {errors.phone ? (
+                  <p id="phone-error" className="mt-1.5 text-sm" style={errorStyle} role="alert">
+                    {errors.phone}
                   </p>
                 ) : null}
               </div>

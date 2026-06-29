@@ -15,7 +15,7 @@ export default function FAQ() {
             Preguntas frecuentes
           </p>
           <h2 className="font-display text-3xl md:text-5xl font-semibold mb-4 tracking-tight" style={{ color: 'var(--color-text-primary)' }}>
-            FAQ
+            Preguntas sobre terapia psicológica
           </h2>
         </div>
 

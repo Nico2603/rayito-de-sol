@@ -16,7 +16,7 @@ export default function Logo({ className = 'h-9 w-auto', variant = 'default' }: 
   return (
     <img
       src={logo}
-      alt="Rayito de Sol"
+      alt="Logo Rayito de Sol — psicóloga en Pereira"
       className={`${variantStyles[variant]} ${className}`}
       width={160}
       height={36}

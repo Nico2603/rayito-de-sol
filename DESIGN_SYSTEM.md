@@ -16,7 +16,8 @@
 | **Audiencia** | Personas buscando apoyo psicológico (niños, adultos) |
 | **Propuesta** | Acompañamiento psicológico con calidez, profesionalismo y compromiso |
 | **Psicóloga** | María Camila |
-| **Ubicación** | Bogotá, Colombia |
+| **Ubicación** | Pereira, Colombia |
+| **Dominio producción** | `https://rayitodesolpsico.com` |
 | **Paleta maestra** | "Cielo Van Gogh" (azules profundos → celestes) + "Sol" (dorados) |
 
 ---
@@ -547,16 +548,30 @@ section#hero min-h-[100dvh]
 
 ## 13. SEO & Meta
 
+Fuente de verdad para React: `src/constants/seo.ts` (title, description, keywords, OG image).  
+URL pública: `SITE_URL` en `constants/social.ts` (`https://rayitodesolpsico.com`).  
+Meta dinámicas + JSON-LD en `pages/Home.tsx` vía `react-helmet-async`.  
+Fallback estático en `index.html` (mismos valores que `seo.ts`).
+
 | Propiedad | Valor |
 |---|---|
 | **lang** | `es` |
-| **title** | `Rayito de Sol - Psicología \| Bienestar Emocional` |
+| **title** | `Psicóloga en Pereira \| Rayito de Sol — Terapia y Bienestar` |
+| **description** | Consultorio en Pereira, Risaralda — terapia individual, infantil y online |
+| **keywords** | `psicóloga Pereira`, `terapia psicológica Pereira`, `psicólogo online Colombia` |
+| **canonical** | `{SITE_URL}/` |
+| **og:url** | `{SITE_URL}/` |
+| **og:image** | `{SITE_URL}/og-image.webp` (1200×630) |
+| **og:image:width / height / alt** | 1200 / 630 / alt descriptivo en `seo.ts` |
+| **JSON-LD** | `@graph`: WebSite, Person, MedicalBusiness, FAQPage (`lib/structured-data.ts`) |
+| **robots.txt** | `public/robots.txt` → sitemap |
+| **sitemap.xml** | `public/sitemap.xml` (homepage) |
 | **theme-color** | `#FFD425` |
 | **author** | `Rayito de Sol - Psicología` |
 | **robots** | `index, follow` |
 | **og:type** | `website` |
 | **og:locale** | `es_CO` |
-| **og:site_name** | `Rayito de Sol - Psicología` |
+| **og:site_name** | `Rayito de Sol — Psicología` |
 | **twitter:card** | `summary_large_image` |
 | **Favicon** | `/logo.webp` |
 
@@ -604,10 +619,11 @@ section#hero min-h-[100dvh]
 
 ```ts
 // constants/social.ts
+SITE_URL           = 'https://rayitodesolpsico.com'
 INSTAGRAM_USERNAME = 'rayitodesol.psico'
 INSTAGRAM_URL      = 'https://www.instagram.com/rayitodesol.psico/'
 INSTAGRAM_HANDLE   = '@rayitodesol.psico'
-WHATSAPP_URL       = 'https://wa.me/573107506153'
+WHATSAPP_URL       = 'https://wa.me/573107506153?text=...'
 WHATSAPP_PHONE_DISPLAY = '+57 310 750 6153'
 CONTACT_EMAIL      = 'psico.camilaa@gmail.com'
 ```
@@ -694,9 +710,11 @@ src/
 │   ├── contact.ts           # Campos de formulario + info de contacto
 │   └── footer.ts            # Copyright + redes sociales
 ├── hooks/
+│   ├── useContactForm.ts    # Formulario de contacto (Web3Forms)
 │   ├── useInstagramFeed.ts  # Fetch feed de Instagram
 │   └── useMousePosition.ts  # Tracking de mouse (spring + canvas)
 ├── lib/                     # Lógica pura framework-agnostic
+│   ├── contact-email.ts     # Envío del formulario vía Web3Forms
 │   ├── particles.ts         # Física de partículas (Particle, createParticles)
 │   ├── instagram-api.ts     # API de Instagram
 │   └── instagram-image.ts   # Parseo de URLs de imágenes Instagram
@@ -724,6 +742,7 @@ src/
 | Junio 2026 | 1.1.0 | Ubicación actualizada a Pereira. Nuevo SunRays (god rays) para modo día. Noche: solo luciérnagas. Modo día: god rays + resplandor. |
 | Junio 2026 | 1.2.0 | Navbar: toggle icon color dinámico (contraste fijo). Contact: botón submit azul + texto blanco fijo. SunRays: 18 rayos + glow central + influencia mouse. Hero: Sparkles eliminado del modo día. Nuevos tokens CSS: `--color-btn-secondary-bg/text`. |
 | Junio 2026 | 1.3.0 | **Reestructuración conservadora.** CSS modularizado (`styles/tokens.css`, `animations.css`, `base.css`). Datos extraídos a `data/` (hero, navigation, contact, footer). Lógica de partículas separada a `lib/particles.ts`. Tipos centralizados en `types/`. Sin cambios visuales ni funcionales. Build y lint estables. |
+| Junio 2026 | 1.4.0 | **Dominio producción** `rayitodesolpsico.com` (Hostinger DNS → Vercel). `SITE_URL` y meta canonical/OG en `Home.tsx`. Formulario de contacto con Web3Forms (`useContactForm`, `lib/contact-email.ts`). |
 
 > **Este documento es la fuente de verdad centralizada para todo el diseño de Rayito de Sol.**
 > Cualquier cambio visual debe reflejarse aquí primero (o simultáneamente).

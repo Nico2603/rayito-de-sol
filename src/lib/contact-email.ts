@@ -1,6 +1,9 @@
+import { normalizePhone } from './phone'
+
 export interface ContactEmailFields {
   name: string
   email: string
+  phone: string
   message: string
 }
 
@@ -33,7 +36,15 @@ export async function submitContactEmail(
         access_key: accessKey,
         name: fields.name.trim(),
         email: fields.email.trim(),
-        message: fields.message.trim(),
+        phone: normalizePhone(fields.phone),
+        message: [
+          fields.message.trim(),
+          '',
+          `Teléfono: ${fields.phone.trim()}`,
+          fields.email.trim() ? `Correo: ${fields.email.trim()}` : null,
+        ]
+          .filter(Boolean)
+          .join('\n'),
         subject: 'Nuevo mensaje — Rayito de Sol',
         from_name: 'Rayito de Sol (web)',
         botcheck: '',

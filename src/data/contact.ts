@@ -33,8 +33,9 @@ export const FORM_TITLE = 'Envíame un mensaje'
 
 export const FORM_SUBMIT_TEXT = 'Enviar mensaje'
 export const FORM_SENDING_TEXT = 'Enviando…'
+export const FORM_PHONE_LABEL = 'Teléfono'
+export const FORM_PHONE_PLACEHOLDER = '310 750 6153'
 export const WHATSAPP_CTA_TEXT = 'Escríbeme por WhatsApp'
-export const FORM_SUCCESS_MESSAGE =
-  'Tu mensaje fue enviado. Te responderé pronto al correo que indicaste.'
+export const FORM_SUCCESS_MESSAGE = 'Tu mensaje fue enviado. Te responderé pronto.'
 export const FORM_ERROR_MESSAGE =
   'No pudimos enviar tu mensaje. Intenta de nuevo o escríbeme por WhatsApp.'
