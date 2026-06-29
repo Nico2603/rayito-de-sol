@@ -1,6 +1,10 @@
 import { useCallback, useState, type FormEvent } from 'react'
 import { DEFAULT_PHONE_COUNTRY_ID, getPhoneCountry } from '../data/phone-countries'
-import { trackContactFormSubmit } from '../lib/analytics'
+import {
+  trackContactFormError,
+  trackContactFormStart,
+  trackContactFormSubmit,
+} from '../lib/analytics'
 import { submitContactEmail } from '../lib/contact-email'
 import { digitsOnly, isValidPhoneForCountry } from '../lib/phone'
 import { FORM_ERROR_MESSAGE } from '../data/contact'
@@ -65,14 +69,19 @@ export function useContactForm() {
   const [isSuccess, setIsSuccess] = useState(false)
   const [submittedName, setSubmittedName] = useState('')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [started, setStarted] = useState(false)
 
   const updateField = useCallback(
     (field: keyof ContactFormFields, value: string) => {
+      if (!started) {
+        setStarted(true)
+        trackContactFormStart()
+      }
       setFields((prev) => ({ ...prev, [field]: value }))
       setErrors((prev) => ({ ...prev, [field]: undefined }))
       setErrorMessage(null)
     },
-    [],
+    [started],
   )
 
   const resetForm = useCallback(() => {
@@ -90,6 +99,7 @@ export function useContactForm() {
 
       const nextErrors = validateFields(fields)
       if (Object.keys(nextErrors).length > 0) {
+        trackContactFormError('validation', Object.keys(nextErrors).join(','))
         setErrors(nextErrors)
         return
       }
@@ -104,7 +114,9 @@ export function useContactForm() {
         setSubmittedName(fields.name.trim())
         setFields(EMPTY_FIELDS)
         setIsSuccess(true)
+        setStarted(false)
       } else {
+        trackContactFormError('submission', result.error ?? 'unknown')
         setErrorMessage(result.error ?? FORM_ERROR_MESSAGE)
       }
 

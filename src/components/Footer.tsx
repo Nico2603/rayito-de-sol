@@ -2,7 +2,7 @@ import Logo from './Logo'
 import InstagramIcon from './icons/InstagramIcon'
 import WhatsAppIcon from './icons/WhatsAppIcon'
 import { INSTAGRAM_URL, WHATSAPP_URL } from '../constants/social'
-import { trackWhatsappClick } from '../lib/analytics'
+import { trackInstagramClick, trackWhatsappClick } from '../lib/analytics'
 import { FOOTER_COPYRIGHT } from '../data/footer'
 
 export default function Footer() {
@@ -19,6 +19,7 @@ export default function Footer() {
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackInstagramClick('footer')}
               className="inline-flex items-center gap-2.5 hover:text-sun transition-colors duration-200 text-sm text-white/90"
             >
               <InstagramIcon className="w-5 h-5" variant="light" />

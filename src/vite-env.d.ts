@@ -12,5 +12,6 @@ interface ImportMeta {
 }
 
 interface Window {
-  dataLayer?: Array<Record<string, unknown>>
+  dataLayer?: Array<Record<string, unknown> | unknown[]>
+  gtag?: (...args: unknown[]) => void
 }

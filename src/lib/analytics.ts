@@ -1,59 +1,197 @@
+const GTM_CONTAINER_ID = import.meta.env.VITE_GTM_CONTAINER_ID?.trim()
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim()
+
+type AnalyticsMode = 'none' | 'gtm' | 'ga'
+
 let initialized = false
+let mode: AnalyticsMode = 'none'
 let lastTrackedPath: string | null = null
+let initPromise: Promise<void> | null = null
+const pendingEvents: Array<{ name: string; params?: AnalyticsEventParams }> = []
 
 type AnalyticsEventParams = Record<
   string,
   string | number | boolean | undefined
 >
 
+export type WhatsappClickLocation = 'contact_info' | 'contact_cta' | 'footer'
+export type InstagramClickLocation = 'footer'
+export type EmailClickLocation = 'contact_info'
+export type HeroCtaLocation = 'hero_primary'
+export type NavigationClickLocation = 'navbar' | 'logo' | 'mobile_menu'
+
+function isValidGtmContainerId(value: string | undefined): value is string {
+  return Boolean(value && /^GTM-[A-Z0-9]+$/.test(value))
+}
+
+function isValidGaMeasurementId(value: string | undefined): value is string {
+  return Boolean(value && /^G-[A-Z0-9]+$/.test(value))
+}
+
 function ensureDataLayer(): void {
   window.dataLayer = window.dataLayer ?? []
 }
 
-function pushDataLayerEvent(
-  name: string,
-  params?: AnalyticsEventParams,
-): void {
+function pushDataLayerEvent(name: string, params?: AnalyticsEventParams): void {
   window.dataLayer!.push({
     event: name,
     ...(params ?? {}),
   })
 }
 
-export function initGoogleAnalytics(): void {
+function loadScript(scriptId: string, src: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const existing = document.getElementById(scriptId)
+    if (existing) {
+      resolve()
+      return
+    }
+
+    const script = document.createElement('script')
+    script.id = scriptId
+    script.async = true
+    script.src = src
+    script.onload = () => resolve()
+    script.onerror = () => reject(new Error(`No se pudo cargar el script: ${src}`))
+    document.head.appendChild(script)
+  })
+}
+
+async function initGtm(containerId: string): Promise<void> {
+  ensureDataLayer()
+  pushDataLayerEvent('gtm.js', { 'gtm.start': Date.now() })
+  await loadScript('gtm-base-script', `https://www.googletagmanager.com/gtm.js?id=${containerId}`)
+  mode = 'gtm'
+}
+
+async function initGa(measurementId: string): Promise<void> {
+  ensureDataLayer()
+
+  window.gtag =
+    window.gtag ??
+    function gtag(...args: unknown[]) {
+      window.dataLayer!.push(args)
+    }
+
+  await loadScript(
+    'ga-base-script',
+    `https://www.googletagmanager.com/gtag/js?id=${measurementId}`,
+  )
+
+  window.gtag('js', new Date())
+  window.gtag('config', measurementId, { send_page_view: false })
+  mode = 'ga'
+}
+
+export async function initGoogleAnalytics(): Promise<void> {
+  if (initPromise) return initPromise
   if (initialized) return
 
-  ensureDataLayer()
-  initialized = true
+  initPromise = (async () => {
+    if (isValidGtmContainerId(GTM_CONTAINER_ID)) {
+      await initGtm(GTM_CONTAINER_ID)
+      initialized = true
+      flushPendingEvents()
+      return
+    }
+
+    if (isValidGaMeasurementId(GA_MEASUREMENT_ID)) {
+      await initGa(GA_MEASUREMENT_ID)
+      initialized = true
+      flushPendingEvents()
+      return
+    }
+
+    mode = 'none'
+    initialized = true
+    console.warn(
+      '[analytics] No se inicializó tracking: define VITE_GTM_CONTAINER_ID o VITE_GA_MEASUREMENT_ID',
+    )
+  })()
+
+  return initPromise
+}
+
+function canTrack(): boolean {
+  return mode === 'gtm' || mode === 'ga'
+}
+
+function dispatchEvent(name: string, params?: AnalyticsEventParams): void {
+  if (!canTrack()) return
+
+  if (mode === 'ga') {
+    window.gtag?.('event', name, params)
+    return
+  }
+
+  pushDataLayerEvent(name, params)
+}
+
+export function trackEvent(name: string, params?: AnalyticsEventParams): void {
+  if (canTrack()) {
+    dispatchEvent(name, params)
+    return
+  }
+
+  pendingEvents.push({ name, params })
+  void initGoogleAnalytics()
+}
+
+function flushPendingEvents(): void {
+  if (!canTrack() || pendingEvents.length === 0) return
+
+  for (const event of pendingEvents) {
+    dispatchEvent(event.name, event.params)
+  }
+
+  pendingEvents.length = 0
 }
 
 export function trackPageView(path: string): void {
-  initGoogleAnalytics()
-
   if (path === lastTrackedPath) return
   lastTrackedPath = path
 
-  pushDataLayerEvent('page_view', {
+  trackEvent('page_view', {
     page_path: path,
     page_location: `${window.location.origin}${path}`,
     page_title: document.title,
   })
 }
 
-export function trackEvent(
-  name: string,
-  params?: AnalyticsEventParams,
-): void {
-  initGoogleAnalytics()
-  pushDataLayerEvent(name, params)
-}
-
-export type WhatsappClickLocation = 'contact_info' | 'contact_cta' | 'footer'
-
 export function trackWhatsappClick(location: WhatsappClickLocation): void {
   trackEvent('whatsapp_click', { location })
 }
 
+export function trackInstagramClick(location: InstagramClickLocation): void {
+  trackEvent('instagram_click', { location })
+}
+
+export function trackEmailClick(location: EmailClickLocation): void {
+  trackEvent('email_click', { location })
+}
+
+export function trackHeroCtaClick(location: HeroCtaLocation): void {
+  trackEvent('hero_cta_click', { location })
+}
+
+export function trackNavigationClick(
+  location: NavigationClickLocation,
+  target: string,
+): void {
+  trackEvent('navigation_click', { location, target })
+}
+
+export function trackContactFormStart(): void {
+  trackEvent('contact_form_start')
+}
+
 export function trackContactFormSubmit(): void {
   trackEvent('contact_form_submit')
+}
+
+export function trackContactFormError(
+  type: 'validation' | 'submission',
+  detail?: string,
+): void {
+  trackEvent('contact_form_error', { type, detail })
 }

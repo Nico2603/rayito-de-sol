@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import InteractiveSparkles from './InteractiveSparkles'
 import DayMode from './DayMode'
 import { useTheme } from '../context/ThemeContext'
+import { trackHeroCtaClick } from '../lib/analytics'
 import { HERO_LABEL, HERO_TITLE_MAIN, HERO_TITLE_ACCENT, HERO_TAGLINE_START, HERO_TAGLINE_ACCENT, HERO_TAGLINE_END, HERO_SUBCOPY, HERO_CTA_TEXT } from '../data/hero'
 
 /* ── Gradientes para crossfade (valores fijos, no CSS vars) ── */
@@ -31,6 +32,7 @@ export default function Hero() {
   const glowClass = isDark ? 'hero-subcopy-glow-dark' : 'hero-subcopy-glow-light'
 
   const scrollToContact = () => {
+    trackHeroCtaClick('hero_primary')
     document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
   }
 

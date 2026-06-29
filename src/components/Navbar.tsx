@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Logo from './Logo'
 import { useTheme } from '../context/ThemeContext'
 import { navLinks } from '../data/navigation'
+import { trackNavigationClick } from '../lib/analytics'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -16,7 +17,11 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleClick = (href: string) => {
+  const handleClick = (
+    href: string,
+    location: 'navbar' | 'logo' | 'mobile_menu' = 'navbar',
+  ) => {
+    trackNavigationClick(location, href)
     setMenuOpen(false)
     const el = document.querySelector(href)
     el?.scrollIntoView({ behavior: 'smooth' })
@@ -46,7 +51,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <button
-              onClick={() => handleClick('#hero')}
+              onClick={() => handleClick('#hero', 'logo')}
               className="flex items-center shrink-0"
               aria-label="Rayito de Sol — inicio"
             >
@@ -58,7 +63,7 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <button
                   key={link.href}
-                  onClick={() => handleClick(link.href)}
+                  onClick={() => handleClick(link.href, 'navbar')}
                   className="text-sm font-medium transition-colors duration-500 hover:text-sun"
                   style={{ color: textCol }}
                 >
@@ -176,7 +181,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.08 }}
-                  onClick={() => handleClick(link.href)}
+                  onClick={() => handleClick(link.href, 'mobile_menu')}
                   className="text-left text-lg font-medium py-2 hover:text-sun transition-colors"
                   style={{ color: 'var(--color-text-primary)' }}
                 >

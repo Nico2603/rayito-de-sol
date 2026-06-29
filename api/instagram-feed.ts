@@ -1,5 +1,5 @@
-import { fetchInstagramFeed } from '../src/lib/instagram-api'
-import { INSTAGRAM_USERNAME } from '../src/constants/social'
+import { fetchInstagramFeed } from '../src/lib/instagram-api.js'
+import { INSTAGRAM_USERNAME } from '../src/constants/social.js'
 
 export default {
   async fetch(request: Request): Promise<Response> {

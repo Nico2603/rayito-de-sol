@@ -1,4 +1,4 @@
-import { fetchInstagramImage } from '../src/lib/instagram-image'
+import { fetchInstagramImage } from '../src/lib/instagram-image.js'
 
 export default {
   async fetch(request: Request): Promise<Response> {

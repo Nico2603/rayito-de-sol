@@ -5,7 +5,7 @@ import ContactFormSuccess from './ContactFormSuccess'
 import PhoneInput from './PhoneInput'
 import WhatsAppIcon from './icons/WhatsAppIcon'
 import { WHATSAPP_URL } from '../constants/social'
-import { trackWhatsappClick } from '../lib/analytics'
+import { trackEmailClick, trackWhatsappClick } from '../lib/analytics'
 import {
   CONTACT_SECTION_LABEL,
   CONTACT_HEADING_START,
@@ -103,6 +103,8 @@ export default function Contact() {
                     onClick={
                       item.icon === 'whatsapp'
                         ? () => trackWhatsappClick('contact_info')
+                        : item.icon === 'mail'
+                          ? () => trackEmailClick('contact_info')
                         : undefined
                     }
                     className="text-sm hover:underline transition-colors duration-200"
