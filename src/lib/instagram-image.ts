@@ -14,6 +14,9 @@ export function isAllowedInstagramImageUrl(url: string): boolean {
 }
 
 export function proxiedInstagramImageUrl(url: string): string {
+  if (!isAllowedInstagramImageUrl(url)) {
+    return url
+  }
   return `/api/instagram-image?url=${encodeURIComponent(url)}`
 }
 

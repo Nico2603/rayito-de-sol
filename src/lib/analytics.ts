@@ -33,11 +33,24 @@ function loadGtagScript(measurementId: string): Promise<void> {
   })
 }
 
+function hasGtagScript(measurementId: string): boolean {
+  return Boolean(
+    document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${measurementId}"]`),
+  )
+}
+
 export async function initGoogleAnalytics(): Promise<void> {
   const measurementId = getMeasurementId()
   if (!measurementId || initialized) return
 
   ensureDataLayer()
+
+  if (hasGtagScript(measurementId) && typeof window.gtag === 'function') {
+    window.gtag('config', measurementId, { send_page_view: false })
+    initialized = true
+    return
+  }
+
   await loadGtagScript(measurementId)
 
   window.gtag!('js', new Date())

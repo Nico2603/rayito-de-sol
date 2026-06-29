@@ -67,29 +67,46 @@ async function fetchLiveInstagramPosts(username: string, limit: number): Promise
   }))
 }
 
+const FALLBACK_PLACEHOLDER_THUMBNAIL = '/favicon.svg'
+
+function buildFallbackPost(
+  post: (typeof INSTAGRAM_FALLBACK_POSTS)[number],
+  thumbnailUrl: string,
+): InstagramPost {
+  return {
+    id: post.shortcode,
+    shortcode: post.shortcode,
+    permalink: `https://www.instagram.com/p/${post.shortcode}/`,
+    thumbnailUrl,
+    isVideo: post.isVideo,
+    caption: post.caption,
+  }
+}
+
 async function fetchFallbackInstagramPosts(limit: number): Promise<InstagramPost[]> {
   const selected = INSTAGRAM_FALLBACK_POSTS.slice(0, limit)
 
-  const posts = await Promise.all(
+  const results = await Promise.allSettled(
     selected.map(async (post) => {
       const thumbnailUrl = await resolveInstagramThumbnailUrl(post.shortcode)
-
       if (!thumbnailUrl) {
-        throw new Error(`No se pudo resolver la miniatura de ${post.shortcode}`)
+        console.warn(`[instagram-api] No se pudo resolver miniatura: ${post.shortcode}`)
+        return null
       }
-
-      return {
-        id: post.shortcode,
-        shortcode: post.shortcode,
-        permalink: `https://www.instagram.com/p/${post.shortcode}/`,
-        thumbnailUrl,
-        isVideo: post.isVideo,
-        caption: post.caption,
-      }
+      return buildFallbackPost(post, thumbnailUrl)
     }),
   )
 
-  return posts
+  const posts = results
+    .filter((result): result is PromiseFulfilledResult<InstagramPost | null> => result.status === 'fulfilled')
+    .map((result) => result.value)
+    .filter((post): post is InstagramPost => post !== null)
+
+  if (posts.length > 0) {
+    return posts
+  }
+
+  return selected.map((post) => buildFallbackPost(post, FALLBACK_PLACEHOLDER_THUMBNAIL))
 }
 
 export async function fetchInstagramFeed(
@@ -105,8 +122,16 @@ export async function fetchInstagramFeed(
     // Instagram suele responder 401 cuando limita peticiones; usamos respaldo.
   }
 
-  const posts = await fetchFallbackInstagramPosts(limit)
-  return { posts, source: 'fallback' }
+  try {
+    const posts = await fetchFallbackInstagramPosts(limit)
+    return { posts, source: 'fallback' }
+  } catch (error) {
+    console.error('[instagram-api] Fallback falló:', error)
+    const posts = INSTAGRAM_FALLBACK_POSTS.slice(0, limit).map((post) =>
+      buildFallbackPost(post, FALLBACK_PLACEHOLDER_THUMBNAIL),
+    )
+    return { posts, source: 'fallback' }
+  }
 }
 
 /** @deprecated Usa fetchInstagramFeed */

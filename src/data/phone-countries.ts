@@ -1,7 +1,6 @@
 export interface PhoneCountry {
   id: string
   name: string
-  flag: string
   dialCode: string
   maxDigits: number
   minDigits: number
@@ -31,7 +30,6 @@ export const phoneCountries: PhoneCountry[] = [
   {
     id: 'CO',
     name: 'Colombia',
-    flag: '🇨🇴',
     dialCode: '+57',
     maxDigits: 10,
     minDigits: 10,
@@ -42,7 +40,6 @@ export const phoneCountries: PhoneCountry[] = [
   {
     id: 'MX',
     name: 'México',
-    flag: '🇲🇽',
     dialCode: '+52',
     maxDigits: 10,
     minDigits: 10,
@@ -53,7 +50,6 @@ export const phoneCountries: PhoneCountry[] = [
   {
     id: 'US',
     name: 'Estados Unidos',
-    flag: '🇺🇸',
     dialCode: '+1',
     maxDigits: 10,
     minDigits: 10,
@@ -69,7 +65,6 @@ export const phoneCountries: PhoneCountry[] = [
   {
     id: 'ES',
     name: 'España',
-    flag: '🇪🇸',
     dialCode: '+34',
     maxDigits: 9,
     minDigits: 9,
@@ -80,7 +75,6 @@ export const phoneCountries: PhoneCountry[] = [
   {
     id: 'AR',
     name: 'Argentina',
-    flag: '🇦🇷',
     dialCode: '+54',
     maxDigits: 10,
     minDigits: 10,
@@ -91,7 +85,6 @@ export const phoneCountries: PhoneCountry[] = [
   {
     id: 'PE',
     name: 'Perú',
-    flag: '🇵🇪',
     dialCode: '+51',
     maxDigits: 9,
     minDigits: 9,
@@ -102,7 +95,6 @@ export const phoneCountries: PhoneCountry[] = [
   {
     id: 'EC',
     name: 'Ecuador',
-    flag: '🇪🇨',
     dialCode: '+593',
     maxDigits: 9,
     minDigits: 9,
@@ -113,7 +105,6 @@ export const phoneCountries: PhoneCountry[] = [
   {
     id: 'CL',
     name: 'Chile',
-    flag: '🇨🇱',
     dialCode: '+56',
     maxDigits: 9,
     minDigits: 9,
@@ -124,7 +115,6 @@ export const phoneCountries: PhoneCountry[] = [
   {
     id: 'VE',
     name: 'Venezuela',
-    flag: '🇻🇪',
     dialCode: '+58',
     maxDigits: 10,
     minDigits: 10,
@@ -135,7 +125,6 @@ export const phoneCountries: PhoneCountry[] = [
   {
     id: 'PA',
     name: 'Panamá',
-    flag: '🇵🇦',
     dialCode: '+507',
     maxDigits: 8,
     minDigits: 8,
@@ -146,7 +135,6 @@ export const phoneCountries: PhoneCountry[] = [
   {
     id: 'CR',
     name: 'Costa Rica',
-    flag: '🇨🇷',
     dialCode: '+506',
     maxDigits: 8,
     minDigits: 8,

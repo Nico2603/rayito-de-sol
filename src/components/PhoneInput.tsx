@@ -1,4 +1,5 @@
 import { ChevronDown } from 'lucide-react'
+import CountryFlag from './CountryFlag'
 import { getPhoneCountry, phoneCountries } from '../data/phone-countries'
 import { digitsOnly } from '../lib/phone'
 
@@ -72,7 +73,7 @@ export default function PhoneInput({
           >
             {phoneCountries.map((item) => (
               <option key={item.id} value={item.id}>
-                {item.flag} {item.name} ({item.dialCode})
+                {item.name} ({item.dialCode})
               </option>
             ))}
           </select>
@@ -81,7 +82,7 @@ export default function PhoneInput({
             style={fieldStyle}
             aria-hidden="true"
           >
-            <span className="text-xl leading-none select-none">{country.flag}</span>
+            <CountryFlag countryId={country.id} title={country.name} />
             <span className="text-sm font-semibold tabular-nums tracking-tight">{country.dialCode}</span>
             <ChevronDown className="w-4 h-4 shrink-0 opacity-45" strokeWidth={2} />
           </div>
