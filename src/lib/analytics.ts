@@ -57,6 +57,10 @@ function loadScript(scriptId: string, src: string): Promise<void> {
   })
 }
 
+function hasScriptBySrc(src: string): boolean {
+  return Boolean(document.querySelector(`script[src="${src}"]`))
+}
+
 async function initGtm(containerId: string): Promise<void> {
   ensureDataLayer()
   pushDataLayerEvent('gtm.js', { 'gtm.start': Date.now() })
@@ -73,10 +77,10 @@ async function initGa(measurementId: string): Promise<void> {
       window.dataLayer!.push(args)
     }
 
-  await loadScript(
-    'ga-base-script',
-    `https://www.googletagmanager.com/gtag/js?id=${measurementId}`,
-  )
+  const gtagSrc = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`
+  if (!hasScriptBySrc(gtagSrc)) {
+    await loadScript('ga-base-script', gtagSrc)
+  }
 
   window.gtag('js', new Date())
   window.gtag('config', measurementId, { send_page_view: false })
