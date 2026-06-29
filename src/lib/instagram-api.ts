@@ -4,6 +4,9 @@ import { INSTAGRAM_FALLBACK_POSTS } from '../data/instagram-posts'
 const IG_APP_ID = '936619743392459'
 const IG_USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
+const IG_PROFILE_TIMEOUT_MS = 6500
+const IG_THUMBNAIL_TIMEOUT_MS = 6500
+const fallbackThumbnailCache = new Map<string, string>()
 
 interface InstagramTimelineNode {
   id: string
@@ -26,19 +29,36 @@ function buildInstagramHeaders(username: string): Record<string, string> {
 }
 
 export async function resolveInstagramThumbnailUrl(shortcode: string): Promise<string | null> {
-  const response = await fetch(`https://www.instagram.com/p/${shortcode}/media/?size=l`, {
-    redirect: 'manual',
-    headers: buildInstagramHeaders('rayitodesol.psico'),
-  })
+  const cached = fallbackThumbnailCache.get(shortcode)
+  if (cached) {
+    return cached
+  }
 
-  const location = response.headers.get('location')
-  return location && response.status >= 300 && response.status < 400 ? location : null
+  try {
+    const response = await fetch(`https://www.instagram.com/p/${shortcode}/media/?size=l`, {
+      redirect: 'manual',
+      headers: buildInstagramHeaders('rayitodesol.psico'),
+      signal: AbortSignal.timeout(IG_THUMBNAIL_TIMEOUT_MS),
+    })
+
+    const location = response.headers.get('location')
+    if (location && response.status >= 300 && response.status < 400) {
+      fallbackThumbnailCache.set(shortcode, location)
+      return location
+    }
+    return null
+  } catch {
+    return null
+  }
 }
 
 async function fetchLiveInstagramPosts(username: string, limit: number): Promise<InstagramPost[]> {
   const response = await fetch(
     `https://www.instagram.com/api/v1/users/web_profile_info/?username=${encodeURIComponent(username)}`,
-    { headers: buildInstagramHeaders(username) },
+    {
+      headers: buildInstagramHeaders(username),
+      signal: AbortSignal.timeout(IG_PROFILE_TIMEOUT_MS),
+    },
   )
 
   if (!response.ok) {
@@ -97,15 +117,22 @@ async function fetchFallbackInstagramPosts(limit: number): Promise<InstagramPost
     }),
   )
 
-  const posts = results
-    .filter((result): result is PromiseFulfilledResult<InstagramPost | null> => result.status === 'fulfilled')
-    .map((result) => result.value)
-    .filter((post): post is InstagramPost => post !== null)
+  const posts: InstagramPost[] = []
+  results.forEach((result, index) => {
+    if (result.status === 'rejected') {
+      console.warn(`[instagram-api] Falló miniatura fallback: ${selected[index]?.shortcode}`)
+      return
+    }
+    if (result.value) {
+      posts.push(result.value)
+    }
+  })
 
   if (posts.length > 0) {
     return posts
   }
 
+  console.warn('[instagram-api] Todas las miniaturas fallback fallaron. Se usa placeholder local.')
   return selected.map((post) => buildFallbackPost(post, FALLBACK_PLACEHOLDER_THUMBNAIL))
 }
 
@@ -113,21 +140,24 @@ export async function fetchInstagramFeed(
   username: string,
   limit = 9,
 ): Promise<InstagramFeedResult> {
+  const safeLimit = Math.max(1, Math.min(limit, INSTAGRAM_FALLBACK_POSTS.length))
+
   try {
-    const posts = await fetchLiveInstagramPosts(username, limit)
+    const posts = await fetchLiveInstagramPosts(username, safeLimit)
     if (posts.length > 0) {
       return { posts, source: 'live' }
     }
-  } catch {
+  } catch (error) {
     // Instagram suele responder 401 cuando limita peticiones; usamos respaldo.
+    console.warn('[instagram-api] Feed live no disponible; usando fallback.', error)
   }
 
   try {
-    const posts = await fetchFallbackInstagramPosts(limit)
+    const posts = await fetchFallbackInstagramPosts(safeLimit)
     return { posts, source: 'fallback' }
   } catch (error) {
     console.error('[instagram-api] Fallback falló:', error)
-    const posts = INSTAGRAM_FALLBACK_POSTS.slice(0, limit).map((post) =>
+    const posts = INSTAGRAM_FALLBACK_POSTS.slice(0, safeLimit).map((post) =>
       buildFallbackPost(post, FALLBACK_PLACEHOLDER_THUMBNAIL),
     )
     return { posts, source: 'fallback' }

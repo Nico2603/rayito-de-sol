@@ -1,83 +1,51 @@
-const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID
-
 let initialized = false
+let lastTrackedPath: string | null = null
 
-function getMeasurementId(): string | undefined {
-  const id = GA_MEASUREMENT_ID?.trim()
-  return id && id.startsWith('G-') ? id : undefined
-}
+type AnalyticsEventParams = Record<
+  string,
+  string | number | boolean | undefined
+>
 
 function ensureDataLayer(): void {
   window.dataLayer = window.dataLayer ?? []
-  window.gtag =
-    window.gtag ??
-    function gtag(...args: unknown[]) {
-      window.dataLayer!.push(args)
-    }
 }
 
-function loadGtagScript(measurementId: string): Promise<void> {
-  return new Promise((resolve, reject) => {
-    if (document.querySelector(`script[data-ga-id="${measurementId}"]`)) {
-      resolve()
-      return
-    }
-
-    const script = document.createElement('script')
-    script.async = true
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`
-    script.dataset.gaId = measurementId
-    script.onload = () => resolve()
-    script.onerror = () => reject(new Error('No se pudo cargar Google Analytics'))
-    document.head.appendChild(script)
+function pushDataLayerEvent(
+  name: string,
+  params?: AnalyticsEventParams,
+): void {
+  window.dataLayer!.push({
+    event: name,
+    ...(params ?? {}),
   })
 }
 
-function hasGtagScript(measurementId: string): boolean {
-  return Boolean(
-    document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${measurementId}"]`),
-  )
-}
-
-export async function initGoogleAnalytics(): Promise<void> {
-  const measurementId = getMeasurementId()
-  if (!measurementId || initialized) return
+export function initGoogleAnalytics(): void {
+  if (initialized) return
 
   ensureDataLayer()
-
-  if (hasGtagScript(measurementId) && typeof window.gtag === 'function') {
-    window.gtag('config', measurementId, { send_page_view: false })
-    initialized = true
-    return
-  }
-
-  await loadGtagScript(measurementId)
-
-  window.gtag!('js', new Date())
-  window.gtag!('config', measurementId, { send_page_view: false })
-
   initialized = true
 }
 
 export function trackPageView(path: string): void {
-  if (!initialized) return
+  initGoogleAnalytics()
 
-  const measurementId = getMeasurementId()
-  if (!measurementId) return
+  if (path === lastTrackedPath) return
+  lastTrackedPath = path
 
-  window.gtag!('event', 'page_view', {
+  pushDataLayerEvent('page_view', {
     page_path: path,
     page_location: `${window.location.origin}${path}`,
+    page_title: document.title,
   })
 }
 
 export function trackEvent(
   name: string,
-  params?: Record<string, string | number | boolean>,
+  params?: AnalyticsEventParams,
 ): void {
-  if (!initialized) return
-
-  window.gtag!('event', name, params)
+  initGoogleAnalytics()
+  pushDataLayerEvent(name, params)
 }
 
 export type WhatsappClickLocation = 'contact_info' | 'contact_cta' | 'footer'

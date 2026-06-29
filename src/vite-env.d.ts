@@ -3,6 +3,7 @@
 interface ImportMetaEnv {
   readonly VITE_WEB3FORMS_ACCESS_KEY?: string
   readonly VITE_INSTAGRAM_TOKEN?: string
+  readonly VITE_GTM_CONTAINER_ID?: string
   readonly VITE_GA_MEASUREMENT_ID?: string
 }
 
@@ -11,6 +12,5 @@ interface ImportMeta {
 }
 
 interface Window {
-  dataLayer?: unknown[]
-  gtag?: (...args: unknown[]) => void
+  dataLayer?: Array<Record<string, unknown>>
 }
