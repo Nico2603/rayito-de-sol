@@ -1,15 +1,20 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import Logo from './Logo'
+import { buildWhatsappBookingUrl } from '../constants/social'
 import { useTheme } from '../context/ThemeContext'
 import { navLinks } from '../data/navigation'
-import { trackNavigationClick } from '../lib/analytics'
+import { trackNavigationClick, trackWhatsappClick } from '../lib/analytics'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const { theme, toggleTheme } = useTheme()
+  const navigate = useNavigate()
   const isDark = theme === 'dark'
+  const desktopWhatsappUrl = buildWhatsappBookingUrl('navbar desktop')
+  const mobileWhatsappUrl = buildWhatsappBookingUrl('navbar movil')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -23,8 +28,19 @@ export default function Navbar() {
   ) => {
     trackNavigationClick(location, href)
     setMenuOpen(false)
-    const el = document.querySelector(href)
-    el?.scrollIntoView({ behavior: 'smooth' })
+
+    if (href.startsWith('#')) {
+      if (window.location.pathname !== '/') {
+        navigate(`/${href}`)
+        return
+      }
+
+      const element = document.querySelector(href)
+      element?.scrollIntoView({ behavior: 'smooth' })
+      return
+    }
+
+    navigate(href)
   }
 
   const navBg = scrolled
@@ -59,7 +75,7 @@ export default function Navbar() {
             </button>
 
             {/* Desktop links + Theme toggle */}
-            <nav className="hidden md:flex items-center gap-6">
+            <nav className="hidden md:flex items-center gap-5">
               {navLinks.map((link) => (
                 <button
                   key={link.href}
@@ -70,6 +86,16 @@ export default function Navbar() {
                   {link.label}
                 </button>
               ))}
+
+              <a
+                href={desktopWhatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackWhatsappClick('navbar_cta')}
+                className="inline-flex items-center rounded-full bg-sun px-4 py-2 text-sm font-semibold text-[#1A1A2E] transition-all duration-300 hover:bg-sun-soft"
+              >
+                Agendar por WhatsApp
+              </a>
 
               {/* Theme toggle — sol/luna */}
               <button
@@ -188,6 +214,18 @@ export default function Navbar() {
                   {link.label}
                 </motion.button>
               ))}
+              <a
+                href={mobileWhatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  setMenuOpen(false)
+                  trackWhatsappClick('navbar_cta')
+                }}
+                className="mt-2 inline-flex items-center justify-center rounded-full bg-sun px-5 py-3 text-sm font-semibold text-[#1A1A2E] transition-all duration-300 hover:bg-sun-soft"
+              >
+                Agendar por WhatsApp
+              </a>
             </nav>
           </motion.div>
         )}

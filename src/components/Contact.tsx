@@ -1,11 +1,10 @@
-import { MapPin, Mail, ArrowRight, Loader2 } from 'lucide-react'
+import { MapPin, Mail, ArrowRight, Loader2, Clock3, Star } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import SectionWrapper from './SectionWrapper'
 import ContactFormSuccess from './ContactFormSuccess'
 import PhoneInput from './PhoneInput'
 import WhatsAppIcon from './icons/WhatsAppIcon'
-import { WHATSAPP_URL } from '../constants/social'
-import { trackEmailClick, trackWhatsappClick } from '../lib/analytics'
+import { trackEmailClick, trackReviewClick, trackWhatsappClick } from '../lib/analytics'
 import {
   CONTACT_SECTION_LABEL,
   CONTACT_HEADING_START,
@@ -16,7 +15,10 @@ import {
   FORM_SUBMIT_TEXT,
   FORM_SENDING_TEXT,
   FORM_PHONE_LABEL,
+  GOOGLE_REVIEW_CTA_TEXT,
+  GOOGLE_REVIEW_CTA_URL,
   WHATSAPP_CTA_TEXT,
+  WHATSAPP_PRIMARY_URL,
 } from '../data/contact'
 import { useContactForm } from '../hooks/useContactForm'
 
@@ -87,6 +89,12 @@ export default function Contact() {
                       strokeWidth={1.75}
                       style={{ color: 'var(--color-accent-icon)' }}
                     />
+                  ) : item.icon === 'clock' ? (
+                    <Clock3
+                      className="w-5 h-5"
+                      strokeWidth={1.75}
+                      style={{ color: 'var(--color-accent-icon)' }}
+                    />
                   ) : (
                     <Mail
                       className="w-5 h-5"
@@ -98,8 +106,8 @@ export default function Contact() {
                 const valueContent = item.href ? (
                   <a
                     href={item.href}
-                    target={item.icon === 'whatsapp' ? '_blank' : undefined}
-                    rel={item.icon === 'whatsapp' ? 'noopener noreferrer' : undefined}
+                    target={item.icon === 'whatsapp' || item.icon === 'map-pin' ? '_blank' : undefined}
+                    rel={item.icon === 'whatsapp' || item.icon === 'map-pin' ? 'noopener noreferrer' : undefined}
                     onClick={
                       item.icon === 'whatsapp'
                         ? () => trackWhatsappClick('contact_info')
@@ -135,7 +143,7 @@ export default function Contact() {
             </div>
 
             <a
-              href={WHATSAPP_URL}
+              href={WHATSAPP_PRIMARY_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsappClick('contact_cta')}
@@ -147,6 +155,22 @@ export default function Contact() {
                 className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
                 strokeWidth={2}
               />
+            </a>
+
+            <a
+              href={GOOGLE_REVIEW_CTA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackReviewClick('contact')}
+              className="group mt-3 inline-flex items-center gap-2.5 rounded-full border px-6 py-3 text-sm font-medium shadow-sm transition-all duration-300 hover:shadow-md"
+              style={{
+                backgroundColor: 'var(--color-bg-card)',
+                borderColor: 'var(--color-border-light)',
+                color: 'var(--color-text-primary)',
+              }}
+            >
+              <Star className="w-4 h-4" style={{ color: 'var(--color-accent-icon)' }} />
+              <span>{GOOGLE_REVIEW_CTA_TEXT}</span>
             </a>
           </div>
 

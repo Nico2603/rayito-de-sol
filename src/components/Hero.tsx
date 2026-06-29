@@ -1,9 +1,19 @@
 import { motion } from 'framer-motion'
 import InteractiveSparkles from './InteractiveSparkles'
 import DayMode from './DayMode'
+import { buildWhatsappBookingUrl } from '../constants/social'
 import { useTheme } from '../context/ThemeContext'
-import { trackHeroCtaClick } from '../lib/analytics'
-import { HERO_LABEL, HERO_TITLE_MAIN, HERO_TITLE_ACCENT, HERO_TAGLINE_START, HERO_TAGLINE_ACCENT, HERO_TAGLINE_END, HERO_SUBCOPY, HERO_CTA_TEXT } from '../data/hero'
+import { trackHeroCtaClick, trackWhatsappClick } from '../lib/analytics'
+import {
+  HERO_CTA_TEXT,
+  HERO_LABEL,
+  HERO_SUBCOPY,
+  HERO_TAGLINE_ACCENT,
+  HERO_TAGLINE_END,
+  HERO_TAGLINE_START,
+  HERO_TITLE_ACCENT,
+  HERO_TITLE_MAIN,
+} from '../data/hero'
 
 /* ── Gradientes para crossfade (valores fijos, no CSS vars) ── */
 const SKY_LIGHT = 'linear-gradient(180deg, #1E3A5F 0%, #4A90D9 30%, #7BB8E8 55%, #A8D8EA 82%, #D6EAF8 100%)'
@@ -30,9 +40,10 @@ export default function Hero() {
   const { theme } = useTheme()
   const isDark = theme === 'dark'
   const glowClass = isDark ? 'hero-subcopy-glow-dark' : 'hero-subcopy-glow-light'
+  const heroWhatsappUrl = buildWhatsappBookingUrl('hero principal')
 
   const scrollToContact = () => {
-    trackHeroCtaClick('hero_primary')
+    trackHeroCtaClick('hero_secondary')
     document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
   }
 
@@ -131,14 +142,30 @@ export default function Hero() {
           <motion.div
             {...fadeUp}
             transition={{ duration: 0.75, delay: 0.34, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-3"
           >
-            <motion.button
-              onClick={scrollToContact}
+            <motion.a
+              href={heroWhatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                trackHeroCtaClick('hero_primary')
+                trackWhatsappClick('hero_primary')
+              }}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="bg-sun text-text-primary font-semibold px-8 py-4 rounded-full text-lg shadow-lg shadow-sun/30 hover:shadow-xl hover:shadow-sun/40 transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
               {HERO_CTA_TEXT}
+            </motion.a>
+            <motion.button
+              type="button"
+              onClick={scrollToContact}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="text-white font-medium px-6 py-3 rounded-full border border-white/35 hover:border-white/60 transition-colors duration-300"
+            >
+              Ver formulario de contacto
             </motion.button>
           </motion.div>
         </motion.div>

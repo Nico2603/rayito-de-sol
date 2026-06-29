@@ -8,5 +8,6 @@ export const navLinks: NavLink[] = [
   { label: 'Sobre mí', href: '#about' },
   { label: 'Enfoque', href: '#approach' },
   { label: 'Servicios', href: '#services' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'Contacto', href: '#contact' },
 ]

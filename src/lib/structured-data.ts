@@ -1,14 +1,22 @@
 import {
   CONTACT_EMAIL,
+  GOOGLE_MAPS_URL,
+  GOOGLE_REVIEW_URL,
   INSTAGRAM_URL,
   SITE_URL,
+  WHATSAPP_BOOKING_URL,
   WHATSAPP_PHONE_E164,
 } from '../constants/social'
 import {
+  SEO_AREA_SERVED,
+  SEO_LATITUDE,
   SEO_LOCALITY,
+  SEO_LONGITUDE,
+  SEO_OPENING_HOURS,
   SEO_OG_IMAGE,
   SEO_POSTAL_CODE,
   SEO_PRICE_RANGE,
+  SEO_SERVICE_CATALOG,
   SEO_SITE_NAME,
   SEO_STREET_ADDRESS,
 } from '../constants/seo'
@@ -33,6 +41,7 @@ export function buildHomeStructuredData() {
         name: 'María Camila',
         jobTitle: 'Psicóloga',
         url: SITE_URL,
+        image: SEO_OG_IMAGE,
         email: CONTACT_EMAIL,
         telephone,
         worksFor: { '@id': `${SITE_URL}/#business` },
@@ -48,6 +57,44 @@ export function buildHomeStructuredData() {
         telephone,
         email: CONTACT_EMAIL,
         priceRange: SEO_PRICE_RANGE,
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            contactType: 'customer support',
+            telephone,
+            email: CONTACT_EMAIL,
+            availableLanguage: ['es-CO'],
+            areaServed: 'CO',
+          },
+        ],
+        hasMap: GOOGLE_MAPS_URL,
+        areaServed: SEO_AREA_SERVED.map((area) => ({
+          '@type': 'Place',
+          name: area,
+        })),
+        openingHoursSpecification: SEO_OPENING_HOURS.map((schedule) => ({
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: `https://schema.org/${schedule.dayOfWeek}`,
+          opens: schedule.opens,
+          closes: schedule.closes,
+        })),
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: SEO_LATITUDE,
+          longitude: SEO_LONGITUDE,
+        },
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Servicios de psicología',
+          itemListElement: SEO_SERVICE_CATALOG.map((service) => ({
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: service.name,
+              description: service.description,
+            },
+          })),
+        },
         address: {
           '@type': 'PostalAddress',
           streetAddress: SEO_STREET_ADDRESS,
@@ -56,7 +103,7 @@ export function buildHomeStructuredData() {
           addressRegion: SEO_LOCALITY.region,
           addressCountry: SEO_LOCALITY.country,
         },
-        sameAs: [INSTAGRAM_URL],
+        sameAs: [INSTAGRAM_URL, GOOGLE_MAPS_URL, GOOGLE_REVIEW_URL, WHATSAPP_BOOKING_URL],
       },
       {
         '@type': 'FAQPage',

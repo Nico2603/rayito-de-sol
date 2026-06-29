@@ -6,11 +6,15 @@ export const services: Service[] = [
     icon: User,
     title: 'Terapia Individual',
     description: 'Espacio personalizado para trabajar ansiedad, depresión, autoestima y crecimiento personal. Sesiones online y presenciales.',
+    href: '/terapia-ansiedad-pereira',
+    ctaLabel: 'Conocer terapia para ansiedad',
   },
   {
     icon: ToyBrick,
     title: 'Atención Infantil',
     description: 'Terapia lúdica para niños. A través del juego y la expresión creativa, abordamos sus necesidades emocionales.',
+    href: '/psicologia-infantil-pereira',
+    ctaLabel: 'Conocer psicología infantil',
   },
   {
     icon: Video,

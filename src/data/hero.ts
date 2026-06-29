@@ -10,4 +10,4 @@ export const HERO_TAGLINE_END = '.'
 export const HERO_SUBCOPY =
   'Acompañamiento psicológico con calidez, profesionalismo y compromiso — en Pereira y online en Colombia.'
 
-export const HERO_CTA_TEXT = 'Agendar una cita'
+export const HERO_CTA_TEXT = 'Agendar primera sesión por WhatsApp'

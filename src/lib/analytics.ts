@@ -14,11 +14,20 @@ type AnalyticsEventParams = Record<
   string | number | boolean | undefined
 >
 
-export type WhatsappClickLocation = 'contact_info' | 'contact_cta' | 'footer'
+export type WhatsappClickLocation =
+  | 'contact_info'
+  | 'contact_cta'
+  | 'footer'
+  | 'hero_primary'
+  | 'floating_button'
+  | 'faq_cta'
+  | 'navbar_cta'
+  | 'topic_page'
 export type InstagramClickLocation = 'footer'
 export type EmailClickLocation = 'contact_info'
-export type HeroCtaLocation = 'hero_primary'
+export type HeroCtaLocation = 'hero_primary' | 'hero_secondary'
 export type NavigationClickLocation = 'navbar' | 'logo' | 'mobile_menu'
+export type ReviewClickLocation = 'testimonials' | 'contact' | 'footer'
 
 function isValidGtmContainerId(value: string | undefined): value is string {
   return Boolean(value && /^GTM-[A-Z0-9]+$/.test(value))
@@ -206,4 +215,8 @@ export function trackContactFormError(
   detail?: string,
 ): void {
   trackEvent('contact_form_error', { type, detail })
+}
+
+export function trackReviewClick(location: ReviewClickLocation): void {
+  trackEvent('review_click', { location })
 }

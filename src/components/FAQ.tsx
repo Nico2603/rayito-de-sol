@@ -1,11 +1,14 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import SectionWrapper from './SectionWrapper'
+import { buildWhatsappBookingUrl } from '../constants/social'
 import { faqItems } from '../data/faq'
+import { trackWhatsappClick } from '../lib/analytics'
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const faqWhatsappUrl = buildWhatsappBookingUrl('faq')
 
   return (
     <SectionWrapper id="faq" className="py-24 md:py-32" style={{ backgroundColor: 'var(--color-bg-secondary)' }}>
@@ -32,6 +35,8 @@ export default function FAQ() {
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 className="w-full flex items-center justify-between px-6 py-5 text-left"
+                aria-expanded={openIndex === i}
+                aria-controls={`faq-answer-${i}`}
               >
                 <span className="font-medium pr-4" style={{ color: 'var(--color-text-primary)' }}>{item.question}</span>
                 <motion.span
@@ -43,23 +48,35 @@ export default function FAQ() {
                   <Plus className="w-5 h-5" strokeWidth={2} />
                 </motion.span>
               </button>
-              <AnimatePresence>
-                {openIndex === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-6 pb-5 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                      {item.answer}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <div
+                id={`faq-answer-${i}`}
+                className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  openIndex === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-75'
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <div className="px-6 pb-5 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                    {item.answer}
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-10 text-center rounded-2xl border p-6" style={{ backgroundColor: 'var(--color-bg-card)', borderColor: 'var(--color-border-light)' }}>
+          <p className="text-base mb-4" style={{ color: 'var(--color-text-secondary)' }}>
+            ¿No viste tu pregunta? Escríbeme y te ayudo a definir el mejor siguiente paso para tu proceso.
+          </p>
+          <a
+            href={faqWhatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackWhatsappClick('faq_cta')}
+            className="inline-flex items-center rounded-full bg-sun px-6 py-3 font-semibold text-[#1A1A2E] transition-all duration-300 hover:bg-sun-soft"
+          >
+            Consultar por WhatsApp
+          </a>
         </div>
       </div>
     </SectionWrapper>

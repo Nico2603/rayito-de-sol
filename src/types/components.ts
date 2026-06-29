@@ -4,6 +4,8 @@ export interface Service {
   icon: LucideIcon
   title: string
   description: string
+  href?: string
+  ctaLabel?: string
 }
 
 export interface ApproachValue {
@@ -15,4 +17,10 @@ export interface ApproachValue {
 export interface FAQItem {
   question: string
   answer: string
+}
+
+export interface Testimonial {
+  quote: string
+  context: string
+  initials: string
 }

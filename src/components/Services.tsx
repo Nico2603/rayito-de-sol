@@ -1,4 +1,5 @@
 import SectionWrapper from './SectionWrapper'
+import { Link } from 'react-router-dom'
 import { services } from '../data/services'
 
 export default function Services() {
@@ -34,6 +35,15 @@ export default function Services() {
                 </div>
                 <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--color-text-primary)' }}>{service.title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>{service.description}</p>
+                {service.href && service.ctaLabel ? (
+                  <Link
+                    to={service.href}
+                    className="mt-4 inline-flex items-center text-sm font-semibold hover:underline"
+                    style={{ color: 'var(--color-accent-highlight)' }}
+                  >
+                    {service.ctaLabel}
+                  </Link>
+                ) : null}
               </div>
             )
           })}
