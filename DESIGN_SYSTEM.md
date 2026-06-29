@@ -607,8 +607,9 @@ section#hero min-h-[100dvh]
 INSTAGRAM_USERNAME = 'rayitodesol.psico'
 INSTAGRAM_URL      = 'https://www.instagram.com/rayitodesol.psico/'
 INSTAGRAM_HANDLE   = '@rayitodesol.psico'
-WHATSAPP_URL       = 'https://wa.link/6kr7ep'
-WHATSAPP_PHONE_DISPLAY = '+57 321 648 0414'
+WHATSAPP_URL       = 'https://wa.me/573107506153'
+WHATSAPP_PHONE_DISPLAY = '+57 310 750 6153'
+CONTACT_EMAIL      = 'psico.camilaa@gmail.com'
 ```
 
 ### 15.2 Data Files

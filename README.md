@@ -117,7 +117,8 @@ npx graphify extract . --backend gemini   # Extracción semántica (requiere GEM
 
 ## 🌐 Despliegue
 
-**Producción:** [rayito-de-sol.vercel.app](https://rayito-de-sol.vercel.app)  
+**Producción:** [rayitodesolpsico.com](https://rayitodesolpsico.com)  
+**Preview Vercel:** [rayito-de-sol.vercel.app](https://rayito-de-sol.vercel.app)  
 **Plataforma:** Vercel (deploy automático desde `master`)
 
 ## 🔑 Variables de Entorno
@@ -125,12 +126,24 @@ npx graphify extract . --backend gemini   # Extracción semántica (requiere GEM
 | Variable | Descripción |
 |---|---|
 | `VITE_INSTAGRAM_TOKEN` | Token de Instagram Graph API (opcional, para feed) |
+| `VITE_WEB3FORMS_ACCESS_KEY` | Access key de [Web3Forms](https://web3forms.com) (obligatoria para el formulario de contacto) |
 | `GEMINI_API_KEY` | API Key de Google Gemini (para extracción semántica con Graphify) |
+
+### Configurar el formulario de contacto (Web3Forms)
+
+1. En [web3forms.com](https://web3forms.com), registra el correo de destino (`psico.camilaa@gmail.com`).
+2. Copia el **access key** que llega al correo.
+3. En **Vercel** → Project Settings → Environment Variables, añade `VITE_WEB3FORMS_ACCESS_KEY`.
+4. En local, crea `.env.local` en la raíz del proyecto (no se commitea):
+
+```env
+VITE_WEB3FORMS_ACCESS_KEY=tu_access_key_aqui
+```
 
 ## 👩‍⚕️ Contacto
 
 - **Instagram:** [@rayitodesol.psico](https://www.instagram.com/rayitodesol.psico/)
-- **WhatsApp:** [+57 321 648 0414](https://wa.link/6kr7ep)
+- **WhatsApp:** [+57 310 750 6153](https://wa.me/573107506153)
 - **Ubicación:** Bogotá, Colombia
 
 ---
