@@ -108,6 +108,14 @@ export async function initGoogleAnalytics(): Promise<void> {
       '[analytics] No se inicializó tracking: define VITE_GTM_CONTAINER_ID o VITE_GA_MEASUREMENT_ID',
     )
   })()
+    .catch((error: unknown) => {
+      mode = 'none'
+      initialized = true
+      console.warn('[analytics] Falló la inicialización de tracking', error)
+    })
+    .finally(() => {
+      initPromise = null
+    })
 
   return initPromise
 }
