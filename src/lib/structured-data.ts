@@ -3,6 +3,7 @@ import {
   GOOGLE_MAPS_URL,
   GOOGLE_REVIEW_URL,
   INSTAGRAM_URL,
+  LINKEDIN_URL,
   SITE_URL,
   WHATSAPP_BOOKING_URL,
   WHATSAPP_PHONE_E164,
@@ -50,6 +51,7 @@ export function buildHomeStructuredData() {
         email: CONTACT_EMAIL,
         telephone,
         worksFor: { '@id': `${SITE_URL}/#business` },
+        sameAs: [LINKEDIN_URL, INSTAGRAM_URL],
       },
       {
         '@type': 'MedicalBusiness',
@@ -108,7 +110,7 @@ export function buildHomeStructuredData() {
           addressRegion: SEO_LOCALITY.region,
           addressCountry: SEO_LOCALITY.country,
         },
-        sameAs: [INSTAGRAM_URL, GOOGLE_MAPS_URL, GOOGLE_REVIEW_URL, WHATSAPP_BOOKING_URL],
+        sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, GOOGLE_REVIEW_URL, WHATSAPP_BOOKING_URL],
       },
       {
         '@type': 'FAQPage',

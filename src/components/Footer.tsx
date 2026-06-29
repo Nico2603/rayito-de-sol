@@ -1,14 +1,17 @@
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
 import InstagramIcon from './icons/InstagramIcon'
+import LinkedInIcon from './icons/LinkedInIcon'
 import WhatsAppIcon from './icons/WhatsAppIcon'
 import {
   GOOGLE_REVIEW_URL,
   INSTAGRAM_URL,
+  LINKEDIN_URL,
   buildWhatsappBookingUrl,
 } from '../constants/social'
 import {
   trackInstagramClick,
+  trackLinkedInClick,
   trackReviewClick,
   trackWhatsappClick,
 } from '../lib/analytics'
@@ -50,6 +53,16 @@ export default function Footer() {
             >
               <InstagramIcon className="w-5 h-5" variant="light" />
               Instagram
+            </a>
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackLinkedInClick('footer')}
+              className="inline-flex items-center gap-2.5 hover:text-sun transition-colors duration-200 text-sm text-white/90"
+            >
+              <LinkedInIcon className="w-5 h-5" variant="light" />
+              LinkedIn
             </a>
             <a
               href={footerWhatsappUrl}

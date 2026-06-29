@@ -24,6 +24,7 @@ export type WhatsappClickLocation =
   | 'navbar_cta'
   | 'topic_page'
 export type InstagramClickLocation = 'footer'
+export type LinkedInClickLocation = 'footer'
 export type EmailClickLocation = 'contact_info'
 export type HeroCtaLocation = 'hero_primary' | 'hero_secondary'
 export type NavigationClickLocation = 'navbar' | 'logo' | 'mobile_menu'
@@ -185,6 +186,10 @@ export function trackWhatsappClick(location: WhatsappClickLocation): void {
 
 export function trackInstagramClick(location: InstagramClickLocation): void {
   trackEvent('instagram_click', { location })
+}
+
+export function trackLinkedInClick(location: LinkedInClickLocation): void {
+  trackEvent('linkedin_click', { location })
 }
 
 export function trackEmailClick(location: EmailClickLocation): void {
