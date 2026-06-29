@@ -138,7 +138,7 @@ npx graphify extract . --backend gemini   # Extracción semántica (requiere GEM
 
 ```env
 VITE_WEB3FORMS_ACCESS_KEY=tu_access_key_aqui
-VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+VITE_GA_MEASUREMENT_ID=G-B1Z8RGJK1P
 ```
 
 5. **Dominio en Web3Forms** (panel del formulario → Domain name):
