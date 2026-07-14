@@ -13,50 +13,32 @@ Rules:
 
 ## Skills — ubicación e instalación
 
+Inventario completo del workspace: [SKILLS.md](../SKILLS.md)
+
 | Alcance | Ruta | Estado |
 |---------|------|--------|
-| **Proyecto (definitivo)** | `rayito-de-sol/.agents/skills/` | 30 skills instaladas |
-| Global (legacy, ignorar) | `~/.agents/skills/` | Copia anterior; no es fuente de verdad |
-| Lockfile reproducible | `skills-lock.json` | `npx skills experimental_install` |
+| **Proyecto (definitivo)** | `rayito-de-sol/.agents/skills/` | 32 skills instaladas |
+| Lockfile reproducible | `skills-lock.json` | `npx skills experimental_install -y` |
 
 Verificar: `npx skills ls` (desde la raíz del repo).
 
 Regla Cursor always-on: [`.cursor/rules/skills-mandatory.mdc`](.cursor/rules/skills-mandatory.mdc)
 
-## Informe: éxitos vs fallos (instalación original)
-
-### Instaladas correctamente en el proyecto (28 plan + 2 workflow)
-
-Todas en `.agents/skills/<nombre>/SKILL.md`.
+### Skills instaladas (32)
 
 **Core (8):** brainstorming, systematic-debugging, using-superpowers, frontend-design, vercel-react-best-practices, web-design-guidelines, find-skills, agent-browser
 
 **Complementarias (20):** motion-framer, tailwind-design-system, design-dna, design-taste-frontend, high-end-visual-design, emil-design-eng, ui-ux-pro-max, landing-page-design, css-animations, react-typescript, seo-optimizer, aceternity-ui, vercel-composition-patterns, canvas-design, theme-factory, brand-guidelines, sleek-design-mobile-apps, extract-design-system, redesign-existing-projects, design-motion-principles
 
-**Workflow extra (2):** writing-plans, verification-before-completion
+**Workflow (2):** writing-plans, verification-before-completion
 
-### Fallos en el primer intento (repo del plan incorrecto)
-
-| Skill | Repo que falló | Motivo | Repo correcto usado |
-|-------|----------------|--------|---------------------|
-| motion-framer | anthropics/skills | Skill no existe ahí | freshtechbro/claudedesignskills |
-| design-dna | anthropics/skills | Skill no existe ahí | zanwei/design-dna |
-| emil-design-eng | emilkowalski/animations-dev | Repo privado / auth | emilkowalski/skills |
-| react-typescript | wshobson/agents | Skill no existe ahí | josiahsiegel/claude-plugin-marketplace |
-| react-typescript | tenequm/skills | Skill no existe ahí | (idem arriba) |
-| css-animations | heygen-com/hyperframes | Eliminada upstream | boraoztunc/skills |
-| css-animations | editframe/skills | Skill no existe ahí | boraoztunc/skills |
-| landing-page-design | belt-sh/cli | No intentado | inference-sh/skills |
-
-### Avisos ignorables (no afectan Cursor)
-
-- `PromptScript does not support global skill installation` — otro agente; Cursor recibe la skill igual.
+**Analytics (2):** google-analytics-admin-api-basics, google-analytics-data-api-basics
 
 ## Skills workflow
 
 Antes de UI o features nuevas, leer [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md) y [`src/styles/tokens.css`](src/styles/tokens.css). No introducir Inter/Roboto ni layouts template SaaS.
 
-**Importante:** no correr las 28 skills en cada prompt. Usar el bundle del tipo de tarea (ver `.cursor/rules/skills-mandatory.mdc`).
+**Importante:** no correr las 32 skills en cada prompt. Usar el bundle del tipo de tarea (ver `.cursor/rules/skills-mandatory.mdc`).
 
 ### Bundles resumidos
 
@@ -68,5 +50,6 @@ Antes de UI o features nuevas, leer [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md) y [`s
 - **Cierre:** web-design-guidelines + verification-before-completion
 - **Bug:** systematic-debugging
 - **QA visual:** agent-browser
+- **Analytics:** google-analytics-admin-api-basics + google-analytics-data-api-basics
 
 Reinstalar desde lockfile: `npx skills experimental_install -y`
