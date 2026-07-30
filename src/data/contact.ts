@@ -23,8 +23,8 @@ export interface ContactInfoItem {
 export const contactInfoItems: ContactInfoItem[] = [
   {
     icon: 'map-pin',
-    title: 'Consultorio presencial',
-    value: 'Carrera 12 #1-28, sector La Circunvalar, La Rebeca, Psicoartes, Pereira',
+    title: 'Atención presencial',
+    value: 'Pereira, Risaralda',
     href: GOOGLE_MAPS_URL,
   },
   {

@@ -24,11 +24,9 @@ import {
   SEO_LONGITUDE,
   SEO_OPENING_HOURS,
   SEO_OG_IMAGE,
-  SEO_POSTAL_CODE,
   SEO_PRICE_RANGE,
   SEO_SERVICE_CATALOG,
   SEO_SITE_NAME,
-  SEO_STREET_ADDRESS,
 } from '../constants/seo'
 import { faqItems } from '../data/faq'
 
@@ -129,8 +127,6 @@ function businessNode() {
     },
     address: {
       '@type': 'PostalAddress',
-      streetAddress: SEO_STREET_ADDRESS,
-      postalCode: SEO_POSTAL_CODE,
       addressLocality: SEO_LOCALITY.city,
       addressRegion: SEO_LOCALITY.region,
       addressCountry: SEO_LOCALITY.country,

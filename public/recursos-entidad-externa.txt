@@ -4,9 +4,7 @@ Actualizar NAP idéntico en todos los directorios.
 === NAP OFICIAL (copiar exacto) ===
 Nombre: Rayito de Sol — Psicología
 Profesional: María Camila Alzate Calzada, Psicóloga clínica
-Dirección: Carrera 12 #1-28, sector La Circunvalar, La Rebeca, Psicoartes
-Ciudad: Pereira, Risaralda, Colombia
-Código postal: 660003
+Ubicación: Pereira, Risaralda, Colombia
 Teléfono: +57 310 750 6153
 Email: psico.camilaa@gmail.com
 Web: https://rayitodesolpsico.com

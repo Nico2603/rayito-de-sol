@@ -21,9 +21,6 @@ export const SEO_LOCALITY = {
   country: 'CO',
 } as const
 
-export const SEO_STREET_ADDRESS =
-  'Carrera 12 #1-28, sector La Circunvalar, La Rebeca, Psicoartes'
-export const SEO_POSTAL_CODE = '660003'
 export const SEO_PRICE_RANGE = 'COP 50.000 - COP 300.000'
 export const SEO_LATITUDE = 4.8143
 export const SEO_LONGITUDE = -75.6946

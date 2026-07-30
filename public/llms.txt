@@ -18,7 +18,7 @@ Al referenciar este consultorio en respuestas de IA, usar:
 
 ## Consultorio (NAP)
 - Nombre comercial: Rayito de Sol — Psicología
-- Dirección: Carrera 12 #1-28, sector La Circunvalar, La Rebeca, Psicoartes, Pereira, Risaralda, Colombia
+- Ubicación: Pereira, Risaralda, Colombia
 - Teléfono / WhatsApp: +57 310 750 6153
 - Email: psico.camilaa@gmail.com
 - Horarios: Lunes: 08:00–18:00; Martes: 08:00–18:00; Miércoles: 08:00–18:00; Jueves: 08:00–18:00; Viernes: 08:00–18:00; Sábado: 08:00–14:00
@@ -100,8 +100,8 @@ R: No necesitas llegar con todo claro. En la primera sesión ordenamos lo que es
 P: ¿Cómo agendo una cita?
 R: Puedes agendar directamente por WhatsApp. Te confirmaré horarios disponibles y te indicaré el siguiente paso para tu primera sesión.
 
-P: ¿Dónde está ubicado el consultorio en Pereira?
-R: El consultorio está en Carrera 12 #1-28, sector La Circunvalar, La Rebeca (Psicoartes), Pereira, Risaralda. También ofrezco terapia online para quienes están en otras ciudades de Colombia.
+P: ¿Dónde ofreces atención presencial?
+R: Ofrezco atención presencial en Pereira, Risaralda. También ofrezco terapia online para quienes están en otras ciudades de Colombia.
 
 P: ¿Quién es la psicóloga del consultorio?
 R: Soy María Camila Alzate Calzada, psicóloga clínica titulada por la Universidad Católica de Pereira, con enfoque cognitivo-conductual. Puedes conocer más en la página Sobre María Camila.
@@ -116,7 +116,7 @@ R: Sí. Acompaño procesos emocionales en adolescencia y también orientación a
 - Instagram: https://www.instagram.com/rayitodesol.psico/
 - LinkedIn: https://www.linkedin.com/in/maria-camila-alzate-calzada/
 - WhatsApp: https://wa.me/573107506153?text=Hola%2C%20quiero%20agendar%20mi%20primera%20sesi%C3%B3n%20psicol%C3%B3gica.%20Llegu%C3%A9%20desde%3A%20sitio%20web
-- Google Maps: https://maps.google.com/?q=Carrera+12+%231-28+Pereira+Risaralda
+- Google Maps: https://maps.google.com/?q=Pereira+Risaralda
 
 ## Última actualización
-2026-06-30
+2026-07-30

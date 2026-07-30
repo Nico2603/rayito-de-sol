@@ -158,7 +158,7 @@ VITE_GA_MEASUREMENT_ID=G-B1Z8RGJK1P
 
 - **Instagram:** [@rayitodesol.psico](https://www.instagram.com/rayitodesol.psico/)
 - **WhatsApp:** [+57 310 750 6153](https://wa.me/573107506153)
-- **Ubicación:** Carrera 12 #1-28, sector La Circunvalar, La Rebeca, Psicoartes, Pereira
+- **Ubicación:** Pereira, Risaralda
 
 ## 📊 Google Analytics 4
 

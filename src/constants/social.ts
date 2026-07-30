@@ -18,5 +18,5 @@ export function buildWhatsappBookingUrl(source: string): string {
 export const WHATSAPP_BOOKING_URL = buildWhatsappBookingUrl('sitio web')
 
 export const CONTACT_EMAIL = 'psico.camilaa@gmail.com'
-export const GOOGLE_MAPS_URL = 'https://maps.google.com/?q=Carrera+12+%231-28+Pereira+Risaralda'
+export const GOOGLE_MAPS_URL = 'https://maps.google.com/?q=Pereira+Risaralda'
 export const GOOGLE_REVIEW_URL = 'https://g.page/r/Cf1Qj7bN8tXNEBM/review'

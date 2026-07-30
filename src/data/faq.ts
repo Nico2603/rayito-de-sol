@@ -64,9 +64,9 @@ export const faqItems: FAQItem[] = [
       'Puedes agendar directamente por WhatsApp. Te confirmaré horarios disponibles y te indicaré el siguiente paso para tu primera sesión.',
   },
   {
-    question: '¿Dónde está ubicado el consultorio en Pereira?',
+    question: '¿Dónde ofreces atención presencial?',
     answer:
-      'El consultorio está en Carrera 12 #1-28, sector La Circunvalar, La Rebeca (Psicoartes), Pereira, Risaralda. También ofrezco terapia online para quienes están en otras ciudades de Colombia.',
+      'Ofrezco atención presencial en Pereira, Risaralda. También ofrezco terapia online para quienes están en otras ciudades de Colombia.',
   },
   {
     question: '¿Quién es la psicóloga del consultorio?',

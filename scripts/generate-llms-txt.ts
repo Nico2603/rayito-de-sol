@@ -10,11 +10,11 @@ import {
 import {
   SEO_OPENING_HOURS,
   SEO_PRICE_RANGE,
-  SEO_STREET_ADDRESS,
   SEO_LOCALITY,
 } from '../src/constants/seo.ts'
 import {
   CONTACT_EMAIL,
+  GOOGLE_MAPS_URL,
   INSTAGRAM_URL,
   LINKEDIN_URL,
   SITE_URL,
@@ -75,7 +75,7 @@ ${credentialsSection}
 
 ## Consultorio (NAP)
 - Nombre comercial: Rayito de Sol — Psicología
-- Dirección: ${SEO_STREET_ADDRESS}, ${SEO_LOCALITY.city}, ${SEO_LOCALITY.region}, Colombia
+- Ubicación: ${SEO_LOCALITY.city}, ${SEO_LOCALITY.region}, Colombia
 - Teléfono / WhatsApp: ${WHATSAPP_PHONE_DISPLAY}
 - Email: ${CONTACT_EMAIL}
 - Horarios: ${hoursText}
@@ -100,7 +100,7 @@ ${faqSection}
 - Instagram: ${INSTAGRAM_URL}
 - LinkedIn: ${LINKEDIN_URL}
 - WhatsApp: ${WHATSAPP_BOOKING_URL}
-- Google Maps: https://maps.google.com/?q=Carrera+12+%231-28+Pereira+Risaralda
+- Google Maps: ${GOOGLE_MAPS_URL}
 
 ## Última actualización
 ${new Date().toISOString().slice(0, 10)}
