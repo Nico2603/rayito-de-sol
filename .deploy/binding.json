@@ -1,12 +1,26 @@
-{
-  "github": "Nico2603/rayito-de-sol",
-  "vercel": {
-    "orgId": "team_AfRMC2ji7lFXIjS0Ck8VEx7Q",
-    "projectId": "prj_kUAmbSILcyhOgqIHtEFR3bNEoyM2",
-    "projectName": "rayito-de-sol",
-    "productionBranch": "master"
-  },
-  "supabase": {
-    "enabled": false
-  }
+﻿{
+    "github":  "Nico2603/rayito-de-sol",
+    "accounts":  {
+                     "vercel":  {
+                                    "email":  "psico.camilaa@gmail.com",
+                                    "displayName":  "Maria Camila Alzate",
+                                    "teamSlug":  "maria-camila"
+                                }
+                 },
+    "vercel":  {
+                   "enabled":  true,
+                   "orgId":  "team_AfRMC2ji7lFXIjS0Ck8VEx7Q",
+                   "projectId":  "prj_kUAmbSILcyhOgqIHtEFR3bNEoyM2",
+                   "projectName":  "rayito-de-sol",
+                   "teamSlug":  "maria-camila",
+                   "productionDomain":  "rayitodesolpsico.com",
+                   "productionBranch":  "master",
+                   "modes":  [
+                                 "inspect",
+                                 "admin"
+                             ]
+               },
+    "supabase":  {
+                     "enabled":  false
+                 }
 }

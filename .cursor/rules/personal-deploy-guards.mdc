@@ -1,13 +1,14 @@
 ---
-description: Fail-closed deploy and provider guards for personal My Machines
+description: Provider guards for Rayito on Nico-Laptop (Vercel admin via gateway)
 alwaysApply: true
 ---
 
-# Personal deploy guards (Rayito de Sol)
+# Personal deploy guards (Rayito de Sol) — Vercel admin enabled
 
-- Production path: GitHub PR → merge to `master` → Vercel Git integration only.
-- Never run `vercel --prod`, `vercel link`, `vercel unlink`, or scope/project switching.
-- Before any Vercel action, run `%LOCALAPPDATA%\cursor-agent\personal\scripts\Assert-PersonalProject.ps1 -ProjectSlug rayito-de-sol -Operation sensitive`.
-- Use only fixed binding in `.deploy/binding.json`. Never accept destination IDs as arguments.
+- Runtime: **`Nico-Laptop`**.
+- **Vercel:** `psico.camilaa@gmail.com` (Maria Camila / `maria-camila`) — inspect + **admin** via `nico-rayito-vercel-admin`.
 - No Supabase for this project.
-- Secrets never go in git, chat, MCP JSON, or scripts. Use `CursorPersonal/rayito-de-sol/vercel/inspect`.
+- Bindings fijos en `.deploy/binding.json`. Never switch team/project by argument.
+- Forbidden: Prosavis tokens/runtimes.
+- Preflight: `Assert-PersonalProject.ps1 -ProjectSlug rayito-de-sol -Operation sensitive`.
+- Secrets: `CursorPersonal/rayito-de-sol/vercel/*` only.
