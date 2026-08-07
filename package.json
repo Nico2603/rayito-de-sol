@@ -8,6 +8,8 @@
     "prebuild": "tsx scripts/generate-sitemap.ts && tsx scripts/generate-llms-txt.ts && tsx scripts/inject-home-schema.ts",
     "build": "tsc -b && vite build && tsx scripts/prerender.ts",
     "lint": "eslint .",
+    "deploy:prod": "powershell -NoProfile -ExecutionPolicy Bypass -File \"%LOCALAPPDATA%\\cursor-agent\\personal\\scripts\\Deploy-PersonalProject.ps1\" -ProjectSlug rayito-de-sol -Target production",
+    "deploy:preflight": "powershell -NoProfile -ExecutionPolicy Bypass -File \"%LOCALAPPDATA%\\cursor-agent\\personal\\tests\\Probe-PersonalDeploy.ps1\"",
     "preview": "vite preview"
   },
   "dependencies": {

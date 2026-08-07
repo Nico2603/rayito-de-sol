@@ -38,6 +38,11 @@ Regla Cursor always-on: [`.cursor/rules/skills-mandatory.mdc`](.cursor/rules/ski
 
 Antes de UI o features nuevas, leer [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md) y [`src/styles/tokens.css`](src/styles/tokens.css). No introducir Inter/Roboto ni layouts template SaaS.
 
+## Despliegue
+
+- **Producción:** https://rayitodesolpsico.com · Vercel team `maria-camila`
+- **Autónomo (Nico-Laptop):** `npm run deploy:prod` · docs workspace `docs/REMOTE-CONTROL-DEPLOY.md`
+
 **Importante:** no correr las 32 skills en cada prompt. Usar el bundle del tipo de tarea (ver `.cursor/rules/skills-mandatory.mdc`).
 
 ### Bundles resumidos
