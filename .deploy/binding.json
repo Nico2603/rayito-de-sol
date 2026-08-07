@@ -1,0 +1,12 @@
+{
+  "github": "Nico2603/rayito-de-sol",
+  "vercel": {
+    "orgId": "team_AfRMC2ji7lFXIjS0Ck8VEx7Q",
+    "projectId": "prj_kUAmbSILcyhOgqIHtEFR3bNEoyM2",
+    "projectName": "rayito-de-sol",
+    "productionBranch": "master"
+  },
+  "supabase": {
+    "enabled": false
+  }
+}

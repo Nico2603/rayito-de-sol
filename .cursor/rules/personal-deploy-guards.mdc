@@ -1,0 +1,13 @@
+---
+description: Fail-closed deploy and provider guards for personal My Machines
+alwaysApply: true
+---
+
+# Personal deploy guards (Rayito de Sol)
+
+- Production path: GitHub PR → merge to `master` → Vercel Git integration only.
+- Never run `vercel --prod`, `vercel link`, `vercel unlink`, or scope/project switching.
+- Before any Vercel action, run `%LOCALAPPDATA%\cursor-agent\personal\scripts\Assert-PersonalProject.ps1 -ProjectSlug rayito-de-sol -Operation sensitive`.
+- Use only fixed binding in `.deploy/binding.json`. Never accept destination IDs as arguments.
+- No Supabase for this project.
+- Secrets never go in git, chat, MCP JSON, or scripts. Use `CursorPersonal/rayito-de-sol/vercel/inspect`.
