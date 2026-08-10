@@ -1,25 +1,22 @@
-﻿# Agent Bridge → Puente Remote Control
+﻿# Agent Bridge → Puente Remote Control (universal)
 
-Este directorio **ya no duplica** planos Prosavis.
-
-El canal entre Remote Controls (casa ↔ oficina) es:
+Este directorio **no duplica** planos. El canal es:
 
 **https://github.com/Nico2603/puente-remote-control**
 
 | Qué | Dónde |
 | --- | --- |
-| Entregas (código, multimedia, docs) | `puente-remote-control/entregas/` |
-| Contrato / cómo usar | `puente-remote-control/README.md` · `docs/COMO-USAR.md` |
-| Workers + graphify | `puente-remote-control/docs/REMOTE-CONTROL.md` |
+| Código / docs entre PCs | `entregas/` (GitHub) |
+| Móvil ↔ PC (fotos, PDFs…) | LocalSend → `bandeja-localsend/` |
+| Decisión de canal | `docs/PUENTE-UNIVERSAL.md` |
+| Guía LocalSend | `docs/LOCALSEND.md` |
 | Máquina de anuncios (casa) | https://github.com/Nico2603/publicidad |
-| Preview anuncios en casa | Supabase Lumen Storage `ads-preview` |
-| Preview anuncios en oficina | Firebase `prosavis-ads-preview` |
-
-## Acción
+| Preview anuncios casa | Supabase Lumen `ads-preview` |
+| Preview anuncios oficina | Firebase `prosavis-ads-preview` |
 
 ```powershell
 git clone https://github.com/Nico2603/puente-remote-control.git
-# o git pull si ya lo tienes
+# o git pull
+.\scripts\instalar-localsend.ps1
+.\scripts\configurar-bandeja-localsend.ps1 -Alias nico-laptop   # o prosavis-pc
 ```
-
-No uses copias locales de blueprints aquí: todo va por el puente.
