@@ -1,26 +1,25 @@
-﻿# Agent Bridge — ProSavis publicidad
+﻿# Agent Bridge → Puente Remote Control
 
-Puente público entre Remote Controls (oficina ↔ casa) sin depender de repos privados.
+Este directorio **ya no duplica** planos Prosavis.
 
-| Recurso | URL |
+El canal entre Remote Controls (casa ↔ oficina) es:
+
+**https://github.com/Nico2603/puente-remote-control**
+
+| Qué | Dónde |
 | --- | --- |
-| Blueprint repo (público) | https://github.com/Nico2603/prosavis-publicidad-blueprint |
-| Blueprint raw (sin auth) | https://raw.githubusercontent.com/Nico2603/prosavis-publicidad-blueprint/main/archivo.md |
-| Este archivo | [prosavis-publicidad-archivo.md](./prosavis-publicidad-archivo.md) |
-| Mirror casa (privado) | https://github.com/Nico2603/publicidad |
-| Upstream oficina | https://github.com/Prosavis/publicidad.git |
+| Entregas (código, multimedia, docs) | `puente-remote-control/entregas/` |
+| Contrato / cómo usar | `puente-remote-control/README.md` · `docs/COMO-USAR.md` |
+| Workers + graphify | `puente-remote-control/docs/REMOTE-CONTROL.md` |
+| Máquina de anuncios (casa) | https://github.com/Nico2603/publicidad |
+| Preview anuncios en casa | Supabase Lumen Storage `ads-preview` |
+| Preview anuncios en oficina | Firebase `prosavis-ads-preview` |
 
-## Estado del puente (módulo)
+## Acción
 
-1. Casa ya creó el landing pad `Nico2603/publicidad` e invitó a **Prosavis** (push).
-2. Oficina debe: **aceptar el invite** y hacer `git push` del módulo real a `Nico2603/publicidad`  
-   **o** invitar `Nico2603` a `Prosavis/publicidad`.
-3. Path canónico en casa: `%USERPROFILE%\Documents\GitHub\publicidad`
-4. Preview móvil: Firebase `prosavis-ads-preview`
+```powershell
+git clone https://github.com/Nico2603/puente-remote-control.git
+# o git pull si ya lo tienes
+```
 
-## Receta
-
-1. Código/contexto → GitHub compartido (blueprint + mirror)
-2. Orquestación → Cursor Agents (Runtime) + deja/recoge del drop
-3. Preview móvil → Firebase `prosavis-ads-preview`
-4. Emergencia sin auth → raw blueprint o este `docs/agent-bridge/`
+No uses copias locales de blueprints aquí: todo va por el puente.
