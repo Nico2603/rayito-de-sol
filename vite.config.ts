@@ -2,9 +2,13 @@ import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import type { IncomingMessage, ServerResponse } from 'node:http'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { fetchInstagramFeed } from './src/lib/instagram-api'
 import { fetchInstagramImage } from './src/lib/instagram-image'
 import { INSTAGRAM_USERNAME } from './src/constants/social'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 async function sendNodeResponse(
   nodeRes: ServerResponse,
@@ -68,4 +72,9 @@ function instagramDevApi(): Plugin {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(), instagramDevApi()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
 })
