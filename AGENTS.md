@@ -42,6 +42,15 @@ Antes de UI o features nuevas, leer [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md) y [`s
 
 - **Producción:** https://rayitodesolpsico.com · Vercel team `maria-camila`
 - **Autónomo (Nico-Laptop):** `npm run deploy:prod` · docs workspace `docs/REMOTE-CONTROL-DEPLOY.md`
+- **Cloud Agent (VM Ubuntu):** `npm run cloud:probe` / `cloud:deploy` · secretos en el dashboard · [`../docs/CLOUD-AGENT-SECRETS.md`](../docs/CLOUD-AGENT-SECRETS.md)
+
+## Cursor Cloud specific instructions
+
+- Crea (si falta) un Cloud environment **solo** para `Nico2603/rayito-de-sol`. No reutilices el de Lumen.
+- Skills: `.agents/skills/` + `skills-lock.json`. `npx skills ls`.
+- MCP: `.cursor/mcp.json` → HTTP `https://mcp.vercel.com`. En Dashboard → Integrations & MCP, el mismo URL. OAuth Vercel con `psico.camilaa@gmail.com` (team `maria-camila`).
+- Token deploy: `npm run cloud:deploy` si `VERCEL_TOKEN` está `set`.
+- `nico-ops` y galería/Drive son Nico-Laptop, no esta VM.
 
 **Importante:** no correr las 32 skills en cada prompt. Usar el bundle del tipo de tarea (ver `.cursor/rules/skills-mandatory.mdc`).
 
