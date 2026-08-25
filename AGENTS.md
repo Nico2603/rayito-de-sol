@@ -42,15 +42,28 @@ Antes de UI o features nuevas, leer [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md) y [`s
 
 - **Producción:** https://rayitodesolpsico.com · Vercel team `maria-camila`
 - **Autónomo (Nico-Laptop):** `npm run deploy:prod` · docs workspace `docs/REMOTE-CONTROL-DEPLOY.md`
-- **Cloud Agent (VM Ubuntu):** `npm run cloud:probe` / `cloud:deploy` · secretos en el dashboard · [`../docs/CLOUD-AGENT-SECRETS.md`](../docs/CLOUD-AGENT-SECRETS.md)
+- **Cloud Agent (VM Ubuntu):** environment `Nico2603/rayito-de-sol` · `npm run cloud:probe` / `cloud:status` / `cloud:deploy` · [`../docs/CLOUD-AGENT-SECRETS.md`](../docs/CLOUD-AGENT-SECRETS.md)
 
 ## Cursor Cloud specific instructions
 
-- Crea (si falta) un Cloud environment **solo** para `Nico2603/rayito-de-sol`. No reutilices el de Lumen.
+- Environment personal ya existe: `Nico2603/rayito-de-sol` (no reutilices el de Lumen). My Secrets: `VITE_WEB3FORMS_ACCESS_KEY`, `VITE_GA_MEASUREMENT_ID`. **Faltan** `VERCEL_TOKEN`, `VITE_INSTAGRAM_TOKEN`, `VITE_GTM_CONTAINER_ID`.
 - Skills: `.agents/skills/` + `skills-lock.json`. `npx skills ls`.
 - MCP: `.cursor/mcp.json` → HTTP `https://mcp.vercel.com`. En Dashboard → Integrations & MCP, el mismo URL. OAuth Vercel con `psico.camilaa@gmail.com` (team `maria-camila`).
-- Token deploy: `npm run cloud:deploy` si `VERCEL_TOKEN` está `set`.
+- Token deploy: `npm run cloud:deploy` si `VERCEL_TOKEN` está `set`. Estado: `npm run cloud:status`.
 - `nico-ops` y galería/Drive son Nico-Laptop, no esta VM.
+
+## Cloud fallback (sin Remote Control)
+
+Este repo **es** el canal Rayito. Si el runtime no es `Nico-Laptop`: lee `.agents/skills/cloud-agent-fallback/SKILL.md`. No PowerShell personal, no `nico-ops`.
+
+| Pedido | Acción |
+|---|---|
+| probe / ¿faltan secretos? | `npm run cloud:probe` |
+| estado / último deploy | `npm run cloud:status` |
+| preview / arregla deploy | `npm run cloud:deploy` |
+| prod | `npm run cloud:deploy:prod` |
+
+Si `VERCEL_TOKEN` sale `missing`, parar. Pegar en My Secrets scoped a `Nico2603/rayito-de-sol`. Código local sin push **no está** en esta VM.
 
 **Importante:** no correr las 32 skills en cada prompt. Usar el bundle del tipo de tarea (ver `.cursor/rules/skills-mandatory.mdc`).
 
