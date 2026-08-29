@@ -22,7 +22,8 @@ Inventario completo del workspace: [SKILLS.md](../SKILLS.md)
 
 Verificar: `npx skills ls` (desde la raíz del repo).
 
-Regla Cursor always-on: [`.cursor/rules/skills-mandatory.mdc`](.cursor/rules/skills-mandatory.mdc)
+Regla Cursor always-on: [`.cursor/rules/skills-mandatory.mdc`](.cursor/rules/skills-mandatory.mdc)  
+Identidad del autor: skill `nicolas-identity` + [`.cursor/rules/nicolas-identity.mdc`](.cursor/rules/nicolas-identity.mdc)
 
 ### Skills instaladas (32)
 

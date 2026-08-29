@@ -1,7 +1,14 @@
-# Rayito de Sol 🌤️🌙 — Psicología & Bienestar Emocional
+<div align="center">
+  <img src="docs/assets/banner.svg" alt="Rayito de Sol" width="100%" />
+</div>
 
-**Landing page profesional** para el consultorio psicológico de María Camila en Pereira, Risaralda, Colombia.  
-Terapia individual, atención infantil, sesiones online y talleres grupales con un enfoque cálido, humano y clínico.
+<br />
+
+# Rayito de Sol — Psicología y bienestar
+
+**[rayitodesolpsico.com](https://rayitodesolpsico.com)** — landing del consultorio de María Camila en Pereira, Risaralda.
+
+Terapia individual, atención infantil, sesiones online y talleres. Producto hermano de [Lumen Care](https://github.com/Nico2603/lumen-care) (gestión de consulta, privado).
 
 ---
 
@@ -199,4 +206,27 @@ Pasos tras el deploy:
 
 ---
 
-<p align="center">Hecho con 💛 para acompañar procesos de bienestar emocional</p>
+<p align="center">Hecho para acompañar procesos de bienestar emocional</p>
+
+---
+
+<div align="center">
+
+**Nicolás Ceballos Brito** · Ingeniero en Sistemas y Telecomunicaciones (UCP 2025)  
+CTO · Prosavis · Pereira, Colombia
+
+[nicolasceballosbrito.com](https://nicolasceballosbrito.com)
+·
+[GitHub](https://github.com/Nico2603)
+·
+[LinkedIn](https://www.linkedin.com/in/nicolas-ceballos-brito/)
+·
+[X](https://x.com/NicolasCBrito)
+·
+[Instagram](https://www.instagram.com/nico_ceballos26/)
+·
+[Hugging Face](https://huggingface.co/Flackoooo)
+·
+[Email](mailto:nicolasceballosbrito@gmail.com)
+
+</div>
