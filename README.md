@@ -12,7 +12,7 @@ Terapia individual, atención infantil, sesiones online y talleres. Producto her
 
 ---
 
-## ✨ Stack Tecnológico
+## Stack
 
 | Tecnología | Versión | Propósito |
 |---|---|---|
@@ -26,21 +26,21 @@ Terapia individual, atención infantil, sesiones online y talleres. Producto her
 | **react-router-dom** | ^7.17.0 | Enrutamiento SPA |
 | **react-helmet-async** | ^3.0.0 | SEO / meta tags |
 
-## 📐 Sistema de Diseño
+## Sistema de diseño
 
-El proyecto cuenta con un **sistema de diseño completo** documentado en [`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md) que incluye:
+Sistema de diseño en [`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md):
 
-- **Paleta "Cielo Van Gogh"** — azules profundos a celestes + dorados solares
-- **Tema dual** ☀️🌙 — Día (Sol) / Noche (Luna) con persistencia en `localStorage`
+- **Paleta Cielo Van Gogh** — azules profundos a celestes + dorados solares
+- **Tema dual** — Día (Sol) / Noche (Luna) con persistencia en `localStorage`
 - **Tipografía** — `Plus Jakarta Sans` (body) + `Fraunces` (display)
-- **Componentes** — Navbar, Hero con partículas interactivas, About, Approach, Services, FAQ, Instagram Feed, Contact, Footer
-- **Animaciones** — Scroll reveal con SectionWrapper, sparkles doradas, MouseGlow, InteractiveSparkles canvas
-- **100% responsive** — mobile-first con breakpoints sm/md/lg/xl
-- **CSS modular** — tokens, animaciones y base separados en `src/styles/`
+- **Componentes** — Navbar, Hero con partículas, About, Approach, Services, FAQ, Instagram Feed, Contact, Footer
+- **Animaciones** — Scroll reveal con SectionWrapper, sparkles, MouseGlow, InteractiveSparkles
+- **Layout** — mobile-first (breakpoints sm/md/lg/xl)
+- **CSS modular** — tokens, animaciones y base en `src/styles/`
 - **Datos desacoplados** — textos y config en `src/data/`, lógica pura en `src/lib/`
-- **Tipos centralizados** — interfaces compartidas en `src/types/`
+- **Tipos** — interfaces en `src/types/`
 
-## 🧱 Estructura del Proyecto
+## Estructura
 
 ```
 src/
@@ -91,7 +91,7 @@ src/
 └── index.css                # → re-exporta styles/index.css
 ```
 
-## 🚀 Comandos
+## Comandos
 
 ```bash
 # Desarrollo
@@ -111,7 +111,7 @@ npx graphify update .                     # AST rápido
 npx graphify extract . --backend gemini   # Extracción semántica (requiere GEMINI_API_KEY)
 ```
 
-## 🧩 Secciones de la Landing
+## Secciones
 
 1. **Hero** — Cielo Van Gogh con partículas animadas, brillo interactivo, CTA principal a WhatsApp + CTA secundario a formulario
 2. **About** — Foto de la psicóloga, credenciales, badges (Titulada, TCC, Atención Infantil)
@@ -123,19 +123,19 @@ npx graphify extract . --backend gemini   # Extracción semántica (requiere GEM
 8. **Instagram Feed** — Grid de publicaciones de Instagram
 9. **Footer** — Redes sociales, enlaces SEO y política de privacidad
 
-## 🧭 Páginas SEO de intención alta
+## Páginas SEO
 
 - `/terapia-ansiedad-pereira`
 - `/psicologia-infantil-pereira`
 - `/politica-privacidad`
 
-## 🌐 Despliegue
+## Despliegue
 
 **Producción:** [rayitodesolpsico.com](https://rayitodesolpsico.com)  
 **Preview Vercel:** [rayito-de-sol.vercel.app](https://rayito-de-sol.vercel.app)  
 **Plataforma:** Vercel (deploy automático desde `master`)
 
-## 🔑 Variables de Entorno
+## Variables de entorno
 
 | Variable | Descripción |
 |---|---|
@@ -161,13 +161,13 @@ VITE_GA_MEASUREMENT_ID=G-B1Z8RGJK1P
 
    Cambia el dominio cuando pases de local a producción; no hace falta tocar código.
 
-## 👩‍⚕️ Contacto
+## Contacto
 
 - **Instagram:** [@rayitodesol.psico](https://www.instagram.com/rayitodesol.psico/)
 - **WhatsApp:** [+57 310 750 6153](https://wa.me/573107506153)
 - **Ubicación:** Pereira, Risaralda
 
-## 📊 Google Analytics 4
+## Google Analytics 4
 
 1. Crear propiedad en [analytics.google.com](https://analytics.google.com) → flujo de datos **Web** → URL `https://rayitodesolpsico.com`.
 2. Copiar el **ID de medición** (`G-XXXXXXXXXX`).
@@ -182,7 +182,7 @@ Eventos personalizados clave:
 - `contact_form_start`, `contact_form_submit`, `contact_form_error`
 - `review_click` (testimonials, contact, footer)
 
-## 🔍 SEO / Google Search Console
+## SEO / Google Search Console
 
 Pasos tras el deploy:
 
@@ -196,7 +196,7 @@ Pasos tras el deploy:
 6. **Bing Webmaster Tools** (opcional): mismo sitemap.
 7. Enlazar el dominio desde la bio de Instagram ([@rayitodesol.psico](https://www.instagram.com/rayitodesol.psico/)).
 
-## 📈 Growth loop mensual (captación + viralidad)
+## Growth loop mensual
 
 - Publicar 2 piezas de contenido al mes (ansiedad/burnout y psicología infantil).
 - Solicitar 4-6 reseñas de calidad al mes en Google Business Profile.
